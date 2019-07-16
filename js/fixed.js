@@ -1,0 +1,13 @@
+const GAME_STATE ={
+    MENU_STATE: 0,
+    FIGHT_STATE: 1
+    //INPUT_STATE: 2,
+    //PLAYER_ATTACK: 3,
+    //ENEMY_ATTACK: 4
+}
+
+const BATTLE_STATE = {
+    INPUT_STATE:2,
+    PLAYER_ATTACK:3,
+    ENEMY_ATTACK: 4
+}
