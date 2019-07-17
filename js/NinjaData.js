@@ -1,7 +1,14 @@
 let naruto_stand = document.getElementById('naruto_sprite');
 let sakura_stand = document.getElementById('sakura_sprite');
 let naruto_jutsu1 = document.getElementById('naruto_jutsu1');
+let naruto_rasengan = document.getElementById('naruto-rasengan');
 let sasuke_stand = document.getElementById('sasuke_sprite');
+
+let sasuke_chidori = document.getElementById('sasuke-chidori');
+let sasuke_genjutsu = document.getElementById('sasuke-genjutsu');
+
+let sakura_superChakra = document.getElementById('sakura-superStrength');
+let sakura_jutsu2 = document.getElementById('sakura-jutsu2');
 
 let NinjaData = [
     {
@@ -12,13 +19,18 @@ let NinjaData = [
         speed: 3,
         imageArray: [{
                 image: sasuke_stand,
-                width: 47,
-                length: 3
-        },
-            {
-                image: naruto_jutsu1,
                 width: 46,
                 length: 3
+        },
+                     {
+                image: sasuke_genjutsu,
+                width: 56,
+                length: 2
+            },
+            {
+                image: sasuke_chidori,
+                width: 55,
+                length: 4
             }],
         jutsu: [{
                 name: "chidori",
@@ -49,7 +61,14 @@ let NinjaData = [
                 image: naruto_jutsu1,
                 width: 46,
                 length: 3
-            }],
+            },
+                 {
+                image: naruto_rasengan,
+                width: 48,
+                length: 3
+            }
+                    
+                    ],
         jutsu: [{
                 name: "rasengan",
                 power: 30,
@@ -76,18 +95,23 @@ let NinjaData = [
                 length: 3
         },
             {
-                image: naruto_jutsu1,
-                width: 46,
+                image: sakura_jutsu2,
+                width: 39,
                 length: 3
+            },
+            {
+                image: sakura_superChakra,
+                width: 47,
+                length: 2
             }],
         jutsu: [{
-                name: "rasengan",
+                name: "superStrength",
                 power: 30,
                 chakraLoss: 25,
                 accuracy: .85
                 },
             {
-                name: "shadowClone",
+                name: "superChakra",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9

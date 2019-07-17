@@ -273,14 +273,14 @@ class Fight {
                 this.clicked = true;
                 console.log('i am 1')
                 this.jutsuIndex = 0;
-                this.playerImageIndex = this.jutsuIndex;
+                this.playerImageIndex = this.jutsuIndex + 1;
                 this.playerAttack();
 
             } else if (this.isSelected(clickX, clickY, this.jutsu2Coordinates, this.attackImageSize) && this.clicked === false) {
                 this.clicked = true;
                 console.log('i am 2')
                 this.jutsuIndex = 1;
-                this.playerImageIndex = this.jutsuIndex;
+                this.playerImageIndex = this.jutsuIndex + 1;
                 this.playerAttack();
             }
         }
