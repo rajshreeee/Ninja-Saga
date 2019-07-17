@@ -4,6 +4,11 @@ class Menu {
         this.sasuke_image = document.getElementById("sasuke_menu");
         this.naurto_image = document.getElementById("naruto_menu");
         this.sakura_image = document.getElementById("sakura_menu");
+        
+       // this.sasuke_name = document.getElementById("sasuke-name");
+        //this.sakura_name = document.getElementById("sakura-name");
+        //this.naruto_name = document.getElementById("naruto-name");
+       
         this.cross = document.getElementById("cross");
         this.gameBackground = document.getElementById('game-background');
 
@@ -28,8 +33,8 @@ class Menu {
 
         ctx.drawImage(
             this.sasuke_image,
-            100,
-            300,
+            200,
+            200,
             this.imageSize.x,
             this.imageSize.y
         );
@@ -37,19 +42,20 @@ class Menu {
         ctx.drawImage(
             this.naurto_image,
             450,
-            300,
+            200,
             this.imageSize.x,
             this.imageSize.y
         );
 
         ctx.drawImage(
             this.sakura_image,
-            800,
-            300,
+            700,
+            200,
             this.imageSize.x,
             this.imageSize.y
         );
 
+        this.nameImage();
 
     }
 
@@ -108,17 +114,23 @@ class Menu {
     crossImage() {
 
         let crossX;
-        let crossY = 300;
+        let crossY = 200;
+        
+        let narutoX;
+        let narutoY = 250;
+        
         switch (this.currentNinja) {
             case 0:
-                crossX = 100;
-
+                crossX = 190;
+           
                 break;
             case 1:
-                crossX = 450;
+                crossX = 441;
+        
                 break;
             case 2:
-                crossX = 800;
+                crossX = 700;
+
                 break;
             default:
                 //pass
@@ -128,9 +140,40 @@ class Menu {
             this.cross,
             crossX,
             crossY,
-            100, 100
+            150, 150
         );
+ 
     }
 
+       nameImage() {
 
+        let narutoX;
+        let narutoY = 530;
+        
+        switch (this.currentNinja) {
+            case 0:
+                narutoX = 100;
+                this.naruto_name = document.getElementById("sasuke-name");
+                break;
+            case 1:
+                narutoX = 370;
+                this.naruto_name = document.getElementById("naruto-name");
+                break;
+            case 2:
+                narutoX = 620;
+                this.naruto_name = document.getElementById("sakura-name");
+                break;
+            default:
+                //pass
+        }
+
+        ctx.drawImage(
+            this.naruto_name,
+            narutoX,
+            narutoY,
+            250,
+            70
+           
+        );
+    }
 }

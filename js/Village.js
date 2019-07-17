@@ -19,7 +19,7 @@ class Village {
          }.bind(this))*/
 
         setTimeout(function () {
-            this.game.createFightObjects();
+            this.game.createFightObjects(2);
 
         }.bind(this), 2000)
 
