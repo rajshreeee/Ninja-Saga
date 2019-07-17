@@ -64,8 +64,6 @@ class Game {
         this.enemyArray = [this.enemy1, this.enemy2];
         console.log(this.enemyArray)*/
        
-        
-        
         this.enemyArray = [];
         for(let i = 0; i< numberOfEnemies; i++){
             this.enemyArray.push( new Enemy(this.ninjaArray[i], -this.enemyPosition[i].x, this.enemyPosition[i].y, -1, NinjaData[this.ninjaArray[i]].imageArray));
@@ -75,7 +73,7 @@ class Game {
         
         this.player = new Player(this.ninjaIndex, this.playerPositionX, 200, 1, NinjaData[this.ninjaIndex].imageArray);
         
-        this.fight = new Fight(this.player, this.enemyArray, this.canvas, this.pet);
+        this.fight = new Fight(this, this.player, this.enemyArray, this.canvas, this.pet);
         
         this.gameState = GAME_STATE.FIGHT_STATE;
     }

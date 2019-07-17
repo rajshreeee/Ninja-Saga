@@ -1,10 +1,10 @@
 class Fight {
-    constructor(player, enemyArray, canvas, pet) {
+    constructor(game, player, enemyArray, canvas, pet) {
+        this.game = game;
         this.player = player;
         this.enemyArray = enemyArray;
         this.pet = pet || null;
         //  console.log(this.pet)
-        console.log(this.enemyArray)
         this.backgroundImage = document.getElementById("bg_fight");
         this.attackImage = document.getElementById("rasengan");
         this.healthBarOuter = document.getElementById("healthBarOuter");
@@ -13,6 +13,8 @@ class Fight {
         this.attackImageSize = 50;
         this.canvas = canvas;
         this.playerSpeed = this.player.speed;
+        this.selectedEnemy = 0;
+
         //this.enemySpeed = this.enemy.speed;  
         this.enemySpeedArray = [];
         this.enemyAttackTimeArray = [];
@@ -83,6 +85,8 @@ class Fight {
         this.jutsuIndex = 0;
 
         canvas.onclick = event => this.selectJutsu(event);
+
+        document.onclick = event => this.selectEnemy(event);
 
         this.playerImageIndex = 0;
         // this.enemyImageIndex = 0;
@@ -265,14 +269,14 @@ class Fight {
             let clickX = event.clientX - rect.left;
             let clickY = event.clientY - rect.top;
 
-            if (this.isSelected(clickX, clickY, this.jutsu1Coordinates) && this.clicked === false) {
+            if (this.isSelected(clickX, clickY, this.jutsu1Coordinates, this.attackImageSize) && this.clicked === false) {
                 this.clicked = true;
                 console.log('i am 1')
                 this.jutsuIndex = 0;
                 this.playerImageIndex = this.jutsuIndex;
                 this.playerAttack();
 
-            } else if (this.isSelected(clickX, clickY, this.jutsu2Coordinates) && this.clicked === false) {
+            } else if (this.isSelected(clickX, clickY, this.jutsu2Coordinates, this.attackImageSize) && this.clicked === false) {
                 this.clicked = true;
                 console.log('i am 2')
                 this.jutsuIndex = 1;
@@ -283,12 +287,42 @@ class Fight {
 
     }
 
-    isSelected(clickX, clickY, jutsuCoordinates) {
+    selectEnemy(event) {
+        let rect = this.canvas.getBoundingClientRect();
+        let clickX = event.clientX - rect.left;
+        let clickY = event.clientY - rect.top;
+
+        if (this.isSelected(clickX, clickY, {
+                x: 650,
+                y: 140
+            }, 100)) {
+
+            this.selectedEnemy = 0;
+        }
+        /* else if (this.isSelected(clickX, clickY, this.game) && this.clicked === false) {
+                        this.clicked = true;
+                        console.log('i am 2')
+                        this.jutsuIndex = 1;
+                        this.playerImageIndex = this.jutsuIndex;
+                        this.playerAttack();
+                    }*/
+        if (this.isSelected(clickX, clickY, {
+                x: 800,
+                y: 140
+            }, 100)) {
+
+            this.selectedEnemy = 1;
+        }
+        console.log(this.selectedEnemy)
+
+    }
+
+    isSelected(clickX, clickY, jutsuCoordinates, size) {
         if (
             clickX >= jutsuCoordinates.x &&
-            clickX <= jutsuCoordinates.x + this.attackImageSize &&
+            clickX <= jutsuCoordinates.x + size &&
             clickY >= jutsuCoordinates.y &&
-            clickY <= jutsuCoordinates.y + this.attackImageSize
+            clickY <= jutsuCoordinates.y + size
         ) {
             return true;
         }
@@ -300,8 +334,8 @@ class Fight {
         let dodge = getRandomInt(0, 2);
         let i = 1;
         // if (dodge < this.player.jutsu[this.jutsuIndex].accuracy) {
-        let damage = computeDamage(this.player, this.enemyArray[0], this.jutsuIndex);
-        this.enemyArray[0].health -= damage;
+        let damage = computeDamage(this.player, this.enemyArray[this.selectedEnemy], this.jutsuIndex);
+        this.enemyArray[this.selectedEnemy].health -= damage;
         //   for(let i=0;i< 2; i++){
         //console.log(this.enemyArray)
         //     let damage = computeDamage(this.player, this.enemy, //this.jutsuIndex);
@@ -319,8 +353,9 @@ class Fight {
             } else {
                 console.log('player game continues')
                 
-                this.enemyArray[0].speed = 2;
-                this.enemyArray[1].speed = 1;
+                for(let i = 0; i< this.enemyArray.length; i++){
+                    this.enemyArray[i].speed = this.enemySpeedArray[i];
+                }
                 this.actionBarPlayerCoordinates.x = 200;
             }
             this.clicked = false;
@@ -338,15 +373,15 @@ class Fight {
         this.calculatHealthPercentage(this.player);
         console.log('player health' + this.player.health)
         this.enemyAttackTimeArray[i] = false;
-         setTimeout(function () {
+        setTimeout(function () {
             if (this.player.health < 0) {
                 console.log('enemy wins')
             } else {
                 console.log('enemy game continues')
                 this.actionBarEnemyCoordinates[i].x = 200;
                 this.player.speed = this.playerSpeed;
-               
-                for(let k = 0; k< this.enemyArray.length; k++){
+
+                for (let k = 0; k < this.enemyArray.length; k++) {
                     this.enemyArray[k].speed = this.enemySpeedArray[k];
                 }
             }
@@ -355,66 +390,37 @@ class Fight {
 
     }
 
-  /*  enemyAttack() {
-        //this.selectJutsuenabled=false;
-        console.log('I am enemy Attack')
+    /*  enemyAttack() {
+          //this.selectJutsuenabled=false;
+          console.log('I am enemy Attack')
 
-        let dodge = getRandomInt(0, 2);
-        //if (dodge < this.player.jutsu[this.jutsuIndex].accuracy) {
-        let jutsuIndexEnemy = getRandomInt(0, 2);
-        let damage = computeDamage(this.enemyArray[0], this.player, jutsuIndexEnemy);
-        console.log(damage + 'damage');
-        this.player.health -= damage;
-        //  }
-        //      } else {
-        //    console.log('dodged');
+          let dodge = getRandomInt(0, 2);
+          //if (dodge < this.player.jutsu[this.jutsuIndex].accuracy) {
+          let jutsuIndexEnemy = getRandomInt(0, 2);
+          let damage = computeDamage(this.enemyArray[0], this.player, jutsuIndexEnemy);
+          console.log(damage + 'damage');
+          this.player.health -= damage;
+          //  }
+          //      } else {
+          //    console.log('dodged');
 
-        this.calculatHealthPercentage(this.player);
-        console.log('player health' + this.player.health)
-        this.enemyAttackTime = false;
-        setTimeout(function () {
-            if (this.player.health < 0) {
-                console.log('enemy wins')
-            } else {
-                console.log('enemy game continues')
-                this.actionBarEnemy1Coordinates.x = 200;
-                this.player.speed = this.playerSpeed;
-                this.enemyArray[1].speed = 1;
-            }
-            this.enemyAttackTime = true;
-        }.bind(this), 2000);
-    }*/
+          this.calculatHealthPercentage(this.player);
+          console.log('player health' + this.player.health)
+          this.enemyAttackTime = false;
+          setTimeout(function () {
+              if (this.player.health < 0) {
+                  console.log('enemy wins')
+              } else {
+                  console.log('enemy game continues')
+                  this.actionBarEnemy1Coordinates.x = 200;
+                  this.player.speed = this.playerSpeed;
+                  this.enemyArray[1].speed = 1;
+              }
+              this.enemyAttackTime = true;
+          }.bind(this), 2000);
+      }*/
 
-    enemy2Attack() {
-        console.log('I am enemy Attack')
 
-        let dodge = getRandomInt(0, 2);
-        //if (dodge < this.player.jutsu[this.jutsuIndex].accuracy) {
-        let jutsuIndexEnemy = getRandomInt(0, 2);
-        this.enemyImageIndex = jutsuIndexEnemy;
-        console.log(this.enemyImageIndex);
-        let damage = computeDamage(this.enemyArray[1], this.player, jutsuIndexEnemy);
-        console.log(damage + 'damage');
-        this.player.health -= damage;
-        //  }
-        //      } else {
-        //    console.log('dodged');
-
-        this.calculatHealthPercentage(this.player);
-        console.log('player health' + this.player.health)
-        this.enemy2AttackTime = false;
-        setTimeout(function () {
-            if (this.player.health < 0) {
-                console.log('enemy wins')
-            } else {
-                console.log('enemy game continues')
-                this.actionBarEnemy2Coordinates.x = 200;
-                this.player.speed = this.playerSpeed;
-                this.enemyArray[0].speed = 2;
-            }
-            this.enemy2AttackTime = true;
-        }.bind(this), 2000);
-    }
 
     calculatHealthPercentage(player) {
         return ((player.health / this.totalHealth) * 100);
