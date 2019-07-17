@@ -5,6 +5,7 @@ class Menu {
         this.naurto_image = document.getElementById("naruto_menu");
         this.sakura_image = document.getElementById("sakura_menu");
         this.cross = document.getElementById("cross");
+        this.gameBackground = document.getElementById('game-background');
 
         this.currentNinja = 0;
 
@@ -17,6 +18,8 @@ class Menu {
     }
 
     draw(ctx) {
+        ctx.drawImage(this.gameBackground, 0, 0, 1000, 700);
+
         this.drawNinja(ctx);
     }
 
@@ -50,7 +53,34 @@ class Menu {
 
     }
 
+    selectCode(event) {
+        switch (event.keyCode) {
+            case 37: //keyCode for left
+                if (this.currentNinja !== 0) {
+                    this.currentNinja--;
+                }
+                break;
+            case 39: //keyCode for right
+                if (this.currentNinja !== 2) {
+                    this.currentNinja++;
+                }
+                break;
+            case 13:
+                console.log('pressed')
+                this.game.ninjaIndex = this.currentNinja;
+                this.game.gameState = GAME_STATE.VILLAGE_STATE;
+                this.game.village.goToDestination();
+                document.removeEventListener('keydown', this.selectCode, true);
+            default:
+                //pass
+        }
+    }
     selectNinja() {
+        document.addEventListener("keydown", this.selectCode.bind(this), true);
+    }
+
+
+    /*selectNinja() {
         document.addEventListener("keydown", event => {
             switch (event.keyCode) {
                 case 37: //keyCode for left
@@ -64,13 +94,16 @@ class Menu {
                     }
                     break;
                 case 13:
+                    console.log('pressed')
                     this.game.ninjaIndex = this.currentNinja;
-                    this.game.createFightObjects();
+                    this.game.gameState = GAME_STATE.VILLAGE_STATE;
+                    this.game.village.goToDestination();
+                    
                 default:
                     //pass
             }
         });
-    }
+    }*/
 
     crossImage() {
 
@@ -79,7 +112,7 @@ class Menu {
         switch (this.currentNinja) {
             case 0:
                 crossX = 100;
-               
+
                 break;
             case 1:
                 crossX = 450;

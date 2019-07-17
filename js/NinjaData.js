@@ -1,6 +1,7 @@
 let naruto_stand = document.getElementById('naruto_sprite');
 let sakura_stand = document.getElementById('sakura_sprite');
 let naruto_jutsu1 = document.getElementById('naruto_jutsu1');
+let sasuke_stand = document.getElementById('sasuke_sprite');
 
 let NinjaData = [
     {
@@ -10,7 +11,7 @@ let NinjaData = [
         defense: 3,
         speed: 3,
         imageArray: [{
-                image: naruto_stand,
+                image: sasuke_stand,
                 width: 47,
                 length: 3
         },
@@ -68,7 +69,7 @@ let NinjaData = [
         health: 100,
         chakra: 100,
         defense: 2,
-        speed: 1,
+        speed: 1.5,
             imageArray: [{
                 image: sakura_stand,
                 width: 37,
