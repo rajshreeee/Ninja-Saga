@@ -6,7 +6,6 @@ class Fight {
         this.pet = pet || null;
         //  console.log(this.pet)
         this.backgroundImage = document.getElementById("bg_fight");
-        this.attackImage = document.getElementById("rasengan");
         this.healthBarOuter = document.getElementById("healthBarOuter");
         this.healthBarInner = document.getElementById("healthBarInner");
         this.actionBar = document.getElementById("actionBar");
@@ -14,7 +13,7 @@ class Fight {
         this.defeat = document.getElementById('defeat');
         this.victory = document.getElementById('victory');
         this.title_bar = document.getElementById('title-bar');
-        this.attackImageSize = 50;
+        this.attackImageSize = 40;
         this.canvas = canvas;
         this.playerSpeed = this.player.speed;
         this.selectedEnemy = 0;
@@ -34,11 +33,32 @@ class Fight {
             //this.enemyOpacityArray.push(1);
         };
 
-        // this.enemyAttackTime = true;
-        //this.enemy2AttackTime = true;
-
         this.selectJutsuenabled = false;
 
+        this.jutsuCoordinates = [
+            {
+                x: 300,
+                y: 325
+        }, {
+                x: 375,
+                y: 325
+        }, {
+                x: 450,
+                y: 325
+        }, {
+                x: 525,
+                y: 325
+        }, {
+                x: 600,
+                y: 325
+        },
+            {
+                x: 675,
+                y: 325
+        }
+
+        ];
+/*
         this.jutsu1Coordinates = {
             x: 200,
             y: 450
@@ -48,7 +68,7 @@ class Fight {
             x: 350,
             y: 450
         };
-
+*/
         this.healthBarCoordinates = {
             x: 150,
             y: 300
@@ -90,6 +110,18 @@ class Fight {
         }
         ];
 
+        this.enemyCoordinates = [
+            {
+                x: 650,
+                y: 140
+            },
+
+            {
+                x: 800,
+                y: 140
+            }
+        ];
+
         this.playerOpacity = 1;
 
 
@@ -126,7 +158,7 @@ class Fight {
         if (this.cancelFrame === false) {
             this.drawFightBackground(ctx);
             this.player.draw(ctx, this.playerImageIndex, 100, this.playerOpacity);
-            
+
             ctx.drawImage(
                 this.dagger,
                 this.enemyDaggerPosition[this.selectedEnemy].x,
@@ -277,16 +309,14 @@ class Fight {
     }
 
     drawPlayerAttacks(ctx) {
-        ctx.drawImage(
-            this.attackImage,
-            this.jutsu1Coordinates.x, this.jutsu1Coordinates.y, this.attackImageSize, this.attackImageSize
-        );
-
-        ctx.drawImage(
-            this.attackImage,
-            this.jutsu2Coordinates.x, this.jutsu2Coordinates.y, this.attackImageSize, this.attackImageSize
-        );
-
+        console.log(this.player.jutsu.length)
+        for (let i = 0; i < this.player.jutsu.length; i++){
+             ctx.drawImage(
+                this.player.jutsu[i].image,
+                this.jutsuCoordinates[i].x, this.jutsuCoordinates[i].y,50,50
+            );
+        }
+           
     }
 
 
@@ -296,27 +326,18 @@ class Fight {
             let rect = this.canvas.getBoundingClientRect();
             let clickX = event.clientX - rect.left;
             let clickY = event.clientY - rect.top;
-
-            if (this.isSelected(clickX, clickY, this.jutsu1Coordinates, this.attackImageSize) && this.clicked === false) {
-                this.clicked = true;
-                this.renderPlayerAttacks = false;
-
-                console.log('i am 1')
-                this.jutsuIndex = 0;
-                this.playerImageIndex = this.jutsuIndex + 1;
-                this.playerAttack();
-
-            } else if (this.isSelected(clickX, clickY, this.jutsu2Coordinates, this.attackImageSize) && this.clicked === false) {
-                this.clicked = true;
-                console.log('i am 2')
-                this.jutsuIndex = 1;
-                this.renderPlayerAttacks = false;
-
-                this.playerImageIndex = this.jutsuIndex + 1;
-                this.playerAttack();
+            
+            for(let i=0; i< this.player.jutsu.length; i++){
+                if(this.isSelected(clickX,clickY, this.jutsuCoordinates[i], 50) && this.clicked ===false){
+                    this.clicked = true;
+                    this.renderPlayerAttacks = false;
+                    this.jutsuIndex = i;
+                    this.playerImageIndex = this.jutsuIndex + 1;
+                    this.playerAttack();
+                }
             }
         }
-
+    
     }
 
     selectEnemy(event) {
@@ -324,22 +345,12 @@ class Fight {
         let clickX = event.clientX - rect.left;
         let clickY = event.clientY - rect.top;
 
-        if (this.isSelected(clickX, clickY, {
-                x: 650,
-                y: 140
-            }, 100)) {
-
-            this.selectedEnemy = 0;
+        for (let i = 0; i < this.enemyCoordinates.length; i++) {
+            if (this.isSelected(clickX, clickY, this.enemyCoordinates[i], 100)) {
+                this.selectedEnemy = i;
+                console.log(this.selectedEnemy)
+            }
         }
-
-        if (this.isSelected(clickX, clickY, {
-                x: 800,
-                y: 140
-            }, 100)) {
-
-            this.selectedEnemy = 1;
-        }
-        console.log(this.selectedEnemy)
 
     }
 
@@ -375,12 +386,16 @@ class Fight {
 
             for (let k = 0; k < this.enemyArray.length; k++) {
                 if (this.enemyArray[k].health <= 0) {
+
                     this.enemyArray.splice(k, 1);
                     this.enemySpeedArray.splice(k, 1);
                     this.enemyAttackTimeArray.splice(k, 1);
                     this.enemyImageIndexArray.splice(k, 1);
                     this.enemyHealthBarCoordinates.splice(k, 1);
                     this.actionBarEnemyCoordinates.splice(k, 1);
+                    this.enemyCoordinates.splice(k, 1);
+                    this.enemyDaggerPosition.splice(k, 1);
+
                 }
             }
             console.log(this.enemyArray)

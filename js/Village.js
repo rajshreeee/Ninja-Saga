@@ -7,7 +7,7 @@ class Village {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.arenaImage, 0, 0);
+        ctx.drawImage(this.arenaImage, 200, 100);
 
 
     }
