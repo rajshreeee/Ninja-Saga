@@ -14,6 +14,9 @@ let naruto_block = document.getElementById('naruto-block');
 let sasuke_block = document.getElementById('sasuke-block');
 let sakura_block = document.getElementById('sakura-block');
 
+let sakura_dead = document.getElementById('sakura-dead');
+
+
 let NinjaData = [
     {
         name: "Sasuke",
@@ -118,7 +121,14 @@ let NinjaData = [
                 image: sakura_superChakra,
                 width: 47,
                 length: 2
+            },     
+            {
+                image: sakura_dead,
+                width: 60,
+                length: 1
             },
+        
+                  
             {
                 image: sakura_block,
                 width: 40,

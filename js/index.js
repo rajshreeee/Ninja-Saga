@@ -8,10 +8,11 @@ const GAME_HEIGHT = 700;
 let game = new Game(canvas);
 console.log("index"+ canvas)
 function gameLoop() {
-    requestAnimationFrame(gameLoop);
+    let gameEngine = requestAnimationFrame(gameLoop);
     ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-    game.draw(ctx);
+    game.draw(ctx, gameEngine, this.gameLoop);
     ctx.imageSmoothingEnabled = false;
+  //  console.log(this.gameLoop)
 }
 
 gameLoop();

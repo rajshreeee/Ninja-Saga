@@ -30,7 +30,7 @@ class Game {
         this.pet = new Pet();
     }
 
-    draw(ctx) {
+    draw(ctx, gameEngine, gameLoop) {
         switch (this.gameState) {
             case GAME_STATE.MENU_STATE:
                 this.menu.draw(ctx);
@@ -46,7 +46,7 @@ class Game {
                 
                          
             case GAME_STATE.FIGHT_STATE:
-                this.fight.draw(ctx);
+                this.fight.draw(ctx, gameEngine, gameLoop);
                 break;
         }
     }
