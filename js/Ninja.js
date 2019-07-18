@@ -11,7 +11,7 @@ class Ninja {
         this.imageArray = imageArray;
     }
 
-    draw(ctx, imageIndex, imageSize) {
+    draw(ctx, imageIndex, imageSize, opacity) {
         this.count++;
         if (this.count % 15 == 0) {
             this.frame = this.frame % this.imageArray[imageIndex].length;
@@ -19,8 +19,10 @@ class Ninja {
         }
 
         ctx.save();
+        ctx.globalAlpha = opacity;
         ctx.scale(this.flipH,1);
         ctx.drawImage(this.imageArray[imageIndex].image, this.frame * this.imageArray[imageIndex].width, 0, this.imageArray[imageIndex].width, 50, this.positionX, this.positionY, imageSize, imageSize);
+        ctx.globalAlpha = 1;
         ctx.restore();
     }
     

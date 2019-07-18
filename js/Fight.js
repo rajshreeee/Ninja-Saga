@@ -10,6 +10,7 @@ class Fight {
         this.healthBarOuter = document.getElementById("healthBarOuter");
         this.healthBarInner = document.getElementById("healthBarInner");
         this.actionBar = document.getElementById("actionBar");
+        this.dagger = document.getElementById('dagger');
         this.attackImageSize = 50;
         this.canvas = canvas;
         this.playerSpeed = this.player.speed;
@@ -19,11 +20,13 @@ class Fight {
         this.enemySpeedArray = [];
         this.enemyAttackTimeArray = [];
         this.enemyImageIndexArray = [];
+        this.enemyOpacityArray = [];
 
         for (let i = 0; i < this.enemyArray.length; i++) {
             this.enemySpeedArray.push(this.enemyArray[i].speed);
             this.enemyAttackTimeArray.push(true);
             this.enemyImageIndexArray.push(0);
+            this.enemyOpacityArray.push(1);
         };
 
         // this.enemyAttackTime = true;
@@ -55,6 +58,17 @@ class Fight {
                 x: 800,
                 y: 300
             }
+        ]; 
+        
+        this.enemyDaggerPosition = [
+            {
+                x: 700,
+                y: 70
+            },
+            {
+                x: 840,
+                y: 130
+            }
         ];
         this.actionBarPlayerCoordinates = {
             x: 200,
@@ -70,6 +84,8 @@ class Fight {
                 y: 380
         }
         ];
+        
+        this.playerOpacity = 1;
 
         /* this.actionBarEnemy1Coordinates = {
              x: 200,
@@ -100,11 +116,16 @@ class Fight {
 
     draw(ctx) {
         this.drawFightBackground(ctx);
-        this.player.draw(ctx, this.playerImageIndex, 100);
+        this.player.draw(ctx, this.playerImageIndex, 100, this.playerOpacity);
+        ctx.drawImage(
+        this.dagger,
+            this.enemyDaggerPosition[this.selectedEnemy].x,
+            this.enemyDaggerPosition[this.selectedEnemy].y
+        )
         //this.enemy.draw(ctx, this.enemyImageIndex, 100);
 
         for (let i = 0; i < this.enemyArray.length; i++) {
-            this.enemyArray[i].draw(ctx, this.enemyImageIndexArray[i], 100);
+            this.enemyArray[i].draw(ctx, this.enemyImageIndexArray[i], 100, this.enemyOpacityArray[i]);
             this.drawEnemyHealthBar(ctx);
         }
 
@@ -336,6 +357,8 @@ class Fight {
         // if (dodge < this.player.jutsu[this.jutsuIndex].accuracy) {
         let damage = computeDamage(this.player, this.enemyArray[this.selectedEnemy], this.jutsuIndex);
         this.enemyArray[this.selectedEnemy].health -= damage;
+        this.enemyImageIndexArray[this.selectedEnemy] = this.enemyArray[this.selectedEnemy].imageArray.length - 1;
+
         //   for(let i=0;i< 2; i++){
         //console.log(this.enemyArray)
         //     let damage = computeDamage(this.player, this.enemy, //this.jutsuIndex);
@@ -346,6 +369,7 @@ class Fight {
         //    }
         console.log('enemy health' + this.enemyArray[0].health)
         setTimeout(function () {
+            this.enemyImageIndexArray[this.selectedEnemy] = 0;
             this.playerImageIndex = 0;
             if (this.enemyArray[0].health < 0) {
                 console.log('we win');
@@ -364,9 +388,10 @@ class Fight {
     }
 
     enemyAttack(i) {
-        console.log(i)
+        //this.playerOpacity = 0.4;
+        this.playerImageIndex = this.player.imageArray.length - 1;
         let jutsuIndexEnemy = getRandomInt(0, 2);
-
+        this.enemyImageIndexArray[i] = jutsuIndexEnemy+1;
         let damage = computeDamage(this.enemyArray[i], this.player, jutsuIndexEnemy);
         console.log(damage + 'damage');
         this.player.health -= damage;
@@ -374,6 +399,9 @@ class Fight {
         console.log('player health' + this.player.health)
         this.enemyAttackTimeArray[i] = false;
         setTimeout(function () {
+            //this.playerOpacity = 1;
+            this.playerImageIndex = 0;
+            this.enemyImageIndexArray[i] = 0;
             if (this.player.health < 0) {
                 console.log('enemy wins')
             } else {

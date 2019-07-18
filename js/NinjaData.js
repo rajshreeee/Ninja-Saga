@@ -10,6 +10,10 @@ let sasuke_genjutsu = document.getElementById('sasuke-genjutsu');
 let sakura_superChakra = document.getElementById('sakura-superStrength');
 let sakura_jutsu2 = document.getElementById('sakura-jutsu2');
 
+let naruto_block = document.getElementById('naruto-block');
+let sasuke_block = document.getElementById('sasuke-block');
+let sakura_block = document.getElementById('sakura-block');
+
 let NinjaData = [
     {
         name: "Sasuke",
@@ -22,7 +26,7 @@ let NinjaData = [
                 width: 46,
                 length: 3
         },
-                     {
+            {
                 image: sasuke_genjutsu,
                 width: 56,
                 length: 2
@@ -31,7 +35,13 @@ let NinjaData = [
                 image: sasuke_chidori,
                 width: 55,
                 length: 4
-            }],
+            },
+            {
+                image: sasuke_block,
+                width: 44,
+                length: 2
+                     }
+                    ],
         jutsu: [{
                 name: "chidori",
                 power: 25,
@@ -45,7 +55,7 @@ let NinjaData = [
                 accuracy: .7
         }]
     },
-    
+
     {
         name: "Naruto",
         health: 100,
@@ -62,12 +72,17 @@ let NinjaData = [
                 width: 46,
                 length: 3
             },
-                 {
+            {
                 image: naruto_rasengan,
                 width: 48,
                 length: 3
+            },
+            {
+                image: naruto_block,
+                width: 51,
+                length: 2
             }
-                    
+
                     ],
         jutsu: [{
                 name: "rasengan",
@@ -89,7 +104,7 @@ let NinjaData = [
         chakra: 100,
         defense: 2,
         speed: 1.5,
-            imageArray: [{
+        imageArray: [{
                 image: sakura_stand,
                 width: 37,
                 length: 3
@@ -102,6 +117,11 @@ let NinjaData = [
             {
                 image: sakura_superChakra,
                 width: 47,
+                length: 2
+            },
+            {
+                image: sakura_block,
+                width: 40,
                 length: 2
             }],
         jutsu: [{
