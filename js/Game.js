@@ -48,6 +48,7 @@ class Game {
             case GAME_STATE.FIGHT_STATE:
                 this.fight.draw(ctx, gameEngine, gameLoop);
                 break;
+            
         }
     }
 
