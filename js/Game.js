@@ -14,7 +14,7 @@ class Game {
                 x: 750,
                 y:140
             },
-            
+        
             {
                 x:900,
                 y:195
@@ -26,7 +26,7 @@ class Game {
         ]
         
         
-        this.village = new Village(this);
+        this.village = new Village(this, this.canvas);
         this.pet = new Pet();
     }
 
@@ -41,7 +41,6 @@ class Game {
             case GAME_STATE.VILLAGE_STATE:
                 
                 this.village.draw(ctx);
-                console.log(this.ninjaIndex)
                 break;
                 
                          
@@ -57,14 +56,6 @@ class Game {
        // console.log('createFightObjects')
         this.ninjaArray.splice(this.ninjaIndex, 1);
         
-       // let randomIndex = this.ninjaArray[Math.floor(Math.random() * this.ninjaArray.length)];
-        
-        /*this.enemy1 = new Enemy(1, -750, 140, -1, NinjaData[1].imageArray);
-        this.enemy2 = new Enemy(2, -900, 195, -1, NinjaData[2].imageArray);
-        
-        this.enemyArray = [this.enemy1, this.enemy2];
-        console.log(this.enemyArray)*/
-       
         this.enemyArray = [];
         for(let i = 0; i< numberOfEnemies; i++){
             this.enemyArray.push( new Enemy(this.ninjaArray[i], -this.enemyPosition[i].x, this.enemyPosition[i].y, -1, NinjaData[this.ninjaArray[i]].imageArray));

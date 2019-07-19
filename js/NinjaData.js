@@ -76,7 +76,7 @@ let NinjaData = [
         jutsu: [{
                 name: "chidori",
                 power: 25,
-                chakraLoss: 20,
+                chakraLoss: 30,
                 accuracy: .90,
                 image: chidori
                 },
@@ -171,15 +171,15 @@ let NinjaData = [
                     ],
         jutsu: [{
                 name: "rasengan",
-                power: 30,
-                chakraLoss: 25,
+                power: 20,
+                chakraLoss: 90,
                 accuracy: .85,
                 image: rasengan
                 },
             {
                 name: "shadowClone",
                 power: 15,
-                chakraLoss: 10,
+                chakraLoss: 30,
                 accuracy: .9,
                 image: shadowClone
         },
