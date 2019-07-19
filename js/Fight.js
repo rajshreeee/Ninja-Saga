@@ -107,6 +107,17 @@ class Fight {
                 y: 130
             }
         ];
+
+        this.enemyDaggerFixedPosition = [{
+                top: 60,
+                bottom: 90
+        },
+            {
+                top: 120,
+                bottom: 150
+             }
+            ];
+
         this.actionBarPlayerCoordinates = {
             x: 200,
             y: 380
@@ -166,7 +177,27 @@ class Fight {
 
         this.count = 0;
 
+        this.speed = 1;
 
+    }
+
+    drawDagger(ctx) {
+        ctx.drawImage(
+            this.dagger,
+            this.enemyDaggerPosition[this.selectedEnemy].x,
+            this.enemyDaggerPosition[this.selectedEnemy].y
+        );
+    }
+
+
+    updateDagger() {
+
+
+        this.enemyDaggerPosition[this.selectedEnemy].y += this.speed;
+        if (this.enemyDaggerPosition[this.selectedEnemy].y <= this.enemyDaggerFixedPosition[this.selectedEnemy].top || this.enemyDaggerPosition[this.selectedEnemy].y >= this.enemyDaggerFixedPosition[this.selectedEnemy].bottom) {
+            this.speed = -this.speed;
+        }
+        console.log(this.selectedEnemy)
     }
 
     draw(ctx, gameEngine, gameLoop) {
@@ -174,12 +205,8 @@ class Fight {
             this.drawFightBackground(ctx);
             this.player.draw(ctx, this.playerImageIndex, 100, this.playerOpacity);
 
-            ctx.drawImage(
-                this.dagger,
-                this.enemyDaggerPosition[this.selectedEnemy].x,
-                this.enemyDaggerPosition[this.selectedEnemy].y
-            );
-
+            this.drawDagger(ctx);
+            this.updateDagger();
             for (let i = 0; i < this.enemyArray.length; i++) {
                 this.enemyArray[i].draw(ctx, this.enemyImageIndexArray[i], 100, this.enemyOpacityArray[i]);
                 this.drawEnemyHealthBar(ctx);
@@ -201,11 +228,11 @@ class Fight {
                 ctx.font = "30px Arial";
                 ctx.fillText('dodged', 120, 60);
             }
-            
-            for(let i = 0; i< this.enemyDodged.length; i++){
-                if(this.enemyDodged[i]=== true){
+
+            for (let i = 0; i < this.enemyDodged.length; i++) {
+                if (this.enemyDodged[i] === true) {
                     ctx.font = "30px Arial";
-                    ctx.fillText('dodged',700, 100);
+                    ctx.fillText('dodged', 700, 100);
                     console.log('how')
                 }
             }
@@ -532,12 +559,12 @@ class Fight {
             console.log('enemy dodged');
             this.enemyDodged[this.selectedEnemy] = true;
             console.log(this.enemyDodged)
-         //this.dodged = true;
+            //this.dodged = true;
 
             setTimeout(function () {
                 this.enemyDodged[this.selectedEnemy] = false;
             }.bind(this), 1000)
-            
+
         }
         this.enemyImageIndexArray[this.selectedEnemy] = this.enemyArray[this.selectedEnemy].imageArray.length - 1;
 
@@ -594,11 +621,11 @@ class Fight {
         } else {
             console.log('player dodged');
             this.dodged = true;
-              setTimeout(function () {
+            setTimeout(function () {
                 this.dodged = false;
             }.bind(this), 1000)
         }
-        
+
         this.calculatHealthPercentage(this.player);
         this.enemyAttackTimeArray[i] = false;
         setTimeout(function () {
