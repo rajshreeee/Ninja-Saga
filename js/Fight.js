@@ -28,6 +28,7 @@ class Fight {
         this.enemyImageIndexArray = [];
         this.enemyOpacityArray = [];
         this.displayHoverItem = [];
+        this.enemyDodged = [];
 
         this.cancelFrame = false;
 
@@ -36,6 +37,7 @@ class Fight {
             this.enemyAttackTimeArray.push(true);
             this.enemyImageIndexArray.push(0);
             this.displayHoverItem.push(false);
+            this.enemyDodged.push(false);
             //this.enemyOpacityArray.push(1);
         };
 
@@ -160,6 +162,7 @@ class Fight {
 
         this.renderPlayerAttacks = false;
 
+        this.dodged = false;
 
         this.count = 0;
 
@@ -193,6 +196,20 @@ class Fight {
 
             this.drawAttackHoverInfo(ctx);
 
+            if (this.dodged === true) {
+                console.log('hey')
+                ctx.font = "30px Arial";
+                ctx.fillText('dodged', 120, 60);
+            }
+            
+            for(let i = 0; i< this.enemyDodged.length; i++){
+                if(this.enemyDodged[i]=== true){
+                    ctx.font = "30px Arial";
+                    ctx.fillText('dodged',700, 100);
+                    console.log('how')
+                }
+            }
+
         }
 
 
@@ -217,6 +234,7 @@ class Fight {
                     ctx.font = "30px Arial";
                     ctx.fillText("Hello World", 10, 50);
                 }*/
+
     }
 
 
@@ -446,7 +464,6 @@ class Fight {
                             }
 
                         }
-                        console.log(this.player.jutsu[i].count);
 
                         this.clicked = true;
                         this.renderPlayerAttacks = false;
@@ -503,17 +520,29 @@ class Fight {
 
 
     playerAttack() {
-        let dodge = getRandomInt(0, 2);
         this.playerTitleBar = true;
 
-        // if (dodge < this.player.jutsu[this.jutsuIndex].accuracy) {
-        let damage = computeDamage(this.player, this.enemyArray[this.selectedEnemy], this.jutsuIndex);
-        this.enemyArray[this.selectedEnemy].health -= damage;
+        let dodge = getRandomInt(0, 2);
+
+        if (dodge < this.player.jutsu[this.jutsuIndex].accuracy) {
+            // if (dodge < this.enemy.jutsu[].accuracy) {
+            let damage = computeDamage(this.player, this.enemyArray[this.selectedEnemy], this.jutsuIndex);
+            this.enemyArray[this.selectedEnemy].health -= damage;
+        } else {
+            console.log('enemy dodged');
+            this.enemyDodged[this.selectedEnemy] = true;
+            console.log(this.enemyDodged)
+         //this.dodged = true;
+
+            setTimeout(function () {
+                this.enemyDodged[this.selectedEnemy] = false;
+            }.bind(this), 1000)
+            
+        }
         this.enemyImageIndexArray[this.selectedEnemy] = this.enemyArray[this.selectedEnemy].imageArray.length - 1;
 
         this.player.chakra -= this.player.jutsu[this.jutsuIndex].chakraLoss;
 
-        //console.log('enemy health' + this.enemyArray[0].health)
         setTimeout(function () {
             this.playerTitleBar = false;
             this.enemyImageIndexArray[this.selectedEnemy] = 0;
@@ -552,10 +581,24 @@ class Fight {
     enemyAttack(i) {
         //this.playerOpacity = 0.4;
         this.playerImageIndex = this.player.imageArray.length - 1;
+
         let jutsuIndexEnemy = getRandomInt(0, 2);
+
+
         this.enemyImageIndexArray[i] = jutsuIndexEnemy + 1;
-        let damage = computeDamage(this.enemyArray[i], this.player, jutsuIndexEnemy);
-        this.player.health -= damage;
+
+        let dodge = getRandomInt(0, 2);
+        if (dodge < this.enemyArray[i].jutsu[jutsuIndexEnemy].accuracy) {
+            let damage = computeDamage(this.enemyArray[i], this.player, jutsuIndexEnemy);
+            this.player.health -= damage;
+        } else {
+            console.log('player dodged');
+            this.dodged = true;
+              setTimeout(function () {
+                this.dodged = false;
+            }.bind(this), 1000)
+        }
+        
         this.calculatHealthPercentage(this.player);
         this.enemyAttackTimeArray[i] = false;
         setTimeout(function () {
