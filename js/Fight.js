@@ -4,7 +4,6 @@ class Fight {
         this.player = player;
         this.enemyArray = enemyArray;
         this.pet = pet || null;
-
         this.backgroundImage = document.getElementById("bg_fight");
         this.healthBarOuter = document.getElementById("healthBarOuter");
         this.healthBarInner = document.getElementById("healthBarInner");
@@ -28,6 +27,7 @@ class Fight {
         this.enemyAttackTimeArray = [];
         this.enemyImageIndexArray = [];
         this.enemyOpacityArray = [];
+        this.displayHoverItem = [];
 
         this.cancelFrame = false;
 
@@ -35,6 +35,7 @@ class Fight {
             this.enemySpeedArray.push(this.enemyArray[i].speed);
             this.enemyAttackTimeArray.push(true);
             this.enemyImageIndexArray.push(0);
+            this.displayHoverItem.push(false);
             //this.enemyOpacityArray.push(1);
         };
 
@@ -63,6 +64,8 @@ class Fight {
         }
 
         ];
+
+        this.canvas.addEventListener("mousemove", this.displayDetails.bind(this), false)
 
         this.statBarArray = [
             this.sasuke_stat,
@@ -136,6 +139,8 @@ class Fight {
         this.jutsuIndex = 0;
 
         canvas.onclick = event => this.selectJutsu(event);
+        // canvas.onmouseover = event => this.displayDetails(event);
+
 
         document.onclick = event => this.selectEnemy(event);
 
@@ -155,15 +160,13 @@ class Fight {
 
         this.renderPlayerAttacks = false;
 
+
         this.count = 0;
 
 
     }
 
-
     draw(ctx, gameEngine, gameLoop) {
-        console.log(this.player.chakra+'please')
-
         if (this.cancelFrame === false) {
             this.drawFightBackground(ctx);
             this.player.draw(ctx, this.playerImageIndex, 100, this.playerOpacity);
@@ -187,6 +190,9 @@ class Fight {
             this.drawActionBar(ctx, gameEngine);
 
             this.drawPlayerStatBar(ctx);
+            
+            this.drawAttackHoverInfo(ctx);
+           
         }
 
 
@@ -206,8 +212,23 @@ class Fight {
             ctx.font = "30px Arial";
             ctx.fillText(this.player.jutsu[this.jutsuIndex].name, 500, 60);
         }
+/*
+        if (this.displayHoverItem === true) {
+            ctx.font = "30px Arial";
+            ctx.fillText("Hello World", 10, 50);
+        }*/
     }
 
+    
+    drawAttackHoverInfo(ctx){
+        for(let i=0; i< this.player.jutsu.length; i++){
+                if(this.displayHoverItem[i]===true){
+                    ctx.font = "30px Arial";
+                    ctx.fillText(this.player.jutsu[i].name, this.jutsuCoordinates[i].x, this.jutsuCoordinates[i].y);
+                }
+            } 
+    }
+    
     drawPlayerStatBar(ctx) {
         let statHealthWidth = (this.HealthWidth * 187) / 100;
 
@@ -353,7 +374,7 @@ class Fight {
             if (this.player.jutsu[i].chakraLoss > this.player.chakra) {
                 //pass
                 this.jutsuOpacity[i] = 0.4;
-            }else{
+            } else {
                 this.jutsuOpacity[i] = 1;
             }
             ctx.save();
@@ -369,14 +390,31 @@ class Fight {
     }
 
 
+    displayDetails(event) {
+
+        if (this.selectJutsuenabled === true) {
+            let rect = this.canvas.getBoundingClientRect();
+            let clickX = event.clientX - rect.left;
+            let clickY = event.clientY - rect.top;
+            for (let i = 0; i < this.player.jutsu.length; i++) {
+                // console.log(this.jutsuCoordinates)
+                if (isSelected(clickX, clickY, this.jutsuCoordinates[i], 50, 50)) {
+
+                    this.displayHoverItem[i] = true;
+                }
+
+                if (!isSelected(clickX, clickY, this.jutsuCoordinates[i], 50, 50)) {
+                    this.displayHoverItem[i] = false;
+                }
+            }
+        }
+    }
 
     selectJutsu(event) {
         if (this.selectJutsuenabled === true) {
             let rect = this.canvas.getBoundingClientRect();
             let clickX = event.clientX - rect.left;
             let clickY = event.clientY - rect.top;
-
-
 
             for (let i = 0; i < this.player.jutsu.length; i++) {
                 if (this.player.jutsu[i].chakraLoss > this.player.chakra) {

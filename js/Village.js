@@ -1,5 +1,5 @@
 class Village {
-    constructor(game, canvas) {
+    constructor(game, canvas,ctx) {
         this.arenaImage = document.getElementById('arena');
         this.game = game;
 
@@ -7,6 +7,7 @@ class Village {
             x: 200,
             y: 200
         }
+        this.ctx=ctx;
 
         this.canvas=canvas;
         //document.addEventListener('click', this.goToDestination.bind(this));

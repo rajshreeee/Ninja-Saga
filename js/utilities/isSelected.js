@@ -6,5 +6,7 @@
             clickY <= jutsuCoordinates.y + height
         ) {
             return true;
+        }else{
+            return false;
         }
     }

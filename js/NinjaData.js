@@ -78,42 +78,50 @@ let NinjaData = [
                 power: 25,
                 chakraLoss: 30,
                 accuracy: .90,
-                image: chidori
+                image: chidori,
+                count: 0
                 },
             {
                 name: "genjutsu",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
-                image: genjutsu
+                image: genjutsu,
+                count: 0
         },
  {
                 name: "fat-arm",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
-                image: genjutsu
+                image: genjutsu,
+                count: 0
         },
  {
                 name: "star-attack",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
-                image: genjutsu
+                image: genjutsu,
+                count: 0
         },
  {
                 name: "sword-mullet",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
-                image: genjutsu
+                image: genjutsu,
+                     count: 0
+
         },
  {
                 name: "high-kick",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
-                image: genjutsu
+                image: genjutsu,
+                     count: 0
+
         }
 
                ]
@@ -128,39 +136,39 @@ let NinjaData = [
         imageArray: [{
                 image: naruto_stand,
                 width: 47,
-                length: 3,
+                length: 3
 
         },
             {
                 image: naruto_jutsu1,
                 width: 46,
-                length: 3,
+                length: 3
 
             },
             {
                 image: naruto_rasengan,
                 width: 48,
-                length: 3,
+                length: 3
             },{
                 image: naruto_jutsu1,
                 width: 46,
-                length: 3,
+                length: 3
 
             },
             {
                 image: naruto_rasengan,
                 width: 48,
-                length: 3,
+                length: 3
             },{
                 image: naruto_jutsu1,
                 width: 46,
-                length: 3,
+                length: 3
 
             },
             {
                 image: naruto_rasengan,
                 width: 48,
-                length: 3,
+                length: 3
             },
             {
                 image: naruto_block,
@@ -174,41 +182,53 @@ let NinjaData = [
                 power: 20,
                 chakraLoss: 90,
                 accuracy: .85,
-                image: rasengan
+                image: rasengan,
+                            count: 0
+
                 },
             {
                 name: "shadowClone",
                 power: 15,
                 chakraLoss: 30,
                 accuracy: .9,
-                image: shadowClone
+                image: shadowClone,
+                                count: 0
+
         },
                 {
                 name: "fly-kick",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
-                image: shadowClone
+                image: shadowClone,
+                                    count: 0
+
         },
                  {
                 name: "taijutsu",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
-                image: shadowClone
+                image: shadowClone,
+                                     count: 0
+
         }, {
                 name: "chakra-focus",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
-                image: shadowClone
+                image: shadowClone,
+                            count: 0
+
         }
              , {
                 name: "lightning",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
-                image: shadowClone
+                image: shadowClone,
+                                 count: 0
+
         }
                 
                
@@ -269,38 +289,50 @@ let NinjaData = [
                 power: 30,
                 chakraLoss: 25,
                 accuracy: .85,
-                image: superStrength
+                image: superStrength,
+                            count: 0
+
                 },
             {
                 name: "superChakra",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
-                image: superChakra
+                image: superChakra,
+                                count: 0
+
         },   {
                 name: "rage-attack",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
-                image: superChakra
+                image: superChakra,
+                            count: 0
+
         },   {
                 name: "strong-arm",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
-                image: superChakra
+                image: superChakra,
+                            count: 0
+
         },   {
                 name: "gold-glove",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
-                image: superChakra
+                image: superChakra,
+                            count: 0
+
         },   {
                 name: "double-wind",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
-                image: superChakra
+                image: superChakra,
+                            count: 0
+
         }  
                ]
     }

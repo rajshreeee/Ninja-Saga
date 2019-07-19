@@ -1,5 +1,5 @@
 class Menu {
-    constructor(game, ctx) {
+    constructor(game) {
         this.game = game;
         this.sasuke_image = document.getElementById("sasuke_menu");
         this.naurto_image = document.getElementById("naruto_menu");
