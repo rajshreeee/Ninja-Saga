@@ -48,7 +48,7 @@ let NinjaData = [
                 image: sasuke_chidori,
                 width: 55,
                 length: 4
-            },{
+            }, {
                 image: sasuke_genjutsu,
                 width: 56,
                 length: 2
@@ -57,7 +57,7 @@ let NinjaData = [
                 image: sasuke_chidori,
                 width: 55,
                 length: 4
-            },{
+            }, {
                 image: sasuke_genjutsu,
                 width: 56,
                 length: 2
@@ -89,7 +89,7 @@ let NinjaData = [
                 image: genjutsu,
                 count: 0
         },
- {
+            {
                 name: "fat-arm",
                 power: 20,
                 chakraLoss: 10,
@@ -97,7 +97,7 @@ let NinjaData = [
                 image: genjutsu,
                 count: 0
         },
- {
+            {
                 name: "star-attack",
                 power: 20,
                 chakraLoss: 10,
@@ -105,22 +105,22 @@ let NinjaData = [
                 image: genjutsu,
                 count: 0
         },
- {
+            {
                 name: "sword-mullet",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
                 image: genjutsu,
-                     count: 0
+                count: 0
 
         },
- {
+            {
                 name: "high-kick",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
                 image: genjutsu,
-                     count: 0
+                count: 0
 
         }
 
@@ -149,7 +149,7 @@ let NinjaData = [
                 image: naruto_rasengan,
                 width: 48,
                 length: 3
-            },{
+            }, {
                 image: naruto_jutsu1,
                 width: 46,
                 length: 3
@@ -159,7 +159,7 @@ let NinjaData = [
                 image: naruto_rasengan,
                 width: 48,
                 length: 3
-            },{
+            }, {
                 image: naruto_jutsu1,
                 width: 46,
                 length: 3
@@ -183,7 +183,7 @@ let NinjaData = [
                 chakraLoss: 90,
                 accuracy: .85,
                 image: rasengan,
-                            count: 0
+                count: 0
 
                 },
             {
@@ -192,25 +192,25 @@ let NinjaData = [
                 chakraLoss: 30,
                 accuracy: .9,
                 image: shadowClone,
-                                count: 0
+                count: 0
 
         },
-                {
+            {
                 name: "fly-kick",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
                 image: shadowClone,
-                                    count: 0
+                count: 0
 
         },
-                 {
+            {
                 name: "taijutsu",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
                 image: shadowClone,
-                                     count: 0
+                count: 0
 
         }, {
                 name: "chakra-focus",
@@ -218,7 +218,7 @@ let NinjaData = [
                 chakraLoss: 10,
                 accuracy: .9,
                 image: shadowClone,
-                            count: 0
+                count: 0
 
         }
              , {
@@ -227,11 +227,11 @@ let NinjaData = [
                 chakraLoss: 10,
                 accuracy: .9,
                 image: shadowClone,
-                                 count: 0
+                count: 0
 
         }
-                
-               
+
+
                ]
     },
 
@@ -290,7 +290,7 @@ let NinjaData = [
                 chakraLoss: 25,
                 accuracy: .85,
                 image: superStrength,
-                            count: 0
+                count: 0
 
                 },
             {
@@ -299,41 +299,41 @@ let NinjaData = [
                 chakraLoss: 10,
                 accuracy: .9,
                 image: superChakra,
-                                count: 0
+                count: 0
 
-        },   {
+        }, {
                 name: "rage-attack",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
                 image: superChakra,
-                            count: 0
+                count: 0
 
-        },   {
+        }, {
                 name: "strong-arm",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
                 image: superChakra,
-                            count: 0
+                count: 0
 
-        },   {
+        }, {
                 name: "gold-glove",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
                 image: superChakra,
-                            count: 0
+                count: 0
 
-        },   {
+        }, {
                 name: "double-wind",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
                 image: superChakra,
-                            count: 0
+                count: 0
 
-        }  
+        }
                ]
     }
 

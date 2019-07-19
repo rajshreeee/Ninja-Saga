@@ -37,5 +37,6 @@ class Ninja {
         this.defense = this.ninja_info.defense;
         this.jutsu = this.ninja_info.jutsu;
         this.speed = this.ninja_info.speed;
+        this.count = this.ninja_info.count;
     }
 }
