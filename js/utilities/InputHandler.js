@@ -33,6 +33,7 @@ class InputHandler {
                     break;
                 case GAME_STATE.ACADEMY_STATE:
                     this.game.academy.renderDetail(event);
+                    this.game.academy.learnJutsu(event);
                 default:
                     //pass
             }

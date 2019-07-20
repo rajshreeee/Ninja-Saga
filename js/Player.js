@@ -11,4 +11,8 @@ class Player extends Ninja {
         ctx.fillText(this.gold, 880, 512);
     }
 
+    addLearnedJutsu(selectedAcademyJutsu){
+        this.jutsu.push(trainingJutsu[selectedAcademyJutsu]);
+        console.log(this.jutsu)
+    }
 }

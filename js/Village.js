@@ -28,7 +28,7 @@ class Village {
 
 
         if (isSelected(clickCoordinates.x, clickCoordinates.y, this.arenaCoordinates, 250, 150)) {
-            this.game.createFightObjects(2);
+            this.game.createFightObjects(1);
         }
         if (isSelected(clickCoordinates.x, clickCoordinates.y, this.academyCoordinates, 278, 295)){
             this.game.gameState = GAME_STATE.ACADEMY_STATE;

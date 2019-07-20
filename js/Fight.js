@@ -250,6 +250,9 @@ class Fight {
         if (this.cancelFrame === true && this.playerVictory === true) {
             this.drawFightBackground(ctx);
             ctx.drawImage(this.victory, 300, 100, 500, 300);
+            setTimeout(function(){
+                this.game.gameState = GAME_STATE.VILLAGE_STATE;
+            }.bind(this),2000);
         }
 
         if (this.playerTitleBar === true) {
@@ -264,6 +267,8 @@ class Fight {
                 }*/
 
     }
+    
+    
 
 
     drawAttackHoverInfo(ctx) {
@@ -476,7 +481,7 @@ class Fight {
 
             for (let i = 0; i < this.player.jutsu.length; i++) {
 
-                if (isSelected(clickX, clickY, this.jutsuCoordinates[i], 50, 50) && this.clicked === false && this.player.jutsu[i].count === 0) {
+                if (isSelected(clickCoordinates.x, clickCoordinates.y, this.jutsuCoordinates[i], 50, 50) && this.clicked === false && this.player.jutsu[i].count === 0) {
                     if (this.player.jutsu[i].chakraLoss <= this.player.chakra) {
 
                         this.player.jutsu[i].count = 4;
@@ -496,7 +501,7 @@ class Fight {
                         this.playerImageIndex = this.jutsuIndex + 1;
                         this.playerAttack();
                     }
-                } else if (isSelected(clickX, clickY, {
+                } else if (isSelected(clickCoordinates.x, clickCoordinates.y, {
                         x: 800,
                         y: 0
                     }, 63, 54) && this.clicked === false) {
@@ -589,7 +594,7 @@ class Fight {
                 this.cancelFrame = true;
                 this.playerVictory = true;
                 this.player.gold += 200;
-                console.log(this.player.gold)
+                console.log(this.player.gold);
             } else {
 
                 for (let i = 0; i < this.enemyArray.length; i++) {

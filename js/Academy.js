@@ -42,6 +42,7 @@ class Academy {
         this.drawAcademyJutsu(ctx);
         this.drawDetailImage(ctx);
         this.drawLearnButton(ctx);
+        this.game.player.drawGold(ctx);
     }
 
     drawAcademyJutsu(ctx) {
@@ -57,6 +58,21 @@ class Academy {
         if (this.selectedAcademyJutsu != undefined) {
             ctx.drawImage(this.learn_button, 710, 360);
         }
+    }
+
+    learnJutsu(event) {
+        console.log('what')
+        if (this.selectedAcademyJutsu != undefined) {
+
+            let clickCoordinates = getMouseCoordinates(this.canvas, event);
+
+                if (isSelected(clickCoordinates.x, clickCoordinates.y, {x: 710, y: 360}, 124, 42)) {
+                    
+                    console.log(this.selectedAcademyJutsu + 'learnJutsu')
+                    this.game.player.addLearnedJutsu(this.selectedAcademyJutsu);
+                }
+            }
+        
     }
 
     drawDetailImage(ctx) {
