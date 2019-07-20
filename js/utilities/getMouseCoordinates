@@ -1,0 +1,4 @@
+function ge
+let rect = this.canvas.getBoundingClientRect();
+        let clickX = event.clientX - rect.left;
+        let clickY = event.clientY - rect.top;

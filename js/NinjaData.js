@@ -25,6 +25,7 @@ let chidori = document.getElementById("chidori");
 let superStrength = document.getElementById("superStrength");
 let superChakra = document.getElementById("superChakra");
 
+let waterBurstImage = document.getElementById('water-burst');
 
 
 let NinjaData = [
@@ -337,4 +338,66 @@ let NinjaData = [
                ]
     }
 
-]
+];
+
+
+let trainingJutsu = [
+    {
+        name: "superStrength",
+        power: 30,
+        chakraLoss: 25,
+        accuracy: .85,
+        image: superStrength,
+        count: 0,
+        renderDetailImage: false,
+        detailImage: waterBurstImage
+
+
+                },
+    {
+        name: "superChakra",
+        power: 15,
+        chakraLoss: 10,
+        accuracy: .9,
+        image: superChakra,
+        count: 0,
+        renderDetailImage: false,
+
+        detailImage: waterBurstImage
+
+
+        }, {
+        name: "rage-attack",
+        power: 15,
+        chakraLoss: 10,
+        accuracy: .9,
+        image: superChakra,
+        count: 0,
+        renderDetailImage: false,
+        detailImage: waterBurstImage
+
+
+        }, {
+        name: "strong-arm",
+        power: 15,
+        chakraLoss: 10,
+        accuracy: .9,
+        image: superChakra,
+        count: 0,
+        renderDetailImage: false,
+        detailImage: waterBurstImage
+
+
+        }, {
+        name: "gold-glove",
+        power: 15,
+        chakraLoss: 10,
+        accuracy: .9,
+        image: superChakra,
+        count: 0,
+        renderDetailImage: false,
+        detailImage: waterBurstImage
+
+
+        }
+];

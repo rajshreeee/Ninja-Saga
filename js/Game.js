@@ -27,7 +27,7 @@ class Game {
 
 
         this.village = new Village(this, this.canvas);
-        this.academy = new Academy(this);
+        this.academy = new Academy(this, this.canvas);
         this.pet = new Pet();
     }
 

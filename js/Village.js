@@ -15,7 +15,6 @@ class Village {
         }
       
         this.canvas = canvas;
-       // this.canvas.onclick = event => this.goToDestination(event);
     }
 
     draw(ctx) {
@@ -25,14 +24,13 @@ class Village {
     }
 
     goToDestination(event) {
-        let rect = this.canvas.getBoundingClientRect();
-        let clickX = event.clientX - rect.left;
-        let clickY = event.clientY - rect.top;
+        let clickCoordinates = getMouseCoordinates(this.canvas, event);
 
-        if (isSelected(clickX, clickY, this.arenaCoordinates, 250, 150)) {
+
+        if (isSelected(clickCoordinates.x, clickCoordinates.y, this.arenaCoordinates, 250, 150)) {
             this.game.createFightObjects(2);
         }
-        if (isSelected(clickX, clickY, this.academyCoordinates, 144, 103)){
+        if (isSelected(clickCoordinates.x, clickCoordinates.y, this.academyCoordinates, 278, 295)){
             this.game.gameState = GAME_STATE.ACADEMY_STATE;
         }
     }

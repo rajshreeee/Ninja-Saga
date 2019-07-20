@@ -31,7 +31,7 @@ class Fight {
         this.enemyDodged = [];
 
         this.cancelFrame = false;
-
+        //keep in enemy class
         for (let i = 0; i < this.enemyArray.length; i++) {
             this.enemySpeedArray.push(this.enemyArray[i].speed);
             this.enemyAttackTimeArray.push(true);
@@ -447,18 +447,17 @@ class Fight {
     displayDetails(event) {
 
         if (this.selectJutsuenabled === true) {
-            let rect = this.canvas.getBoundingClientRect();
-            let clickX = event.clientX - rect.left;
-            let clickY = event.clientY - rect.top;
+            let clickCoordinates = getMouseCoordinates(this.canvas, event);
+
             for (let i = 0; i < this.player.jutsu.length; i++) {
                 // console.log(this.jutsuCoordinates)
 
-                if (isSelected(clickX, clickY, this.jutsuCoordinates[i], 50, 50)) {
+                if (isSelected(clickCoordinates.x, clickCoordinates.y, this.jutsuCoordinates[i], 50, 50)) {
 
                     this.displayHoverItem[i] = true;
                 }
 
-                if (!isSelected(clickX, clickY, this.jutsuCoordinates[i], 50, 50)) {
+                if (!isSelected(clickCoordinates.x, clickCoordinates.y, this.jutsuCoordinates[i], 50, 50)) {
                     this.displayHoverItem[i] = false;
                 }
             }
@@ -472,10 +471,8 @@ class Fight {
             for (let i = 0; i < this.displayHoverItem.length; i++) {
                 this.displayHoverItem[i] = false;
             }
+        let clickCoordinates = getMouseCoordinates(this.canvas, event);
 
-            let rect = this.canvas.getBoundingClientRect();
-            let clickX = event.clientX - rect.left;
-            let clickY = event.clientY - rect.top;
 
             for (let i = 0; i < this.player.jutsu.length; i++) {
 
@@ -534,12 +531,10 @@ class Fight {
 
 
     selectEnemy(event) {
-        let rect = this.canvas.getBoundingClientRect();
-        let clickX = event.clientX - rect.left;
-        let clickY = event.clientY - rect.top;
-
+      
+        let clickCoordinates = getMouseCoordinates(this.canvas, event);
         for (let i = 0; i < this.enemyCoordinates.length; i++) {
-            if (isSelected(clickX, clickY, this.enemyCoordinates[i], 100, 100)) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.enemyCoordinates[i], 100, 100)) {
                 this.selectedEnemy = i;
             }
         }
