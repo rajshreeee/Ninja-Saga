@@ -30,6 +30,8 @@ class Game {
 
         this.village = new Village(this, this.canvas);
         this.academy = new Academy(this, this.canvas, this.player);
+        this.equipment = new Equipment(this, this.canvas);
+        
         this.pet = new Pet();
 
         this.setCharacters();
@@ -64,6 +66,9 @@ class Game {
 
             case GAME_STATE.ACADEMY_STATE:
                 this.academy.draw(ctx);
+                break;
+            case GAME_STATE.EQUIPMENT_STATE:
+                this.equipment.draw(ctx);
         }
     }
 

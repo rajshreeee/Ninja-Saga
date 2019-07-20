@@ -350,9 +350,8 @@ let trainingJutsu = [
         image: superStrength,
         count: 0,
         renderDetailImage: false,
+        selected: false,
         detailImage: waterBurstImage
-
-
                 },
     {
         name: "superChakra",
@@ -362,7 +361,7 @@ let trainingJutsu = [
         image: superChakra,
         count: 0,
         renderDetailImage: false,
-
+        selected: false,
         detailImage: waterBurstImage
 
 
@@ -374,6 +373,7 @@ let trainingJutsu = [
         image: superChakra,
         count: 0,
         renderDetailImage: false,
+        selected: false,
         detailImage: waterBurstImage
 
 
@@ -385,6 +385,7 @@ let trainingJutsu = [
         image: superChakra,
         count: 0,
         renderDetailImage: false,
+        selected: false,
         detailImage: waterBurstImage
 
 
@@ -396,6 +397,7 @@ let trainingJutsu = [
         image: superChakra,
         count: 0,
         renderDetailImage: false,
+        selected: false,
         detailImage: waterBurstImage
 
 

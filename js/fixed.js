@@ -2,7 +2,8 @@ const GAME_STATE = {
     MENU_STATE: 0,
     VILLAGE_STATE: 1,
     FIGHT_STATE: 2,
-    ACADEMY_STATE: 3
+    ACADEMY_STATE: 3,
+    EQUIPMENT_STATE: 4
 
 }
 

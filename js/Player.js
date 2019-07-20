@@ -3,6 +3,8 @@ class Player extends Ninja {
         super(ninjaIndex, positionX, positionY, flipH, imageArray);
         this.gold = 0;
         this.goldImage = document.getElementById('gold');
+        this.setPlayerJutsu();
+        console.log(this.jutsu);
     }
 
     drawGold(ctx) {
@@ -11,8 +13,15 @@ class Player extends Ninja {
         ctx.fillText(this.gold, 880, 512);
     }
 
+    setPlayerJutsu(){
+        for(let i = 0; i < this.jutsu.length; i++){
+            this.jutsu[i].selected = true;
+        }
+    }
+    
     addLearnedJutsu(selectedAcademyJutsu){
         this.jutsu.push(trainingJutsu[selectedAcademyJutsu]);
+        this.gold -= 200;
         console.log(this.jutsu)
     }
 }
