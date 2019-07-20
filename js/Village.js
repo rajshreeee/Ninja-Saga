@@ -1,21 +1,27 @@
 class Village {
-    constructor(game, canvas,ctx) {
+    constructor(game, canvas) {
         this.arenaImage = document.getElementById('arena');
+        this.academyImage = document.getElementById('academy');
         this.game = game;
 
         this.arenaCoordinates = {
-            x: 200,
+            x: 50,
             y: 200
         }
-        this.ctx=ctx;
-
-        this.canvas=canvas;
-        //document.addEventListener('click', this.goToDestination.bind(this));
-        this.canvas.onclick = event => this.goToDestination(event);
+        
+        this.academyCoordinates={
+            x:750,
+            y:200
+        }
+      
+        this.canvas = canvas;
+       // this.canvas.onclick = event => this.goToDestination(event);
     }
 
     draw(ctx) {
         ctx.drawImage(this.arenaImage, this.arenaCoordinates.x, this.arenaCoordinates.y, 250, 150);
+        
+        ctx.drawImage(this.academyImage,this.academyCoordinates.x, this.academyCoordinates.y);
     }
 
     goToDestination(event) {
@@ -25,7 +31,9 @@ class Village {
 
         if (isSelected(clickX, clickY, this.arenaCoordinates, 250, 150)) {
             this.game.createFightObjects(2);
-
+        }
+        if (isSelected(clickX, clickY, this.academyCoordinates, 144, 103)){
+            this.game.gameState = GAME_STATE.ACADEMY_STATE;
         }
     }
 

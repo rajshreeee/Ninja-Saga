@@ -7,6 +7,7 @@ class Game {
 
         this.playerPositionX = 100;
         this.canvas = canvas;
+        new InputHandler(this, this.canvas);
 
         this.enemyPosition = [
             {
@@ -25,11 +26,13 @@ class Game {
         ]
 
 
-        this.village = new Village(this, this.canvas, this.ctx);
+        this.village = new Village(this, this.canvas);
+        this.academy = new Academy(this);
         this.pet = new Pet();
     }
 
     draw(ctx, gameEngine, gameLoop) {
+        
         switch (this.gameState) {
             case GAME_STATE.MENU_STATE:
                 this.menu.draw(ctx);
@@ -44,7 +47,9 @@ class Game {
             case GAME_STATE.FIGHT_STATE:
                 this.fight.draw(ctx, gameEngine, gameLoop);
                 break;
-
+            
+            case GAME_STATE.ACADEMY_STATE:
+                this.academy.draw(ctx);
         }
     }
 

@@ -67,7 +67,7 @@ class Fight {
 
         ];
 
-        this.canvas.addEventListener("mousemove", this.displayDetails.bind(this), false)
+        // this.canvas.addEventListener("mousemove", //this.displayDetails.bind(this), false)
 
         this.statBarArray = [
             this.sasuke_stat,
@@ -197,7 +197,6 @@ class Fight {
         if (this.enemyDaggerPosition[this.selectedEnemy].y <= this.enemyDaggerFixedPosition[this.selectedEnemy].top || this.enemyDaggerPosition[this.selectedEnemy].y >= this.enemyDaggerFixedPosition[this.selectedEnemy].bottom) {
             this.speed = -this.speed;
         }
-        console.log(this.selectedEnemy)
     }
 
     draw(ctx, gameEngine, gameLoop) {
@@ -223,8 +222,8 @@ class Fight {
 
             this.drawAttackHoverInfo(ctx);
 
+
             if (this.dodged === true) {
-                console.log('hey')
                 ctx.font = "30px Arial";
                 ctx.fillText('dodged', 120, 60);
             }
@@ -233,9 +232,11 @@ class Fight {
                 if (this.enemyDodged[i] === true) {
                     ctx.font = "30px Arial";
                     ctx.fillText('dodged', 700, 100);
-                    console.log('how')
                 }
             }
+
+            this.player.drawGold(ctx);
+
 
         }
 
@@ -592,6 +593,8 @@ class Fight {
             if (this.enemyArray.length === 0) {
                 this.cancelFrame = true;
                 this.playerVictory = true;
+                this.player.gold += 200;
+                console.log(this.player.gold)
             } else {
 
                 for (let i = 0; i < this.enemyArray.length; i++) {

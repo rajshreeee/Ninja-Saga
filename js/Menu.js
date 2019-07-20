@@ -4,19 +4,19 @@ class Menu {
         this.sasuke_image = document.getElementById("sasuke_menu");
         this.naurto_image = document.getElementById("naruto_menu");
         this.sakura_image = document.getElementById("sakura_menu");
-    
+
         this.cross = document.getElementById("cross");
         this.gameBackground = document.getElementById('game-background');
 
         this.currentNinja = 0;
 
-        this.selectNinja();
+       // this.selectNinja();
 
         this.imageSize = {
             x: 100,
             y: 327
         }
-      
+
     }
 
     draw(ctx) {
@@ -56,7 +56,7 @@ class Menu {
 
     }
 
-    selectCode(event) {
+   /* selectCode(event) {
         switch (event.keyCode) {
             case 37: //keyCode for left
                 if (this.currentNinja !== 0) {
@@ -73,31 +73,51 @@ class Menu {
                 this.game.ninjaIndex = this.currentNinja;
                 this.game.gameState = GAME_STATE.VILLAGE_STATE;
                 this.game.village.goToDestination();
-              
+
             default:
                 //pass
         }
+    }*/
+
+    selectLeft() {
+        if (this.currentNinja !== 0) {
+            this.currentNinja--;
+        }
     }
-    selectNinja() {
+
+    selectRight() {
+        if (this.currentNinja !== 2) {
+            this.currentNinja++;
+        }
+    }
+
+    confirmSelection() {
+        console.log('pressed')
+        this.game.ninjaIndex = this.currentNinja;
+        this.game.gameState = GAME_STATE.VILLAGE_STATE;
+        this.game.village.goToDestination();
+    }
+
+   /* selectNinja() {
         document.addEventListener("keydown", this.selectCode.bind(this));
-    }
+    }*/
 
     crossImage() {
 
         let crossX;
         let crossY = 200;
-        
+
         let narutoX;
         let narutoY = 250;
-        
+
         switch (this.currentNinja) {
             case 0:
                 crossX = 190;
-           
+
                 break;
             case 1:
                 crossX = 441;
-        
+
                 break;
             case 2:
                 crossX = 700;
@@ -113,14 +133,14 @@ class Menu {
             crossY,
             150, 150
         );
- 
+
     }
 
-       nameImage() {
+    nameImage() {
 
         let narutoX;
         let narutoY = 530;
-        
+
         switch (this.currentNinja) {
             case 0:
                 narutoX = 100;
@@ -144,7 +164,7 @@ class Menu {
             narutoY,
             250,
             70
-           
+
         );
     }
 }
