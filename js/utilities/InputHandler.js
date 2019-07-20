@@ -34,6 +34,10 @@ class InputHandler {
                 case GAME_STATE.ACADEMY_STATE:
                     this.game.academy.renderDetail(event);
                     this.game.academy.learnJutsu(event);
+                    break;
+                case GAME_STATE.EQUIPMENT_STATE:
+                    this.game.equipment.removeOrAddJutsu(event);
+                    this.game.equipment.equipJutsu(event);
                 default:
                     //pass
             }

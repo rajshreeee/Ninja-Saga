@@ -1,5 +1,6 @@
 class Ninja {
-    constructor(ninjaDataIndex, positionX, positionY, flipH, imageArray) {
+    constructor(game, ninjaDataIndex, positionX, positionY, flipH, imageArray) {
+        this.game = game;
         this.ninja_info = NinjaData[ninjaDataIndex];
         this.count = 0;
         this.frame = 0;

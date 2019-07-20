@@ -1,6 +1,7 @@
 class Player extends Ninja {
-    constructor(ninjaIndex, positionX, positionY, flipH, imageArray) {
-        super(ninjaIndex, positionX, positionY, flipH, imageArray);
+    constructor(game,ninjaIndex, positionX, positionY, flipH, imageArray) {
+        super(game, ninjaIndex, positionX, positionY, flipH, imageArray);
+        this.game = game;
         this.gold = 0;
         this.goldImage = document.getElementById('gold');
         this.setPlayerJutsu();
@@ -22,6 +23,9 @@ class Player extends Ninja {
     addLearnedJutsu(selectedAcademyJutsu){
         this.jutsu.push(trainingJutsu[selectedAcademyJutsu]);
         this.gold -= 200;
-        console.log(this.jutsu)
+        console.log(this.jutsu);
+        setTimeout(function(){
+            this.game.gameState = GAME_STATE.VILLAGE_STATE;
+        }.bind(this), 2000)
     }
 }

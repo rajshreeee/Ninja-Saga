@@ -43,7 +43,7 @@ class Game {
 
 
 
-        this.player = new Player(this.ninjaIndex, this.playerPositionX, 200, 1, NinjaData[this.ninjaIndex].imageArray);
+        this.player = new Player(this, this.ninjaIndex, this.playerPositionX, 200, 1, NinjaData[this.ninjaIndex].imageArray);
 
     }
 

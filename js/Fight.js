@@ -179,6 +179,23 @@ class Fight {
 
         this.speed = 1;
 
+        this.originalJutsuArray = this.player.jutsu;
+        for (let j = 0; j < this.originalJutsuArray.length; j++) {
+            console.log(this.originalJutsuArray[j].selected + 'constructor oa');
+
+        }
+        this.player.jutsu = this.player.jutsu.filter(attack => attack.selected === true);
+
+        for (let i = 0; i < this.player.jutsu.length; i++) {
+            console.log(this.player.jutsu[i] + 'constructor jutsu');
+
+        }
+
+        for (let j = 0; j < this.originalJutsuArray.length; j++) {
+            console.log(this.originalJutsuArray[j].selected + 'constructor oa');
+
+        }
+
     }
 
     drawDagger(ctx) {
@@ -250,9 +267,9 @@ class Fight {
         if (this.cancelFrame === true && this.playerVictory === true) {
             this.drawFightBackground(ctx);
             ctx.drawImage(this.victory, 300, 100, 500, 300);
-            setTimeout(function(){
+            setTimeout(function () {
                 this.game.gameState = GAME_STATE.VILLAGE_STATE;
-            }.bind(this),2000);
+            }.bind(this), 2000);
         }
 
         if (this.playerTitleBar === true) {
@@ -267,8 +284,8 @@ class Fight {
                 }*/
 
     }
-    
-    
+
+
 
 
     drawAttackHoverInfo(ctx) {
@@ -476,7 +493,7 @@ class Fight {
             for (let i = 0; i < this.displayHoverItem.length; i++) {
                 this.displayHoverItem[i] = false;
             }
-        let clickCoordinates = getMouseCoordinates(this.canvas, event);
+            let clickCoordinates = getMouseCoordinates(this.canvas, event);
 
 
             for (let i = 0; i < this.player.jutsu.length; i++) {
@@ -536,7 +553,7 @@ class Fight {
 
 
     selectEnemy(event) {
-      
+
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
         for (let i = 0; i < this.enemyCoordinates.length; i++) {
             if (isSelected(clickCoordinates.x, clickCoordinates.y, this.enemyCoordinates[i], 100, 100)) {
@@ -575,7 +592,6 @@ class Fight {
             this.playerTitleBar = false;
             this.enemyImageIndexArray[this.selectedEnemy] = 0;
             this.playerImageIndex = 0;
-
             for (let k = 0; k < this.enemyArray.length; k++) {
                 if (this.enemyArray[k].health <= 0) {
 
@@ -594,6 +610,8 @@ class Fight {
                 this.cancelFrame = true;
                 this.playerVictory = true;
                 this.player.gold += 200;
+                this.player.jutsu = this.originalJutsuArray;
+
                 console.log(this.player.gold);
             } else {
 
@@ -639,6 +657,8 @@ class Fight {
                 this.playerImageIndex = 3;
                 this.cancelFrame = true;
                 this.playerDefeat = true;
+                this.player.jutsu = this.originalJutsuArray;
+
 
             } else {
                 this.actionBarEnemyCoordinates[i].x = 200;

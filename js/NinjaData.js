@@ -343,7 +343,7 @@ let NinjaData = [
 
 let trainingJutsu = [
     {
-        name: "superStrength",
+        name: "waterBurst",
         power: 30,
         chakraLoss: 25,
         accuracy: .85,
