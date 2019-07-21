@@ -1,4 +1,5 @@
 let polar_walk = document.getElementById('polar_walk');
+let polar_hunt = document.getElementById('polar_hunt');
 
 let petData = [
     {
@@ -7,11 +8,18 @@ let petData = [
             image: polar_walk,
             width: 36,
             length: 3
-        }],
+        },
+         {
+            image: polar_hunt,
+             width: 44,
+             length: 2
+         }
+                    ],
         power: 10,
         accuracy: .9,
         renderDetail: false,
-        selected: false
+        selected: false,
+        speed: 2
 
 
     },
@@ -26,7 +34,8 @@ let petData = [
         power: 10,
         accuracy: .9,
         renderDetail: false,
-        selected: false
+        selected: false,
+        speed:1.2
 
 
     }

@@ -22,6 +22,10 @@ class Fight {
         this.attackImageSize = 40;
         this.canvas = canvas;
         this.playerSpeed = this.player.speed;
+        if (this.pet != undefined) {
+            this.petSpeed = this.pet.speed;
+
+        }
         this.selectedEnemy = 0;
 
         this.enemySpeedArray = [];
@@ -122,7 +126,13 @@ class Fight {
         this.actionBarPlayerCoordinates = {
             x: 200,
             y: 380
+        };
+
+        this.actionBarPetCoordinates = {
+            x: 200,
+            y: 400
         }
+
 
         this.actionBarEnemyCoordinates = [
             {
@@ -146,9 +156,7 @@ class Fight {
             }
         ];
 
-        this.playerOpacity = 1;
-
-
+        this.petImageIndex = 0;
         this.totalHealth = 100;
         this.jutsuIndex = 0;
 
@@ -179,6 +187,8 @@ class Fight {
         this.count = 0;
 
         this.speed = 1;
+        
+        this.petAttackTime = true;
 
         this.originalJutsuArray = this.player.jutsu;
         for (let j = 0; j < this.originalJutsuArray.length; j++) {
@@ -240,11 +250,11 @@ class Fight {
 
             this.drawAttackHoverInfo(ctx);
 
-            
-            if(this.pet != undefined){
-                this.pet.draw(ctx, 0, 100);
+
+            if (this.pet != undefined) {
+                this.pet.draw(ctx, this.petImageIndex, 100);
             }
-            
+
 
             if (this.dodged === true) {
                 ctx.font = "30px Arial";
@@ -365,6 +375,24 @@ class Fight {
             this.actionBarPlayerCoordinates.x += this.player.speed;
         }
 
+        if (this.pet != undefined) {
+            this.pet.drawActionBarPet(ctx, 0, 50, this.actionBarPetCoordinates.x, this.actionBarPetCoordinates.y);
+
+            this.actionBarPetCoordinates.x += this.pet.speed;
+
+            if (this.actionBarPetCoordinates.x >= 800) {
+                this.actionBarPetCoordinates.x = 800;
+                this.player.speed = 0;
+                for (let i = 0; i < this.enemyArray.length; i++) {
+                    this.enemyArray[i].speed = 0;
+                }
+                if (this.petAttackTime === true) {
+                        this.petAttack();
+                    }
+
+            }
+
+        }
 
         for (let i = 0; i < this.enemyArray.length; i++) {
             this.enemyArray[i].drawActionBarNinja(ctx, 0, 50, this.actionBarEnemyCoordinates[i].x, this.actionBarEnemyCoordinates[i].y);
@@ -373,6 +401,10 @@ class Fight {
             if (this.actionBarEnemyCoordinates[i].x >= 800) {
                 this.actionBarEnemyCoordinates[i].x = 800;
                 this.player.speed = 0;
+                if (this.pet != undefined) {
+                    this.pet.speed = 0;
+
+                }
                 if (this.enemyArray.length === 1) {
                     if (this.enemyAttackTimeArray[i] === true) {
                         this.enemyAttack(i);
@@ -396,7 +428,9 @@ class Fight {
             this.actionBarPlayerCoordinates.x = 800;
             this.selectJutsuenabled = true;
             this.renderPlayerAttacks = true;
-
+            if (this.pet != undefined) {
+                this.pet.speed = 0;
+            }
             for (let i = 0; i < this.enemyArray.length; i++) {
                 this.enemyArray[i].speed = 0;
             }
@@ -623,6 +657,10 @@ class Fight {
                     this.enemyArray[i].speed = this.enemySpeedArray[i];
 
                 }
+                if (this.pet != undefined) {
+                    this.pet.speed = this.petSpeed;
+
+                }
                 this.actionBarPlayerCoordinates.x = 200;
             }
             this.clicked = false;
@@ -630,6 +668,53 @@ class Fight {
         }.bind(this), 500);
     }
 
+    petAttack() {
+        this.petImageIndex = 1;
+        let damage = (this.pet.power / this.enemyArray[0].defense) * this.pet.accuracy;
+        this.enemyArray[0].health -= damage;
+        this.enemyImageIndexArray[0] = this.enemyArray[0].imageArray.length - 1;
+        this.petAttackTime = false;
+        setTimeout(function () {
+            this.petImageIndex = 0;
+            this.enemyImageIndexArray[0] = 0;
+           // this.playerImageIndex = 0;
+            for (let k = 0; k < this.enemyArray.length; k++) {
+                if (this.enemyArray[k].health <= 0) {
+
+                    this.enemyArray.splice(k, 1);
+                    this.enemySpeedArray.splice(k, 1);
+                    this.enemyAttackTimeArray.splice(k, 1);
+                    this.enemyImageIndexArray.splice(k, 1);
+                    this.enemyHealthBarCoordinates.splice(k, 1);
+                    this.actionBarEnemyCoordinates.splice(k, 1);
+                    this.enemyCoordinates.splice(k, 1);
+                    this.enemyDaggerPosition.splice(k, 1);
+
+                }
+            }
+            if (this.enemyArray.length === 0) {
+                this.cancelFrame = true;
+                this.playerVictory = true;
+                this.player.gold += 200;
+                this.player.jutsu = this.originalJutsuArray;
+
+                console.log(this.player.gold);
+            } else {
+
+                for (let i = 0; i < this.enemyArray.length; i++) {
+                    this.enemyArray[i].speed = this.enemySpeedArray[i];
+
+                }
+                    this.player.speed = this.playerSpeed;
+
+            
+                this.actionBarPetCoordinates.x = 200;
+            }
+            this.petAttackTime = true;
+           
+        }.bind(this), 500);
+
+    }
     enemyAttack(i) {
         //this.playerOpacity = 0.4;
         this.playerImageIndex = this.player.imageArray.length - 1;
@@ -667,7 +752,10 @@ class Fight {
             } else {
                 this.actionBarEnemyCoordinates[i].x = 200;
                 this.player.speed = this.playerSpeed;
+                if (this.pet != undefined) {
+                    this.pet.speed = this.petSpeed;
 
+                }
                 for (let k = 0; k < this.enemyArray.length; k++) {
                     this.enemyArray[k].speed = this.enemySpeedArray[k];
                 }
