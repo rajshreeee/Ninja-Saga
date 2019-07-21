@@ -4,6 +4,7 @@ class Fight {
         this.player = player;
         this.enemyArray = enemyArray;
         this.pet = pet;
+        //console.log(this.pet)
         this.backgroundImage = document.getElementById("bg_fight");
         this.healthBarOuter = document.getElementById("healthBarOuter");
         this.healthBarInner = document.getElementById("healthBarInner");
@@ -219,7 +220,7 @@ class Fight {
     draw(ctx, gameEngine, gameLoop) {
         if (this.cancelFrame === false) {
             this.drawFightBackground(ctx);
-            this.player.draw(ctx, this.playerImageIndex, 100, this.playerOpacity);
+            this.player.draw(ctx, this.playerImageIndex, 100);
 
             this.drawDagger(ctx);
             this.updateDagger();
@@ -239,6 +240,11 @@ class Fight {
 
             this.drawAttackHoverInfo(ctx);
 
+            
+            if(this.pet != undefined){
+                this.pet.draw(ctx, 0, 100);
+            }
+            
 
             if (this.dodged === true) {
                 ctx.font = "30px Arial";
@@ -284,8 +290,6 @@ class Fight {
                 }*/
 
     }
-
-
 
 
     drawAttackHoverInfo(ctx) {

@@ -5,7 +5,7 @@ let petData = [
         name: 'polar',
         imageArray: [{
             image: polar_walk,
-            width: 57,
+            width: 36,
             length: 3
         }],
         power: 10,
@@ -20,7 +20,7 @@ let petData = [
         name: 'polar2',
         imageArray: [{
             image: polar_walk,
-            width: 57,
+            width: 36,
             length: 3
         }],
         power: 10,

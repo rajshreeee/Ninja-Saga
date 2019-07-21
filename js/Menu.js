@@ -21,11 +21,13 @@ class Menu {
 
     draw(ctx) {
         ctx.drawImage(this.gameBackground, 0, 0, 1000, 700);
-
+  
         this.drawNinja(ctx);
+        
     }
 
     drawNinja(ctx) {
+        
         this.crossImage();
 
         ctx.drawImage(

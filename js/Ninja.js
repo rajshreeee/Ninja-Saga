@@ -2,9 +2,9 @@ class Ninja {
     constructor(game, ninjaDataIndex, positionX, positionY, flipH, imageArray) {
         this.game = game;
         this.ninja_info = NinjaData[ninjaDataIndex];
-        this.count = 0;
+        this.track = 0;
+        this.x = 9;
         this.frame = 0;
-        this.naruto_sprite = document.getElementById("naruto_sprite");
         this.positionX = positionX;
         this.positionY = positionY;
         this.flipH = flipH;
@@ -12,18 +12,15 @@ class Ninja {
         this.imageArray = imageArray;
     }
 
-    draw(ctx, imageIndex, imageSize, opacity) {
-        this.count++;
-        if (this.count % 15 == 0) {
+    draw(ctx, imageIndex, imageSize) {
+        this.track++;
+        if (this.track % 15 == 0) {
             this.frame = this.frame % this.imageArray[imageIndex].length;
             this.frame += 1;
         }
-
         ctx.save();
-        ctx.globalAlpha = opacity;
         ctx.scale(this.flipH,1);
         ctx.drawImage(this.imageArray[imageIndex].image, this.frame * this.imageArray[imageIndex].width, 0, this.imageArray[imageIndex].width, 50, this.positionX, this.positionY, imageSize, imageSize);
-        ctx.globalAlpha = 1;
         ctx.restore();
     }
     
