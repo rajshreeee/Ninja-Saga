@@ -3,7 +3,7 @@ class Fight {
         this.game = game;
         this.player = player;
         this.enemyArray = enemyArray;
-        this.pet = pet || null;
+        this.pet = pet;
         this.backgroundImage = document.getElementById("bg_fight");
         this.healthBarOuter = document.getElementById("healthBarOuter");
         this.healthBarInner = document.getElementById("healthBarInner");

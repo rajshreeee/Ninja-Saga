@@ -11,6 +11,8 @@ class Game {
         this.canvas = canvas;
         new InputHandler(this, this.canvas);
 
+        this.petArray = [];
+
         this.enemyPosition = [
             {
                 x: 750,
@@ -31,9 +33,10 @@ class Game {
         this.village = new Village(this, this.canvas);
         this.academy = new Academy(this, this.canvas, this.player);
         this.equipment = new Equipment(this, this.canvas);
-        
-        this.pet = new Pet();
+        this.petShop = new PetShop(this, this.canvas);
+        this.equipPet = new EquipPet(this, this.canvas);
 
+        this.selectedPet = undefined;
         this.setCharacters();
     }
 
@@ -69,11 +72,24 @@ class Game {
                 break;
             case GAME_STATE.EQUIPMENT_STATE:
                 this.equipment.draw(ctx);
+                break;
+            case GAME_STATE.PET_SHOP_STATE:
+                this.petShop.draw(ctx);
+                break;
+            case GAME_STATE.EQUIP_PET_STATE:
+                this.equipPet.draw(ctx);
+                break;
+                // console.log('what')
         }
     }
 
     createFightObjects(numberOfEnemies) {
         // console.log('createFightObjects')
+
+        if (this.selectedPet != undefined) {
+            this.pet = new Pet(this, this.selectedPet);
+        }
+
         this.enemyArray = [];
         for (let i = 0; i < numberOfEnemies; i++) {
             this.enemyArray.push(new Enemy(this.ninjaArray[i], -this.enemyPosition[i].x, this.enemyPosition[i].y, -1, NinjaData[this.ninjaArray[i]].imageArray));

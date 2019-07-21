@@ -38,6 +38,15 @@ class InputHandler {
                 case GAME_STATE.EQUIPMENT_STATE:
                     this.game.equipment.removeOrAddJutsu(event);
                     this.game.equipment.equipJutsu(event);
+                    break;
+                case GAME_STATE.PET_SHOP_STATE:
+                    this.game.petShop.renderPetDetail(event);
+                    this.game.petShop.buyPet(event);
+                    break;
+                case GAME_STATE.EQUIP_PET_STATE:
+                    this.game.equipPet.removeOrAddPets(event);
+                    this.game.equipPet.equipPlayerPet(event);
+                    break;
                 default:
                     //pass
             }

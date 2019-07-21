@@ -160,12 +160,10 @@ class Equipment {
                     x: 730,
                     y: 380
                 }, 105, 33)) {
-                console.log('wah')
                 setTimeout(function(){
                     this.game.gameState = GAME_STATE.VILLAGE_STATE;
                 }.bind(this), 2000);
             }
- 
     }
 
     

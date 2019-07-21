@@ -45,7 +45,7 @@ class Academy {
     }
 
     drawAcademyJutsu(ctx) {
-        for (let i = 0; i < trainingJutsu.length; i++) {
+        for (let i = 0; i < this.academyJutsu.length; i++) {
             ctx.rect(this.academyJutsuRect[i].x, this.academyJutsuRect[i].y, 460, 60);
             ctx.strokeStyle = '#68492c';
             ctx.stroke();
@@ -67,8 +67,11 @@ class Academy {
                 y: 360
             }, 124, 42)) {
             if (this.selectedAcademyJutsu != undefined && this.game.player.gold >= 200) {
+        
                 console.log(this.selectedAcademyJutsu + 'learnJutsu')
                 this.game.player.addLearnedJutsu(this.selectedAcademyJutsu);
+                this.academyJutsu.splice(this.selectedAcademyJutsu, 1);
+                console.log(this.academyJutsu)
             } else {
                 console.log('you dont have enough gold')
             }
@@ -88,6 +91,7 @@ class Academy {
         for (let i = 0; i < trainingJutsu.length; i++) {
             this.academyJutsu.push(trainingJutsu[i]);
         }
+        console.log(this.academyJutsu)
     }
 
     renderDetail(event) {
