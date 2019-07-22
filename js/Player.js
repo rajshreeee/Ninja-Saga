@@ -7,6 +7,7 @@ class Player extends Ninja {
         this.level = 0;
         this.setPlayerJutsu();
         console.log(this.jutsu);
+        console.log(ninjaIndex + 'player')
     }
 
     drawGold(ctx) {

@@ -95,8 +95,11 @@ class Menu {
     confirmSelection() {
         console.log('pressed')
         this.game.ninjaIndex = this.currentNinja;
+        this.game.setCharacters();
+        console.log(this.game.ninjaIndex+'menu')
         this.game.gameState = GAME_STATE.VILLAGE_STATE;
         this.game.village.goToDestination();
+    
     }
 
    /* selectNinja() {

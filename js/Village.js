@@ -15,35 +15,50 @@ class Village {
 
         this.arenaCoordinates = {
             x: 50,
-            y: 200
+            y: 200,
+            width: 250,
+            height: 150,
+            message: "Fight ninjas"
         };
 
         this.academyCoordinates = {
             x: 750,
-            y: 200
+            y: 200,
+            width: 159,
+            height: 125,
+            message: "Learn jutsus"
         };
 
         this.equipmentCoordinates = {
             x: 900,
-            y: 20
+            y: 20,
+            width: 50,
+            height: 51,
+            message: "Equip jutsus"
         };
 
         this.petShopCoordinates = {
             x: 100,
-            y: 400
+            y: 400,
+            width: 150,
+            height: 100,
+            message: "Buy a pet"
         };
 
         this.petsIconCoordinates = {
             x: 800,
-            y: 25
+            y: 25,
+            width: 45,
+            height: 45,
+            message: "Equip pets"
         };
 
-        this.shopCoordinates = {
-            x: 440,
-            y: 280
-        };
+        this.villageItemCoordinates = [
+            this.arenaCoordinates, this.academyCoordinates, this.equipmentCoordinates, this.petShopCoordinates, this.petsIconCoordinates
+        ]
 
-        
+
+    
         /*this.missionRect = [
             {
                 x: 0,
@@ -57,8 +72,10 @@ class Village {
                 y: 400
             }
         ]*/
-        
+
         this.canvas = canvas;
+
+        this.displayHoverInfo = [false, false, false, false, false];
     }
 
     draw(ctx) {
@@ -72,7 +89,9 @@ class Village {
 
         ctx.drawImage(this.petsIcon, this.petsIconCoordinates.x, this.petsIconCoordinates.y);
 
-        ctx.drawImage(this.shopImage, this.shopCoordinates.x, this.shopCoordinates.y);
+
+        this.drawVillageInfo(ctx);
+
     }
 
     goToDestination(event) {
@@ -83,7 +102,7 @@ class Village {
             //this.game.createFightObjects(1);
             this.game.gameState = GAME_STATE.SELECT_MISSION_STATE;
         }
-        if (isSelected(clickCoordinates.x, clickCoordinates.y, this.academyCoordinates, 278, 295)) {
+        if (isSelected(clickCoordinates.x, clickCoordinates.y, this.academyCoordinates, 159, 125)) {
             if (this.game.player.gold >= 200) {
                 this.game.gameState = GAME_STATE.ACADEMY_STATE;
             }
@@ -101,9 +120,6 @@ class Village {
             this.game.gameState = GAME_STATE.EQUIP_PET_STATE;
         }
 
-        if (isSelected(clickCoordinates.x, clickCoordinates.y, this.shopCoordinates, 146, 128)) {
-            this.game.gameState = GAME_STATE.SHOP_STATE;
-        }
 
 
 
@@ -113,26 +129,101 @@ class Village {
         ctx.drawImage(this.gradeAMissionImage, 0, 10);
         ctx.drawImage(this.gradeBMissionImage, 0, 200);
         ctx.drawImage(this.gradeCMissionImage, 0, 400);
+
+        //this.drawVillageHover(ctx);
     }
 
     selectMission(event) {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
-  
 
-        if (isSelected(clickCoordinates.x, clickCoordinates.y, {x:0, y:10}, 313, 71)) {
-               
-                this.game.createFightObjects(1);
-            } 
-      
-      if (isSelected(clickCoordinates.x, clickCoordinates.y, {x:0, y:200}, 313, 71)) {
-               if(this.game.player.level >=1){
-                                   this.game.createFightObjects(2);
 
-               }else{
-                   console.log('not enough level')
-               }
+        if (isSelected(clickCoordinates.x, clickCoordinates.y, {
+                x: 0,
+                y: 10
+            }, 313, 71)) {
+
+            this.game.createFightObjects(1);
+        }
+
+        if (isSelected(clickCoordinates.x, clickCoordinates.y, {
+                x: 0,
+                y: 200
+            }, 313, 71)) {
+            if (this.game.player.level >= 1) {
+                this.game.createFightObjects(2);
+
+            } else {
+                console.log('not enough level')
             }
-       
+        }
+
     }
+
+    displayVillageInfo(event) {
+        let clickCoordinates = getMouseCoordinates(this.canvas, event);
+
+
+        for (let i = 0; i < this.villageItemCoordinates.length; i++) {
+            // console.log(this.jutsuCoordinates)
+
+            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.villageItemCoordinates[i], this.villageItemCoordinates[i].width, this.villageItemCoordinates[i].height)) {
+
+                this.displayHoverInfo[i] = true;
+            }
+
+            if (!isSelected(clickCoordinates.x, clickCoordinates.y, this.villageItemCoordinates[i], this.villageItemCoordinates[i].width, this.villageItemCoordinates[i].height)) {
+                this.displayHoverInfo[i] = false;
+            }
+
+            //  console.log(this.displayHoverInfo)
+        }
+
+        /* 
+         if (isSelected(clickCoordinates.x, clickCoordinates.y, this.arenaCoordinates, 250, 150)) {
+             console.log('what')
+             this.displayHoverInfo[0] = true;
+         }
+
+         if (isSelected(clickCoordinates.x, clickCoordinates.y, this.academyCoordinates, 159, 125)) {
+             this.displayHoverInfo[1] = true;
+
+         }
+
+         if (isSelected(clickCoordinates.x, clickCoordinates.y, this.equipmentCoordinates, 50, 51)) {
+             this.displayHoverInfo[2] = true;
+
+
+         }
+
+         if (isSelected(clickCoordinates.x, clickCoordinates.y, this.petShopCoordinates, 150, 100)) {
+             this.displayHoverInfo[3] = true;
+
+
+         }
+
+         if (isSelected(clickCoordinates.x, clickCoordinates.y, this.petsIconCoordinates, 45, 45)) {
+             console.log('select pet')
+             this.displayHoverInfo[4] = true;
+
+
+         }*/
+    }
+
+
+    drawVillageInfo(ctx) {
+        for (let i = 0; i < this.displayHoverInfo.length; i++) {
+            if (this.displayHoverInfo[i] === true) {
+
+                ctx.fillStyle = "#fff";
+                ctx.fillRect(this.villageItemCoordinates[i].x, this.villageItemCoordinates[i].y, 100, 30);
+                ctx.font = "15px Arial";
+                ctx.fillStyle = "#000";
+                ctx.fillText(this.villageItemCoordinates[i].message, this.villageItemCoordinates[i].x+10, this.villageItemCoordinates[i].y+20);
+            }
+        }
+    }
+
+
+
 
 }

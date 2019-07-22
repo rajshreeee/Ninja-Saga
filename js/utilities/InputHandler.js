@@ -63,6 +63,10 @@ class InputHandler {
                 case GAME_STATE.FIGHT_STATE:
                     this.game.fight.displayDetails(event);
                     break;
+                case GAME_STATE.VILLAGE_STATE:
+                    //console.log('I am moving');
+                    this.game.village.displayVillageInfo(event);
+                    break;
                 default:
                     //pass
             }    

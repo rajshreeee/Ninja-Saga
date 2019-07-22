@@ -2,7 +2,7 @@ class Game {
     constructor(canvas) {
         this.gameState = GAME_STATE.MENU_STATE;
         this.menu = new Menu(this);
-        this.ninjaIndex = 0;
+        this.ninjaIndex;
         this.ninjaArray = [0, 1, 2];
         this.player;
         this.enemy;
@@ -35,10 +35,8 @@ class Game {
         this.equipment = new Equipment(this, this.canvas);
         this.petShop = new PetShop(this, this.canvas);
         this.equipPet = new EquipPet(this, this.canvas);
-        this.shop = new Shop(this, this.canvas);
         
         this.selectedPet = undefined;
-        this.setCharacters();
     }
 
     setCharacters() {
