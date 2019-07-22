@@ -1,6 +1,10 @@
 class Game {
     constructor(canvas) {
         this.gameState = GAME_STATE.MENU_STATE;
+
+        this.audioLoader = new AudioLoader();
+        this.imageLoader = new ImageLoader();
+
         this.ninjaIndex;
         this.ninjaArray = [0, 1, 2];
         this.player;
@@ -29,15 +33,13 @@ class Game {
         ]
 
 
-        this.village = new Village(this, this.canvas);
+        this.village = new Village(this, this.canvas, this.audioLoader, this.imageLoader);
         this.academy = new Academy(this, this.canvas, this.player);
         this.equipment = new Equipment(this, this.canvas);
         this.petShop = new PetShop(this, this.canvas);
         this.equipPet = new EquipPet(this, this.canvas);
 
-        this.audioLoader = new AudioLoader();
-
-        this.menu = new Menu(this, this.audioLoader);
+        this.menu = new Menu(this, this.audioLoader, this.imageLoader);
 
         this.selectedPet = undefined;
     }
@@ -104,9 +106,14 @@ class Game {
         }
 
         this.enemyArray = [];
-        for (let i = 0; i < numberOfEnemies; i++) {
-            this.enemyArray.push(new Enemy(this.ninjaArray[i], -this.enemyPosition[i].x, this.enemyPosition[i].y, -1, NinjaData[this.ninjaArray[i]].imageArray));
+        if (numberOfEnemies === 5) {
+            this.enemyArray.push(new Enemy(this.ninjaIndex, -this.enemyPosition[this.ninjaIndex].x, this.enemyPosition[this.ninjaIndex].y, -1, NinjaData[this.ninjaIndex].imageArray));
+        } else {
+            for (let i = 0; i < numberOfEnemies; i++) {
+                this.enemyArray.push(new Enemy(this.ninjaArray[i], -this.enemyPosition[i].x, this.enemyPosition[i].y, -1, NinjaData[this.ninjaArray[i]].imageArray));
+            }
         }
+
         this.fight = new Fight(this, this.player, this.enemyArray, this.canvas, this.pet);
 
         this.gameState = GAME_STATE.FIGHT_STATE;

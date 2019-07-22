@@ -31,7 +31,7 @@ let waterBurstImage = document.getElementById('water-burst');
 let NinjaData = [
     {
         name: "Sasuke",
-        health: 100,
+        health: 5,
         chakra: 100,
         defense: 3,
         speed: 3,
@@ -238,7 +238,7 @@ let NinjaData = [
 
     {
         name: "Sakura",
-        health: 100,
+        health: 5,
         chakra: 100,
         defense: 2,
         speed: 1.5,

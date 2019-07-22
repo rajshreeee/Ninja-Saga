@@ -1,11 +1,13 @@
 class Menu {
-    constructor(game, audioLoader) {
+    constructor(game, audioLoader, ImageLoader) {
         this.game = game;
-        this.sasuke_image = document.getElementById("sasuke_menu");
-        this.naurto_image = document.getElementById("naruto_menu");
-        this.sakura_image = document.getElementById("sakura_menu");
         this.audioLoader = audioLoader;
-
+        this.imageLoader = ImageLoader;
+       
+        this.sasuke_image = this.imageLoader.images.sasuke_menu;
+        this.naurto_image = this.imageLoader.images.naruto_menu;
+        this.sakura_image = this.imageLoader.images.sakura_menu;
+        
         this.cross = document.getElementById("cross");
         this.gameBackground = document.getElementById('game-background');
 
