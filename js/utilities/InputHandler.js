@@ -62,6 +62,7 @@ class InputHandler {
             switch (this.game.gameState) {
                 case GAME_STATE.FIGHT_STATE:
                     this.game.fight.displayDetails(event);
+                    this.game.fight.displayChargeHover(event);
                     break;
                 case GAME_STATE.VILLAGE_STATE:
                     //console.log('I am moving');

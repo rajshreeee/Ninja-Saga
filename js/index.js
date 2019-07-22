@@ -12,7 +12,6 @@ function gameLoop() {
     ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     game.draw(ctx, gameEngine, this.gameLoop);
     ctx.imageSmoothingEnabled = false;
-  //  console.log(this.gameLoop)
 }
 
 gameLoop();

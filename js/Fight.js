@@ -51,29 +51,52 @@ class Fight {
         this.jutsuCoordinates = [
             {
                 x: 300,
-                y: 325
+                y: 325,
+                width: 50,
+                height: 50
         }, {
                 x: 375,
-                y: 325
+                y: 325,
+                width: 50,
+                height: 50
         }, {
                 x: 450,
-                y: 325
+                y: 325,
+                width: 50,
+                height: 50
         }, {
                 x: 525,
-                y: 325
+                y: 325,
+                width: 50,
+                height: 50
         }, {
                 x: 600,
-                y: 325
+                y: 325,
+                width: 50,
+                height: 50
         },
             {
                 x: 675,
-                y: 325
+                y: 325,
+                width: 50,
+                height: 50
         }
 
         ];
 
-        // this.canvas.addEventListener("mousemove", //this.displayDetails.bind(this), false)
-
+        this.chakraChargeCoordinates = [{
+            x: 800,
+            y:0,
+            width: 63,
+            height: 54,
+            scaled_width: 73,
+            scaled_height: 64,
+            original_width: 63,
+            original_height: 54
+        }];
+        
+        this.chakraHoverDisplay = [false];
+        
         this.statBarArray = [
             this.sasuke_stat,
             this.naruto_stat,
@@ -249,6 +272,8 @@ class Fight {
             this.drawPlayerStatBar(ctx);
 
             this.drawAttackHoverInfo(ctx);
+            
+            this.drawChakraHover(ctx);
 
 
             if (this.pet != undefined) {
@@ -313,12 +338,12 @@ class Fight {
                 ctx.fillStyle = "#000";
                 ctx.fillText(this.player.jutsu[i].name, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 70);
                 ctx.font = "15px Arial";
-                ctx.fillStyle ="#0000FF";
-                ctx.fillText("Chakra:"+ " "+this.player.jutsu[i].chakraLoss, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 90);
-                ctx.fillStyle ="#FF0000";
-                ctx.fillText("Damage:"+ " "+this.player.jutsu[i].power, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 105);
-                ctx.fillStyle ="#000";
-                ctx.fillText("Accruacy:"+ " "+this.player.jutsu[i].accuracy, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 120);
+                ctx.fillStyle = "#0000FF";
+                ctx.fillText("Chakra:" + " " + this.player.jutsu[i].chakraLoss, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 90);
+                ctx.fillStyle = "#FF0000";
+                ctx.fillText("Damage:" + " " + this.player.jutsu[i].power, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 105);
+                ctx.fillStyle = "#000";
+                ctx.fillText("Accruacy:" + " " + this.player.jutsu[i].accuracy, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 120);
 
             }
         }
@@ -512,7 +537,8 @@ class Fight {
             }
 
         }
-        ctx.drawImage(this.chakra_charge, 800, 0);
+        ctx.drawImage(this.chakra_charge, this.chakraChargeCoordinates[0].x, this.chakraChargeCoordinates[0].y, this.chakraChargeCoordinates[0].width, this.chakraChargeCoordinates[0].height);
+        //console.log(this.chakraChargeCoordinates.width)
 
     }
 
@@ -520,20 +546,9 @@ class Fight {
     displayDetails(event) {
 
         if (this.selectJutsuenabled === true) {
-            let clickCoordinates = getMouseCoordinates(this.canvas, event);
 
-            for (let i = 0; i < this.player.jutsu.length; i++) {
-                // console.log(this.jutsuCoordinates)
 
-                if (isSelected(clickCoordinates.x, clickCoordinates.y, this.jutsuCoordinates[i], 50, 50)) {
-
-                    this.displayHoverItem[i] = true;
-                }
-
-                if (!isSelected(clickCoordinates.x, clickCoordinates.y, this.jutsuCoordinates[i], 50, 50)) {
-                    this.displayHoverItem[i] = false;
-                }
-            }
+            displayInfo(this.canvas, event, this.jutsuCoordinates, this.displayHoverItem);
         }
     }
 
@@ -787,5 +802,23 @@ class Fight {
         let totalChakra = 100;
         return ((player.chakra / totalChakra) * 100);
     }
+    
+    displayChargeHover(event) {
+        displayInfo(this.canvas, event, this.chakraChargeCoordinates, this.chakraHoverDisplay);
+    }   
+    
+    
+    drawChakraHover(ctx) {
+            if (this.chakraHoverDisplay[0] === true) {
+        console.log('what')
+
+                this.chakraChargeCoordinates[0].width = this.chakraChargeCoordinates[0].scaled_width;
+                this.chakraChargeCoordinates[0].height = this.chakraChargeCoordinates[0].scaled_height;
+            } else {
+                this.chakraChargeCoordinates[0].height = this.chakraChargeCoordinates[0].original_height;
+                this.chakraChargeCoordinates[0].width = this.chakraChargeCoordinates[0].original_width;
+            }
+        }
+    
 
 }

@@ -13,7 +13,7 @@ class Player extends Ninja {
     drawGold(ctx) {
         ctx.drawImage(this.goldImage, 820, 480);
         ctx.font = "19px Arial";
-        ctx.fillText(this.gold, 880, 512);
+        ctx.fillText(this.gold, 900, 512);
     }
 
     setPlayerJutsu(){

@@ -88,16 +88,22 @@ class Village {
             {
                 x: 300,
                 y: 200,
-                message: "Only level 2+ can accept these missions!"
+                message: "Only level 2+ can accept these missions!",
+                width: 313,
+                height: 71
         }, {
                 x: 300,
                 y: 400,
-                message: "Only level 1+ can accept these missions!"
+                message: "Only level 1+ can accept these missions!",
+                width: 313,
+                height: 71
         },
             {
                 x: 300,
                 y: 600,
-                message: "Basic mission that can be accepted by all"
+                message: "Basic mission that can be accepted by all",
+                width: 313,
+                height: 71
         }
     ];
 
@@ -167,19 +173,19 @@ class Village {
         ctx.drawImage(this.selectMissionBg, 0, 0);
         ctx.drawImage(this.selectMissionTitle, 120, 30);
 
-        if(this.game.player.level>=2){
+        if (this.game.player.level >= 2) {
             this.gradeA = this.gradeAMissionImage;
-        }else{
+        } else {
             this.gradeA = this.lockedMissionImage;
         }
-        
-          if(this.game.player.level>=1){
+
+        if (this.game.player.level >= 1) {
             this.gradeB = this.gradeBMissionImage;
-        }else{
+        } else {
             this.gradeB = this.lockedMissionImage;
         }
-        
-        
+
+
         ctx.drawImage(this.gradeA, this.missionCoordinates[0].x, this.missionCoordinates[0].y);
         ctx.drawImage(this.gradeB, this.missionCoordinates[1].x, this.missionCoordinates[1].y);
         ctx.drawImage(this.gradeCMissionImage, this.missionCoordinates[2].x, this.missionCoordinates[2].y);
@@ -221,39 +227,14 @@ class Village {
     }
 
     displayVillageInfo(event) {
-        let clickCoordinates = getMouseCoordinates(this.canvas, event);
-
-
-        for (let i = 0; i < this.villageItemCoordinates.length; i++) {
-
-            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.villageItemCoordinates[i], this.villageItemCoordinates[i].width, this.villageItemCoordinates[i].height)) {
-
-                this.displayHoverInfo[i] = true;
-            }
-
-            if (!isSelected(clickCoordinates.x, clickCoordinates.y, this.villageItemCoordinates[i], this.villageItemCoordinates[i].width, this.villageItemCoordinates[i].height)) {
-                this.displayHoverInfo[i] = false;
-            }
-
-        }
+        displayInfo(this.canvas, event, this.villageItemCoordinates, this.displayHoverInfo);
 
     }
 
     displayMissionInfo(event) {
-        let clickCoordinates = getMouseCoordinates(this.canvas, event);
 
+        displayInfo(this.canvas, event, this.missionCoordinates, this.displaySelectMissionInfo);
 
-        for (let i = 0; i < this.missionCoordinates.length; i++) {
-
-            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.missionCoordinates[i], 313, 71)) {
-                this.displaySelectMissionInfo[i] = true;
-            }
-
-            if (!isSelected(clickCoordinates.x, clickCoordinates.y, this.missionCoordinates[i], 313, 71)) {
-                this.displaySelectMissionInfo[i] = false;
-            }
-
-        }
     }
 
     drawMissionInfo(event) {
@@ -265,7 +246,6 @@ class Village {
                 ctx.font = "15px Arial";
                 ctx.fillStyle = "#000";
                 ctx.fillText(this.missionCoordinates[i].message, this.missionCoordinates[i].x + 10, this.missionCoordinates[i].y + 20);
-                console.log('why')
 
             }
         }
@@ -284,7 +264,9 @@ class Village {
                 ctx.fillStyle = "#000";
                 ctx.fillText(this.villageItemCoordinates[i].message, this.villageItemCoordinates[i].x + 10, this.villageItemCoordinates[i].y + 20);
                 this.villageItemCoordinates[i].width = this.villageItemCoordinates[i].scaled_width;
+                this.villageItemCoordinates[i].height = this.villageItemCoordinates[i].scaled_height;
             } else {
+                this.villageItemCoordinates[i].height = this.villageItemCoordinates[i].original_height;
                 this.villageItemCoordinates[i].width = this.villageItemCoordinates[i].original_width;
             }
         }
