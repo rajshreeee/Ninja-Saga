@@ -75,7 +75,7 @@ let NinjaData = [
                      }
                     ],
         jutsu: [{
-                name: "chidori",
+                name: "Chidori",
                 power: 25,
                 chakraLoss: 30,
                 accuracy: .90,
@@ -83,7 +83,7 @@ let NinjaData = [
                 count: 0
                 },
             {
-                name: "genjutsu",
+                name: "Genjutsu",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
@@ -91,7 +91,7 @@ let NinjaData = [
                 count: 0
         },
             {
-                name: "fat-arm",
+                name: "Fat Arm",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
@@ -99,7 +99,7 @@ let NinjaData = [
                 count: 0
         },
             {
-                name: "star-attack",
+                name: "Star Attack",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
@@ -107,7 +107,7 @@ let NinjaData = [
                 count: 0
         },
             {
-                name: "sword-mullet",
+                name: "Rinnegan",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
@@ -116,7 +116,7 @@ let NinjaData = [
 
         },
             {
-                name: "high-kick",
+                name: "High Kick",
                 power: 20,
                 chakraLoss: 10,
                 accuracy: .7,
@@ -130,7 +130,7 @@ let NinjaData = [
 
     {
         name: "Naruto",
-        health: 5,
+        health: 100,
         chakra: 100,
         defense: 2,
         speed: 2,
@@ -179,7 +179,7 @@ let NinjaData = [
 
                     ],
         jutsu: [{
-                name: "rasengan",
+                name: "Rasengan",
                 power: 20,
                 chakraLoss: 90,
                 accuracy: .85,
@@ -188,7 +188,7 @@ let NinjaData = [
 
                 },
             {
-                name: "shadowClone",
+                name: "Shadow Clone",
                 power: 15,
                 chakraLoss: 30,
                 accuracy: .9,
@@ -197,7 +197,7 @@ let NinjaData = [
 
         },
             {
-                name: "fly-kick",
+                name: "Fly Kick",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -206,7 +206,7 @@ let NinjaData = [
 
         },
             {
-                name: "taijutsu",
+                name: "Taijutsu",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -214,7 +214,7 @@ let NinjaData = [
                 count: 0
 
         }, {
-                name: "chakra-focus",
+                name: "Chakra Focus",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -223,7 +223,7 @@ let NinjaData = [
 
         }
              , {
-                name: "lightning",
+                name: "Lightning",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -238,7 +238,7 @@ let NinjaData = [
 
     {
         name: "Sakura",
-        health: 5,
+        health: 100,
         chakra: 100,
         defense: 2,
         speed: 1.5,
@@ -286,7 +286,7 @@ let NinjaData = [
                 length: 2
             }],
         jutsu: [{
-                name: "superStrength",
+                name: "Super Strength",
                 power: 30,
                 chakraLoss: 25,
                 accuracy: .85,
@@ -295,7 +295,7 @@ let NinjaData = [
 
                 },
             {
-                name: "superChakra",
+                name: "Super Chakra",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -303,7 +303,7 @@ let NinjaData = [
                 count: 0
 
         }, {
-                name: "rage-attack",
+                name: "Rage Attack",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -311,7 +311,7 @@ let NinjaData = [
                 count: 0
 
         }, {
-                name: "strong-arm",
+                name: "Strong Arm",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -319,7 +319,7 @@ let NinjaData = [
                 count: 0
 
         }, {
-                name: "gold-glove",
+                name: "Gold Glove",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -327,7 +327,7 @@ let NinjaData = [
                 count: 0
 
         }, {
-                name: "double-wind",
+                name: "Double Wind",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -343,7 +343,7 @@ let NinjaData = [
 
 let trainingJutsu = [
     {
-        name: "waterBurst",
+        name: "Water Burst",
         power: 30,
         chakraLoss: 25,
         accuracy: .85,
@@ -354,7 +354,7 @@ let trainingJutsu = [
         detailImage: waterBurstImage
                 },
     {
-        name: "superChakra",
+        name: "Super Chakra",
         power: 15,
         chakraLoss: 10,
         accuracy: .9,
@@ -366,7 +366,7 @@ let trainingJutsu = [
 
 
         }, {
-        name: "rage-attack",
+        name: "Rage Attack",
         power: 15,
         chakraLoss: 10,
         accuracy: .9,
@@ -378,7 +378,7 @@ let trainingJutsu = [
 
 
         }, {
-        name: "strong-arm",
+        name: "Strong Arm",
         power: 15,
         chakraLoss: 10,
         accuracy: .9,
@@ -390,7 +390,7 @@ let trainingJutsu = [
 
 
         }, {
-        name: "gold-glove",
+        name: "Gold Glove",
         power: 15,
         chakraLoss: 10,
         accuracy: .9,

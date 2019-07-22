@@ -187,7 +187,7 @@ class Fight {
         this.count = 0;
 
         this.speed = 1;
-        
+
         this.petAttackTime = true;
 
         this.originalJutsuArray = this.player.jutsu;
@@ -305,8 +305,21 @@ class Fight {
     drawAttackHoverInfo(ctx) {
         for (let i = 0; i < this.player.jutsu.length; i++) {
             if (this.displayHoverItem[i] === true) {
-                ctx.font = "30px Arial";
-                ctx.fillText(this.player.jutsu[i].name, this.jutsuCoordinates[i].x, this.jutsuCoordinates[i].y);
+                //ctx.font = "30px Arial";
+                //ctx.fillText(this.player.jutsu[i].name, //this.jutsuCoordinates[i].x, this.jutsuCoordinates[i].y);
+                ctx.fillStyle = "#fff";
+                ctx.fillRect(this.jutsuCoordinates[i].x, this.jutsuCoordinates[i].y + 55, 105, 80);
+                ctx.font = "20px Arial bold";
+                ctx.fillStyle = "#000";
+                ctx.fillText(this.player.jutsu[i].name, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 70);
+                ctx.font = "15px Arial";
+                ctx.fillStyle ="#0000FF";
+                ctx.fillText("Chakra:"+ " "+this.player.jutsu[i].chakraLoss, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 90);
+                ctx.fillStyle ="#FF0000";
+                ctx.fillText("Damage:"+ " "+this.player.jutsu[i].power, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 105);
+                ctx.fillStyle ="#000";
+                ctx.fillText("Accruacy:"+ " "+this.player.jutsu[i].accuracy, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 120);
+
             }
         }
     }
@@ -387,8 +400,8 @@ class Fight {
                     this.enemyArray[i].speed = 0;
                 }
                 if (this.petAttackTime === true) {
-                        this.petAttack();
-                    }
+                    this.petAttack();
+                }
 
             }
 
@@ -649,7 +662,7 @@ class Fight {
                 this.playerVictory = true;
                 this.player.gold += 200;
                 this.player.jutsu = this.originalJutsuArray;
-                this.player.level +=1;
+                this.player.level += 1;
                 console.log(this.player.level)
                 console.log(this.player.gold);
             } else {
@@ -678,7 +691,7 @@ class Fight {
         setTimeout(function () {
             this.petImageIndex = 0;
             this.enemyImageIndexArray[0] = 0;
-           // this.playerImageIndex = 0;
+            // this.playerImageIndex = 0;
             for (let k = 0; k < this.enemyArray.length; k++) {
                 if (this.enemyArray[k].health <= 0) {
 
@@ -706,13 +719,13 @@ class Fight {
                     this.enemyArray[i].speed = this.enemySpeedArray[i];
 
                 }
-                    this.player.speed = this.playerSpeed;
+                this.player.speed = this.playerSpeed;
 
-            
+
                 this.actionBarPetCoordinates.x = 200;
             }
             this.petAttackTime = true;
-           
+
         }.bind(this), 500);
 
     }
