@@ -810,7 +810,6 @@ class Fight {
     
     drawChakraHover(ctx) {
             if (this.chakraHoverDisplay[0] === true) {
-        console.log('what')
 
                 this.chakraChargeCoordinates[0].width = this.chakraChargeCoordinates[0].scaled_width;
                 this.chakraChargeCoordinates[0].height = this.chakraChargeCoordinates[0].scaled_height;

@@ -108,7 +108,12 @@ class Game {
         this.enemyArray = [];
         if (numberOfEnemies === 5) {
             this.enemyArray.push(new Enemy(this.ninjaIndex, -this.enemyPosition[this.ninjaIndex].x, this.enemyPosition[this.ninjaIndex].y, -1, NinjaData[this.ninjaIndex].imageArray));
-        } else {
+        }else if(numberOfEnemies ===1){
+            let j = getRandomInt(0,2);
+            console.log(j)
+             this.enemyArray.push(new Enemy(this.ninjaArray[j], -this.enemyPosition[j].x, this.enemyPosition[j].y, -1, NinjaData[this.ninjaArray[j]].imageArray));
+        }
+        else {
             for (let i = 0; i < numberOfEnemies; i++) {
                 this.enemyArray.push(new Enemy(this.ninjaArray[i], -this.enemyPosition[i].x, this.enemyPosition[i].y, -1, NinjaData[this.ninjaArray[i]].imageArray));
             }
