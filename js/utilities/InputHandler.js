@@ -31,6 +31,9 @@ class InputHandler {
                 case GAME_STATE.VILLAGE_STATE:
                     this.game.village.goToDestination(event);
                     break;
+                case GAME_STATE.SELECT_MISSION_STATE:
+                    this.game.village.selectMission(event);
+                    break;
                 case GAME_STATE.ACADEMY_STATE:
                     this.game.academy.renderDetail(event);
                     this.game.academy.learnJutsu(event);
@@ -46,6 +49,9 @@ class InputHandler {
                 case GAME_STATE.EQUIP_PET_STATE:
                     this.game.equipPet.removeOrAddPets(event);
                     this.game.equipPet.equipPlayerPet(event);
+                    break;
+                case GAME_STATE.SHOP_STATE:
+                    this.game.shop.renderItemDetail(event);
                     break;
                 default:
                     //pass

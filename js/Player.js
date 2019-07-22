@@ -4,6 +4,7 @@ class Player extends Ninja {
         this.game = game;
         this.gold = 0;
         this.goldImage = document.getElementById('gold');
+        this.level = 0;
         this.setPlayerJutsu();
         console.log(this.jutsu);
     }

@@ -130,7 +130,7 @@ let NinjaData = [
 
     {
         name: "Naruto",
-        health: 50,
+        health: 5,
         chakra: 100,
         defense: 2,
         speed: 2,

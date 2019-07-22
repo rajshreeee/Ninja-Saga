@@ -5,7 +5,8 @@ const GAME_STATE = {
     ACADEMY_STATE: 3,
     EQUIPMENT_STATE: 4,
     PET_SHOP_STATE: 5,
-    EQUIP_PET_STATE: 6
+    EQUIP_PET_STATE: 6,
+    SHOP_STATE: 7
 
 }
 

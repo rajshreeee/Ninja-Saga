@@ -35,7 +35,8 @@ class Game {
         this.equipment = new Equipment(this, this.canvas);
         this.petShop = new PetShop(this, this.canvas);
         this.equipPet = new EquipPet(this, this.canvas);
-
+        this.shop = new Shop(this, this.canvas);
+        
         this.selectedPet = undefined;
         this.setCharacters();
     }
@@ -62,6 +63,10 @@ class Game {
 
                 this.village.draw(ctx);
                 break;
+            
+            case GAME_STATE.SELECT_MISSION_STATE:
+                this.village.drawSelectMission(ctx);
+                break;
 
             case GAME_STATE.FIGHT_STATE:
                 this.fight.draw(ctx, gameEngine, gameLoop);
@@ -79,7 +84,10 @@ class Game {
             case GAME_STATE.EQUIP_PET_STATE:
                 this.equipPet.draw(ctx);
                 break;
-                // console.log('what')
+            case GAME_STATE.SHOP_STATE:
+                this.shop.draw(ctx);
+                 //console.log('what')
+                break;
         }
     }
 
