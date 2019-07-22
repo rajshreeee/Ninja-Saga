@@ -1,7 +1,6 @@
 class Game {
     constructor(canvas) {
         this.gameState = GAME_STATE.MENU_STATE;
-        this.menu = new Menu(this);
         this.ninjaIndex;
         this.ninjaArray = [0, 1, 2];
         this.player;
@@ -35,7 +34,11 @@ class Game {
         this.equipment = new Equipment(this, this.canvas);
         this.petShop = new PetShop(this, this.canvas);
         this.equipPet = new EquipPet(this, this.canvas);
-        
+
+        this.audioLoader = new AudioLoader();
+
+        this.menu = new Menu(this, this.audioLoader);
+
         this.selectedPet = undefined;
     }
 
@@ -60,9 +63,13 @@ class Game {
             case GAME_STATE.VILLAGE_STATE:
 
                 this.village.draw(ctx);
+                this.audioLoader.play("finalRoad");
+
                 break;
-            
+
             case GAME_STATE.SELECT_MISSION_STATE:
+                this.audioLoader.stop("finalRoad");
+
                 this.village.drawSelectMission(ctx);
                 break;
 
@@ -84,7 +91,7 @@ class Game {
                 break;
             case GAME_STATE.SHOP_STATE:
                 this.shop.draw(ctx);
-                 //console.log('what')
+                //console.log('what')
                 break;
         }
     }

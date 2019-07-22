@@ -1,16 +1,17 @@
 class Menu {
-    constructor(game) {
+    constructor(game, audioLoader) {
         this.game = game;
         this.sasuke_image = document.getElementById("sasuke_menu");
         this.naurto_image = document.getElementById("naruto_menu");
         this.sakura_image = document.getElementById("sakura_menu");
+        this.audioLoader = audioLoader;
 
         this.cross = document.getElementById("cross");
         this.gameBackground = document.getElementById('game-background');
 
         this.currentNinja = 0;
 
-       // this.selectNinja();
+        // this.selectNinja();
 
         this.imageSize = {
             x: 100,
@@ -21,12 +22,12 @@ class Menu {
 
     draw(ctx) {
         ctx.drawImage(this.gameBackground, 0, 0, 1000, 700);
-  
+
         this.drawNinja(ctx);
     }
 
     drawNinja(ctx) {
-        
+
         this.crossImage();
 
         ctx.drawImage(
@@ -57,54 +58,59 @@ class Menu {
 
     }
 
-   /* selectCode(event) {
-        switch (event.keyCode) {
-            case 37: //keyCode for left
-                if (this.currentNinja !== 0) {
-                    this.currentNinja--;
-                }
-                break;
-            case 39: //keyCode for right
-                if (this.currentNinja !== 2) {
-                    this.currentNinja++;
-                }
-                break;
-            case 13:
-                console.log('pressed')
-                this.game.ninjaIndex = this.currentNinja;
-                this.game.gameState = GAME_STATE.VILLAGE_STATE;
-                this.game.village.goToDestination();
+    /* selectCode(event) {
+         switch (event.keyCode) {
+             case 37: //keyCode for left
+                 if (this.currentNinja !== 0) {
+                     this.currentNinja--;
+                 }
+                 break;
+             case 39: //keyCode for right
+                 if (this.currentNinja !== 2) {
+                     this.currentNinja++;
+                 }
+                 break;
+             case 13:
+                 console.log('pressed')
+                 this.game.ninjaIndex = this.currentNinja;
+                 this.game.gameState = GAME_STATE.VILLAGE_STATE;
+                 this.game.village.goToDestination();
 
-            default:
-                //pass
-        }
-    }*/
+             default:
+                 //pass
+         }
+     }*/
 
     selectLeft() {
         if (this.currentNinja !== 0) {
             this.currentNinja--;
         }
+        this.audioLoader.play("beep");
+
     }
 
     selectRight() {
         if (this.currentNinja !== 2) {
             this.currentNinja++;
         }
+        this.audioLoader.play("beep");
+
     }
 
     confirmSelection() {
         console.log('pressed')
         this.game.ninjaIndex = this.currentNinja;
         this.game.setCharacters();
-        console.log(this.game.ninjaIndex+'menu')
+        console.log(this.game.ninjaIndex + 'menu')
         this.game.gameState = GAME_STATE.VILLAGE_STATE;
         this.game.village.goToDestination();
-    
+        this.audioLoader.play("beep");
+
     }
 
-   /* selectNinja() {
-        document.addEventListener("keydown", this.selectCode.bind(this));
-    }*/
+    /* selectNinja() {
+         document.addEventListener("keydown", this.selectCode.bind(this));
+     }*/
 
     crossImage() {
 
