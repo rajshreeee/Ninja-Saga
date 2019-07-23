@@ -23,6 +23,16 @@ class ImageLoader {
     this.loadImage("host", "./images/host.png");
     this.loadImage("bottomBar", "./images/bottomBar.png")
       
+    this.loadImage("academy_inside", "./images/academy-inside.png");
+    this.loadImage("learn_button", "./images/learn-button.png");
+      
+    this.loadImage("petShopInside","./images/shop-bg.png");
+    this.loadImage("buyBtn","./images/buy.png");
+      
+    this.loadImage("crossBtn","./images/cross-round.png");
+    this.loadImage("equipBtn","./images/equip-btn.png");
+    
+    this.loadImage("equipmentBg","./images/equipment-bg.png" );
     this.numberOfImages = Object.keys(this.images).length;
   }
 

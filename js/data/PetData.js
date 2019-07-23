@@ -19,7 +19,10 @@ let petData = [
         accuracy: .9,
         renderDetail: false,
         selected: false,
-        speed: 2
+        speed: 2,
+        detailImage: polar_walk,
+         detailImagePosX: 613,
+        detailImagePosY: 76
 
 
     },
@@ -35,7 +38,10 @@ let petData = [
         accuracy: .9,
         renderDetail: false,
         selected: false,
-        speed:1.2
+        speed:1.2,
+        detailImage: polar_walk,
+         detailImagePosX: 613,
+        detailImagePosY: 76
 
 
     }

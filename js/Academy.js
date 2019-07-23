@@ -1,108 +1,45 @@
-class Academy {
-    constructor(game, canvas) {
-        this.game = game;
-        this.canvas = canvas;
-        this.academy_inside = document.getElementById('academy-inside');
-        this.learn_button = document.getElementById('learn-button');
-
-        this.academyJutsu = [];
-
-        this.setTrainingJutsu();
-
-        this.academyJutsuRect = [
-            {
-                x: 140,
-                y: 90
-            },
-            {
-                x: 140,
-                y: 160
-            },
-            {
-                x: 140,
-                y: 230
-            },
-            {
-                x: 140,
-                y: 300
-            },
-            {
-                x: 140,
-                y: 370
-            }
-        ];
-
-        this.selectedAcademyJutsu = undefined;
-
-    }
-
-    draw(ctx) {
-        ctx.drawImage(this.academy_inside, 0, 0);
-        this.drawAcademyJutsu(ctx);
-        this.drawDetailImage(ctx);
-        this.drawLearnButton(ctx);
-        this.game.player.drawGold(ctx);
+class Academy extends Shop{
+    constructor(game, canvas, bgImage, confirmButton, itemRect, itemDataArray) {
+        super(game, canvas, bgImage, confirmButton, itemRect, itemDataArray);
+        
     }
 
     drawAcademyJutsu(ctx) {
-        for (let i = 0; i < this.academyJutsu.length; i++) {
-            ctx.rect(this.academyJutsuRect[i].x, this.academyJutsuRect[i].y, 460, 60);
+        for (let i = 0; i < this.itemArray.length; i++) {
+            ctx.rect(this.itemRect[i].x, this.itemRect[i].y, 460, 60);
             ctx.strokeStyle = '#68492c';
             ctx.stroke();
-            ctx.drawImage(trainingJutsu[i].image, this.academyJutsuRect[i].x + 10, this.academyJutsuRect[i].y + 5);
+            ctx.drawImage(this.itemArray[i].image, this.itemRect[i].x + 10, this.itemRect[i].y + 5);
         }
     }
-
-    drawLearnButton(ctx) {
-        if (this.selectedAcademyJutsu != undefined) {
-            ctx.drawImage(this.learn_button, 710, 360);
-        }
-    }
-
+    
     learnJutsu(event) {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
-
+        console.log()
         if (isSelected(clickCoordinates.x, clickCoordinates.y, {
                 x: 710,
                 y: 360
             }, 124, 42)) {
-            if (this.selectedAcademyJutsu != undefined && this.game.player.gold >= 200) {
+            if (this.selectedItem != undefined && this.game.player.gold >= 200) {
         
-                console.log(this.selectedAcademyJutsu + 'learnJutsu')
-                this.game.player.addLearnedJutsu(this.selectedAcademyJutsu);
-                this.academyJutsu.splice(this.selectedAcademyJutsu, 1);
-                console.log(this.academyJutsu)
+                console.log(this.selectedItem + 'learnJutsu')
+               this.addLearnedJutsu(this.selectedItem);
+                console.log(this.itemArray[this.selectedItem])
+                this.itemArray.splice(this.selectedItem, 1);
+                console.log(this.itemArray)
             } else {
                 console.log('you dont have enough gold')
             }
         }
 
     }
-
-    drawDetailImage(ctx) {
-        for (let i = 0; i < this.academyJutsu.length; i++) {
-            if (this.academyJutsu[i].renderDetailImage === true) {
-                ctx.drawImage(this.academyJutsu[i].detailImage, 613, 76)
-            }
-        }
+      addLearnedJutsu() {
+        this.game.player.jutsu.push(this.itemArray[this.selectedItem]);
+        this.game.player.gold -= 200;
+        console.log(this.game.player.jutsu);
+        setTimeout(function () {
+            this.game.gameState = GAME_STATE.VILLAGE_STATE;
+        }.bind(this), 2000)
     }
-
-    setTrainingJutsu() {
-        for (let i = 0; i < trainingJutsu.length; i++) {
-            this.academyJutsu.push(trainingJutsu[i]);
-        }
-        console.log(this.academyJutsu)
-    }
-
-    renderDetail(event) {
-        let clickCoordinates = getMouseCoordinates(this.canvas, event);
-        for (let i = 0; i < this.academyJutsu.length; i++) {
-
-            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.academyJutsuRect[i], 460, 60)) {
-                this.academyJutsu[i].renderDetailImage = true;
-                this.selectedAcademyJutsu = i;
-                console.log(this.selectedAcademyJutsu)
-            }
-        }
-    }
+    
 }

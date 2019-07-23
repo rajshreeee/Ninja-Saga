@@ -14,6 +14,14 @@ class Game {
         this.canvas = canvas;
         new InputHandler(this, this.canvas);
 
+        this.academyInsideImage = this.imageLoader.images.academy_inside;
+        this.learnButton = this.imageLoader.images.learn_button;
+
+        this.petShopInsideImage = this.imageLoader.images.petShopInside;
+        this.buyBtn = this.imageLoader.images.buyBtn;
+        
+        this.equipmentBg = this.imageLoader.images.equipmentBg;
+        
         this.petArray = [];
 
         this.enemyPosition = [
@@ -34,14 +42,20 @@ class Game {
 
 
         this.village = new Village(this, this.canvas, this.audioLoader, this.imageLoader);
-        this.academy = new Academy(this, this.canvas, this.player);
-        this.equipment = new Equipment(this, this.canvas);
-        this.petShop = new PetShop(this, this.canvas);
-        this.equipPet = new EquipPet(this, this.canvas);
 
+        this.academy = new Academy(this, this.canvas, this.academyInsideImage, this.learnButton, academyJutsuRect, trainingJutsu);
+
+
+        this.equipment = new Equipment(this, this.canvas);
+        
+        this.petShop = new PetShop(this, this.canvas, this.petShopInsideImage, this.buyBtn, petImageRect, petData );
+       
+        this.equipPet = new EquipPet(this, this.canvas);
+        
         this.menu = new Menu(this, this.audioLoader, this.imageLoader);
-        this.transition = new Transition(this,this.canvas, this.audioLoader, this.imageLoader);
+        this.transition = new Transition(this, this.canvas, this.audioLoader, this.imageLoader);
         this.selectedPet = undefined;
+        //console.log(trainingJutsu)
     }
 
     setCharacters() {
@@ -81,19 +95,18 @@ class Game {
 
             case GAME_STATE.ACADEMY_STATE:
                 this.academy.draw(ctx);
+                this.academy.drawAcademyJutsu(ctx);
                 break;
             case GAME_STATE.EQUIPMENT_STATE:
                 this.equipment.draw(ctx);
+                this.equipment.drawJutsu(ctx);
                 break;
             case GAME_STATE.PET_SHOP_STATE:
                 this.petShop.draw(ctx);
+                this.petShop.drawPets(ctx);
                 break;
             case GAME_STATE.EQUIP_PET_STATE:
                 this.equipPet.draw(ctx);
-                break;
-            case GAME_STATE.SHOP_STATE:
-                this.shop.draw(ctx);
-                //console.log('what')
                 break;
             case GAME_STATE.GAME_VICTORY:
                 this.transition.drawVictory(ctx);
@@ -113,14 +126,13 @@ class Game {
 
         this.enemyArray = [];
         if (numberOfEnemies === 5) {
-            
+
             this.enemyArray.push(new Enemy(this.ninjaIndex, -this.enemyPosition[1].x, this.enemyPosition[1].y, -1, NinjaData[this.ninjaIndex].imageArray));
-        }else if(numberOfEnemies ===1){
-            let j = getRandomInt(0,2);
+        } else if (numberOfEnemies === 1) {
+            let j = getRandomInt(0, 2);
             console.log(j)
-             this.enemyArray.push(new Enemy(this.ninjaArray[j], -this.enemyPosition[1].x, this.enemyPosition[1].y, -1, NinjaData[this.ninjaArray[j]].imageArray));
-        }
-        else {
+            this.enemyArray.push(new Enemy(this.ninjaArray[j], -this.enemyPosition[1].x, this.enemyPosition[1].y, -1, NinjaData[this.ninjaArray[j]].imageArray));
+        } else {
             for (let i = 0; i < numberOfEnemies; i++) {
                 this.enemyArray.push(new Enemy(this.ninjaArray[i], -this.enemyPosition[i].x, this.enemyPosition[i].y, -1, NinjaData[this.ninjaArray[i]].imageArray));
             }

@@ -130,7 +130,7 @@ let NinjaData = [
 
     {
         name: "Naruto",
-        health: 100,
+        health: 5,
         chakra: 100,
         defense: 2,
         speed: 2,
@@ -238,7 +238,7 @@ let NinjaData = [
 
     {
         name: "Sakura",
-        health: 100,
+        health: 5,
         chakra: 100,
         defense: 2,
         speed: 1.5,
@@ -351,7 +351,9 @@ let trainingJutsu = [
         count: 0,
         renderDetailImage: false,
         selected: false,
-        detailImage: waterBurstImage
+        detailImage: waterBurstImage,
+        detailImagePosX: 613,
+        detailImagePosY: 76
                 },
     {
         name: "Super Chakra",
@@ -362,7 +364,9 @@ let trainingJutsu = [
         count: 0,
         renderDetailImage: false,
         selected: false,
-        detailImage: waterBurstImage
+        detailImage: waterBurstImage,
+        detailImagePosX: 613,
+        detailImagePosY: 76
 
 
         }, {
@@ -374,7 +378,9 @@ let trainingJutsu = [
         count: 0,
         renderDetailImage: false,
         selected: false,
-        detailImage: waterBurstImage
+        detailImage: waterBurstImage,
+        detailImagePosX: 613,
+        detailImagePosY: 76
 
 
         }, {
@@ -386,7 +392,9 @@ let trainingJutsu = [
         count: 0,
         renderDetailImage: false,
         selected: false,
-        detailImage: waterBurstImage
+        detailImage: waterBurstImage,
+        detailImagePosX: 613,
+        detailImagePosY: 76
 
 
         }, {
@@ -398,7 +406,9 @@ let trainingJutsu = [
         count: 0,
         renderDetailImage: false,
         selected: false,
-        detailImage: waterBurstImage
+        detailImage: waterBurstImage,
+        detailImagePosX: 613,
+        detailImagePosY: 76
 
 
         }
