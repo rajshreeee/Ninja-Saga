@@ -53,6 +53,12 @@ class InputHandler {
                 case GAME_STATE.SHOP_STATE:
                     this.game.shop.renderItemDetail(event);
                     break;
+                case GAME_STATE.GAME_VICTORY:
+                    this.game.transition.goToVillage(event);
+                    break;
+                case GAME_STATE.GAME_DEFEAT:
+                    this.game.transition.goToMenu(event);
+                    break;
                 default:
                     //pass
             }
@@ -72,6 +78,7 @@ class InputHandler {
                 case GAME_STATE.SELECT_MISSION_STATE:
                     this.game.village.displayMissionInfo(event);
                     break;
+                
                 default:
                     //pass
             }    

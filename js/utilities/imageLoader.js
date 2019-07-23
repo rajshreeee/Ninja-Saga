@@ -17,6 +17,9 @@ class ImageLoader {
     this.loadImage("village_bg", "./images/arena-Background.png");
     this.loadImage("lockedMission", "./images/lockedMission.png");
 
+    this.loadImage("victory", "./images/victory.png");
+    this.loadImage("defeat", "./images/defeat.png");
+      
     this.numberOfImages = Object.keys(this.images).length;
   }
 

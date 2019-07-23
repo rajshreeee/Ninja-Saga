@@ -49,3 +49,4 @@ function getMouseCoordinates(canvas, event) {
         }
 
     }
+

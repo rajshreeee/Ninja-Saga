@@ -37,8 +37,8 @@ class Village {
         };
 
         this.academyCoordinates = {
-            x: 750,
-            y: 200,
+            x: 160,
+            y: 410,
             width: 159,
             height: 125,
             message: "Learn jutsus",
@@ -61,8 +61,8 @@ class Village {
         };
 
         this.petShopCoordinates = {
-            x: 100,
-            y: 400,
+            x: 730,
+            y: 250,
             width: 150,
             height: 100,
             message: "Buy a pet",

@@ -10,7 +10,7 @@ class Game {
         this.player;
         this.enemy;
         this.fight;
-        this.playerPositionX = 100;
+        this.playerPositionX = 155;
         this.canvas = canvas;
         new InputHandler(this, this.canvas);
 
@@ -24,7 +24,7 @@ class Game {
 
             {
                 x: 900,
-                y: 195
+                y: 190
             },
             {
                 x: 900,
@@ -40,7 +40,7 @@ class Game {
         this.equipPet = new EquipPet(this, this.canvas);
 
         this.menu = new Menu(this, this.audioLoader, this.imageLoader);
-
+        this.transition = new Transition(this,this.canvas, this.audioLoader, this.imageLoader);
         this.selectedPet = undefined;
     }
 
@@ -50,7 +50,7 @@ class Game {
 
 
 
-        this.player = new Player(this, this.ninjaIndex, this.playerPositionX, 200, 1, NinjaData[this.ninjaIndex].imageArray);
+        this.player = new Player(this, this.ninjaIndex, this.playerPositionX, 190, 1, NinjaData[this.ninjaIndex].imageArray);
 
     }
 
@@ -95,6 +95,12 @@ class Game {
                 this.shop.draw(ctx);
                 //console.log('what')
                 break;
+            case GAME_STATE.GAME_VICTORY:
+                this.transition.drawVictory(ctx);
+                break;
+            case GAME_STATE.GAME_DEFEAT:
+                this.transition.drawDefeat(ctx);
+                break;
         }
     }
 
@@ -107,11 +113,12 @@ class Game {
 
         this.enemyArray = [];
         if (numberOfEnemies === 5) {
-            this.enemyArray.push(new Enemy(this.ninjaIndex, -this.enemyPosition[this.ninjaIndex].x, this.enemyPosition[this.ninjaIndex].y, -1, NinjaData[this.ninjaIndex].imageArray));
+            
+            this.enemyArray.push(new Enemy(this.ninjaIndex, -this.enemyPosition[1].x, this.enemyPosition[1].y, -1, NinjaData[this.ninjaIndex].imageArray));
         }else if(numberOfEnemies ===1){
             let j = getRandomInt(0,2);
             console.log(j)
-             this.enemyArray.push(new Enemy(this.ninjaArray[j], -this.enemyPosition[j].x, this.enemyPosition[j].y, -1, NinjaData[this.ninjaArray[j]].imageArray));
+             this.enemyArray.push(new Enemy(this.ninjaArray[j], -this.enemyPosition[1].x, this.enemyPosition[1].y, -1, NinjaData[this.ninjaArray[j]].imageArray));
         }
         else {
             for (let i = 0; i < numberOfEnemies; i++) {

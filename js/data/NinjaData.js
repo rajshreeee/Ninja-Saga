@@ -86,7 +86,7 @@ let NinjaData = [
                 name: "Genjutsu",
                 power: 20,
                 chakraLoss: 10,
-                accuracy: .7,
+                accuracy: .95,
                 image: genjutsu,
                 count: 0
         },
@@ -94,7 +94,7 @@ let NinjaData = [
                 name: "Fat Arm",
                 power: 20,
                 chakraLoss: 10,
-                accuracy: .7,
+                accuracy: .89,
                 image: genjutsu,
                 count: 0
         },
@@ -102,7 +102,7 @@ let NinjaData = [
                 name: "Star Attack",
                 power: 20,
                 chakraLoss: 10,
-                accuracy: .7,
+                accuracy: .99,
                 image: genjutsu,
                 count: 0
         },
@@ -110,7 +110,7 @@ let NinjaData = [
                 name: "Rinnegan",
                 power: 20,
                 chakraLoss: 10,
-                accuracy: .7,
+                accuracy: .87,
                 image: genjutsu,
                 count: 0
 
@@ -130,7 +130,7 @@ let NinjaData = [
 
     {
         name: "Naruto",
-        health: 100,
+        health: 5,
         chakra: 100,
         defense: 2,
         speed: 2,
@@ -238,7 +238,7 @@ let NinjaData = [
 
     {
         name: "Sakura",
-        health: 100,
+        health: 5,
         chakra: 100,
         defense: 2,
         speed: 1.5,
@@ -286,7 +286,7 @@ let NinjaData = [
                 length: 2
             }],
         jutsu: [{
-                name: "Super Strength",
+                name: "Low Kick",
                 power: 30,
                 chakraLoss: 25,
                 accuracy: .85,
@@ -295,7 +295,7 @@ let NinjaData = [
 
                 },
             {
-                name: "Super Chakra",
+                name: "Bounce",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -303,7 +303,7 @@ let NinjaData = [
                 count: 0
 
         }, {
-                name: "Rage Attack",
+                name: "Rage Fire",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -311,7 +311,7 @@ let NinjaData = [
                 count: 0
 
         }, {
-                name: "Strong Arm",
+                name: "Sharingan",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
@@ -327,7 +327,7 @@ let NinjaData = [
                 count: 0
 
         }, {
-                name: "Double Wind",
+                name: "High Wind",
                 power: 15,
                 chakraLoss: 10,
                 accuracy: .9,
