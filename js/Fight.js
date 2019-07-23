@@ -1,10 +1,14 @@
 class Fight {
-    constructor(game, player, enemyArray, canvas, pet) {
+    constructor(game, player, enemyArray, canvas, pet, audioLoader, imageLoader) {
         this.game = game;
         this.player = player;
         this.enemyArray = enemyArray;
         this.pet = pet;
-        //console.log(this.pet)
+
+        this.audioLoader = audioLoader;
+        this.imageLoader = imageLoader;
+        this.bottomBar = new BottomBar(game, this.audioLoader, this.imageLoader)
+
         this.backgroundImage = document.getElementById("bg_fight");
         this.healthBarOuter = document.getElementById("healthBarOuter");
         this.healthBarInner = document.getElementById("healthBarInner");
@@ -35,7 +39,6 @@ class Fight {
         this.enemyDodged = [];
 
         this.cancelFrame = false;
-        //keep in enemy class
         for (let i = 0; i < this.enemyArray.length; i++) {
             this.enemySpeedArray.push(this.enemyArray[i].speed);
             this.enemyAttackTimeArray.push(true);
@@ -201,8 +204,6 @@ class Fight {
         this.jutsuIndex = 0;
 
         canvas.onclick = event => this.selectJutsu(event);
-        // canvas.onmouseover = event => this.displayDetails(event);
-
 
         document.onclick = event => this.selectEnemy(event);
 
@@ -232,7 +233,7 @@ class Fight {
 
         this.player.jutsu = this.player.jutsu.filter(attack => attack.selected === true);
 
-
+        this.hostMessage = "";
     }
 
     drawDagger(ctx) {
@@ -326,12 +327,9 @@ class Fight {
 
             this.player.drawGold(ctx);
 
+            this.bottomBar.drawBottom(ctx, this.hostMessage);
 
         }
-
-
-
-
 
         if (this.playerTitleBar === true) {
             ctx.drawImage(this.title_bar, 0, 20, 1000, 64);
@@ -341,11 +339,6 @@ class Fight {
             ctx.fillText(this.player.jutsu[this.jutsuIndex].name, 500, 60);
 
         }
-        /*
-                if (this.displayHoverItem === true) {
-                    ctx.font = "30px Arial";
-                    ctx.fillText("Hello World", 10, 50);
-                }*/
 
     }
 
@@ -353,8 +346,7 @@ class Fight {
     drawAttackHoverInfo(ctx) {
         for (let i = 0; i < this.player.jutsu.length; i++) {
             if (this.displayHoverItem[i] === true) {
-                //ctx.font = "30px Arial";
-                //ctx.fillText(this.player.jutsu[i].name, //this.jutsuCoordinates[i].x, this.jutsuCoordinates[i].y);
+
                 ctx.fillStyle = "#fff";
                 ctx.fillRect(this.jutsuCoordinates[i].x, this.jutsuCoordinates[i].y + 55, 105, 80);
                 ctx.font = "20px Arial bold";
@@ -495,6 +487,8 @@ class Fight {
 
 
         if (this.actionBarPlayerCoordinates.x >= 800 && this.clicked === false) {
+            this.hostMessage = "It is your turn now, " + this.player.name + "!";
+            console.log(this.hostMessage)
             this.actionBarPlayerCoordinates.x = 800;
             this.selectJutsuenabled = true;
             this.renderPlayerAttacks = true;
@@ -603,7 +597,7 @@ class Fight {
 
     selectJutsu(event) {
         if (this.selectJutsuenabled === true) {
-
+            this.hostMessage = "";
 
             for (let i = 0; i < this.displayHoverItem.length; i++) {
                 this.displayHoverItem[i] = false;
@@ -798,8 +792,10 @@ class Fight {
 
 
         this.enemyImageIndexArray[i] = jutsuIndexEnemy + 1;
-
+        this.hostMessage = this.enemyArray[i].name + " used " + this.enemyArray[i].jutsu[jutsuIndexEnemy].name+"!";
+        
         let dodge = getRandomInt(0, 2);
+
         if (dodge < this.enemyArray[i].jutsu[jutsuIndexEnemy].accuracy) {
             let damage = computeDamage(this.enemyArray[i], this.player, jutsuIndexEnemy);
             this.player.health -= damage;
@@ -813,6 +809,7 @@ class Fight {
         this.calculatHealthPercentage(this.player);
         this.enemyAttackTimeArray[i] = false;
         setTimeout(function () {
+            this.hostMessage="";
             this.playerOpacity = 1;
             this.playerImageIndex = 0;
             this.enemyImageIndexArray[i] = 0;
@@ -863,6 +860,7 @@ class Fight {
             this.chakraChargeCoordinates[0].width = this.chakraChargeCoordinates[0].original_width;
         }
     }
+
 
 
 }

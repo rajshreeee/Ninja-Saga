@@ -164,9 +164,6 @@ class Village {
             this.game.gameState = GAME_STATE.EQUIP_PET_STATE;
         }
 
-
-
-
     }
 
     drawSelectMission(ctx) {

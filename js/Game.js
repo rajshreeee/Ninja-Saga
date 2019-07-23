@@ -126,7 +126,7 @@ class Game {
             }
         }
 
-        this.fight = new Fight(this, this.player, this.enemyArray, this.canvas, this.pet);
+        this.fight = new Fight(this, this.player, this.enemyArray, this.canvas, this.pet, this.audioLoader, this.imageLoader);
 
         this.gameState = GAME_STATE.FIGHT_STATE;
     }

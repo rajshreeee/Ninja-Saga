@@ -20,6 +20,9 @@ class ImageLoader {
     this.loadImage("victory", "./images/victory.png");
     this.loadImage("defeat", "./images/defeat.png");
       
+    this.loadImage("host", "./images/host.png");
+    this.loadImage("bottomBar", "./images/bottomBar.png")
+      
     this.numberOfImages = Object.keys(this.images).length;
   }
 

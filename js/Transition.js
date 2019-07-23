@@ -7,6 +7,7 @@
           this.victoryImage = this.imageLoader.images.victory;
           this.defeatImage = this.imageLoader.images.defeat;
           
+          
           this.checkMarkCoordinates= {
               x: 626,
               y:426,
@@ -66,7 +67,7 @@
           ctx.fillText(0, 580, 270);
           ctx.strokeText(0, 580, 270);
       }
-      
+        
           
          goToMenu(event) {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
