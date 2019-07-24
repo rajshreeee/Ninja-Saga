@@ -15,6 +15,8 @@ class Village {
         this.gradeAMissionImage = document.getElementById('grade-a-mission');
         this.gradeBMissionImage = document.getElementById('grade-b-mission');
         this.gradeCMissionImage = document.getElementById('grade-c-mission');
+      
+        
         this.lockedMissionImage = this.imageLoader.images.lockedMission;
 
 

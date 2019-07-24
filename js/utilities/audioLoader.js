@@ -7,7 +7,7 @@ class AudioLoader {
     }
 
     init() {
-        this.loadAudio("finalRoad", "./audios/finalroad.mp3");
+        this.loadAudio("intro", "./audios/intro.mp3");
     this.loadAudio("beep", "audios/beep.mp3");
 
         this.numberOfAudios = Object.keys(this.audios).length;

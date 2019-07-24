@@ -108,9 +108,4 @@
      height: 35
  }
  
- const runRect = {
-     x: 900,
-     y: 0,
-     width: 48,
-     height: 48
- }
+

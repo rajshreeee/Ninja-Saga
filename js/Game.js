@@ -80,12 +80,12 @@ class Game {
             case GAME_STATE.VILLAGE_STATE:
 
                 this.village.draw(ctx);
-                this.audioLoader.play("finalRoad");
+                this.audioLoader.play("intro");
 
                 break;
 
             case GAME_STATE.SELECT_MISSION_STATE:
-                this.audioLoader.stop("finalRoad");
+                this.audioLoader.stop("intro");
 
                 this.village.drawSelectMission(ctx);
                 break;

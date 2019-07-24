@@ -11,6 +11,12 @@ let polarIcon = document.getElementById('polarIcon');
 let kyuubiIcon = document.getElementById('kyuubiIcon');
 let foxIcon = document.getElementById('foxIcon');
 
+//let imageLoaded = new ImageLoader();
+
+/*load_images = [{
+    identifier: "ninjaCat_attack",
+    source: "../img"
+},{},{}]*/
 
 let petData = [
     {
@@ -35,7 +41,7 @@ let petData = [
         selected: false,
         speed: 2,
         detailImage: polar_hunt,
-         detailImagePosX: 633,
+        detailImagePosX: 633,
         detailImagePosY: 76,
         detailImageSizeX: 290,
         detailImageSizeY: 60
@@ -100,3 +106,7 @@ let petData = [
 
     }
 ]
+
+/*fillpetdata(imageloader){
+    
+}*/

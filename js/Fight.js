@@ -106,6 +106,17 @@ class Fight {
             original_height: 54
         }];
 
+
+        this.runRect = {
+            x: 900,
+            y: 0,
+            width: 48,
+            height: 48,
+            scaled_width: 58,
+            scaled_width: 58,
+            original_width: 48,
+            original_height: 48
+        }
         this.chakraHoverDisplay = [false];
 
         this.statBarArray = [
@@ -236,6 +247,8 @@ class Fight {
         this.player.jutsu = this.player.jutsu.filter(attack => attack.selected === true);
 
         this.hostMessage = "";
+
+        this.runHoverDisplay = [false];
     }
 
     drawDagger(ctx) {
@@ -306,6 +319,8 @@ class Fight {
             this.drawAttackHoverInfo(ctx);
 
             this.drawChakraHover(ctx);
+            
+            this.drawRunHover(ctx);
 
 
             if (this.pet != undefined) {
@@ -571,7 +586,7 @@ class Fight {
 
     drawPlayerAttacks(ctx) {
         this.player.speed = this.playerSpeed;
-        ctx.drawImage(this.runBtn, runRect.x, runRect.y);
+        ctx.drawImage(this.runBtn, this.runRect.x, this.runRect.y);
         for (let i = 0; i < this.player.jutsu.length; i++) {
             if (this.player.jutsu[i].chakraLoss > this.player.chakra ||
                 this.player.jutsu[i].count != 0
@@ -617,7 +632,7 @@ class Fight {
 
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
         if (this.renderPlayerAttacks === true) {
-            if (isSelected(clickCoordinates.x, clickCoordinates.y, runRect, runRect.width, runRect.height)) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.runRect, this.runRect.width, this.runRect.height)) {
                 this.game.gameState = GAME_STATE.GAME_DEFEAT;
             }
 
@@ -885,6 +900,21 @@ class Fight {
 
     displayChargeHover(event) {
         displayInfo(this.canvas, event, this.chakraChargeCoordinates, this.chakraHoverDisplay);
+    }
+
+    displayRunHover(event) {
+        displayInfo(this.canvas, event, this.runRect, this.runHoverDisplay);
+    }
+
+    drawRunHover(ctx) {
+        if (this.runHoverDisplay[0] === true) {
+
+            this.runRect[0].width = this.runRect[0].scaled_width;
+            this.runRect[0].height = this.runRect[0].scaled_height;
+        } else {
+            this.runRect[0].height = this.runRect[0].original_height;
+            this.runRect[0].width = this.runRect[0].original_width;
+        }
     }
 
 
