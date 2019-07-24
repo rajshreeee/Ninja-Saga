@@ -35,7 +35,6 @@ class EquipPet {
     removeOrAddPets(event) {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
 
-        // console.log(clickCoordinates)
         for (let i = 0; i < this.game.petArray.length; i++) {
 
             if (isSelected(clickCoordinates.x, clickCoordinates.y, {

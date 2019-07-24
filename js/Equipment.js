@@ -7,54 +7,6 @@ class Equipment {
         this.cross = cross;
         this.equip_btn = document.getElementById('equip-btn');
         this.canvas = canvas;
-        this.equipmentJutsuRect = [
-            {
-                x: 162,
-                y: 65
-            },
-            {
-                x: 162,
-                y: 142
-            },
-            {
-                x: 162,
-                y: 219
-            },
-            {
-                x: 162,
-                y: 296
-            },
-            {
-                x: 162,
-                y: 373
-            }, {
-                x: 162,
-                y: 450
-            },
-            {
-                x: 406,
-                y: 65
-            },
-            {
-                x: 406,
-                y: 142
-            },
-            {
-                x: 406,
-                y: 219
-            },
-            {
-                x: 406,
-                y: 296
-            },
-            {
-                x: 406,
-                y: 373
-            }, {
-                x: 406,
-                y: 450
-            }
-        ];
         this.bottomBar = new BottomBar(this.game, this.imageLoader);
         this.message = "Select 6 jutsus to equip in battle!";
 
@@ -71,40 +23,40 @@ class Equipment {
  
     drawJutsu(ctx) {
         for (let i = 0; i < 6; i++) {
-            ctx.drawImage(this.game.player.jutsu[i].image, this.equipmentJutsuRect[i].x, this.equipmentJutsuRect[i].y, 50, 50);
+            ctx.drawImage(this.game.player.jutsu[i].image, equipmentJutsuRect[i].x, equipmentJutsuRect[i].y, 50, 50);
 
             ctx.font = "15px Arial";
             ctx.fillStyle = "#fff";
-            ctx.fillText(this.game.player.jutsu[i].name, this.equipmentJutsuRect[i].x + 60, this.equipmentJutsuRect[i].y + 15);
+            ctx.fillText(this.game.player.jutsu[i].name, equipmentJutsuRect[i].x + 60, equipmentJutsuRect[i].y + 15);
 
             ctx.font = "12px Arial";
-            ctx.fillText("Power: " + this.game.player.jutsu[i].power, this.equipmentJutsuRect[i].x + 60, this.equipmentJutsuRect[i].y + 31);
+            ctx.fillText("Power: " + this.game.player.jutsu[i].power, equipmentJutsuRect[i].x + 60, equipmentJutsuRect[i].y + 31);
 
-            ctx.fillText("ChakraLoss: " + this.game.player.jutsu[i].chakraLoss, this.equipmentJutsuRect[i].x + 60, this.equipmentJutsuRect[i].y + 49);
+            ctx.fillText("ChakraLoss: " + this.game.player.jutsu[i].chakraLoss, equipmentJutsuRect[i].x + 60, equipmentJutsuRect[i].y + 49);
 
             if (this.game.player.jutsu[i].selected) {
-                ctx.drawImage(this.crossBtn, this.equipmentJutsuRect[i].x + 180, this.equipmentJutsuRect[i].y, 30, 30)
+                ctx.drawImage(this.crossBtn, equipmentJutsuRect[i].x + 180, equipmentJutsuRect[i].y, 30, 30)
             }
         }
 
         if (this.game.player.jutsu.length > 6) {
             for (let i = 6; i < this.game.player.jutsu.length; i++) {
-                ctx.drawImage(this.game.player.jutsu[i].image, this.equipmentJutsuRect[i].x, this.equipmentJutsuRect[i].y, 50, 50);
+                ctx.drawImage(this.game.player.jutsu[i].image, equipmentJutsuRect[i].x, equipmentJutsuRect[i].y, 50, 50);
                 if (this.game.player.jutsu[i].selected) {
-                    ctx.drawImage(this.crossBtn, this.equipmentJutsuRect[i].x + 180, this.equipmentJutsuRect[i].y, 30, 30)
+                    ctx.drawImage(this.crossBtn, equipmentJutsuRect[i].x + 180, equipmentJutsuRect[i].y, 30, 30)
                 }
 
                 ctx.font = "15px Arial";
                 ctx.fillStyle = "#fff";
-                ctx.fillText(this.game.player.jutsu[i].name, this.equipmentJutsuRect[i].x + 60, this.equipmentJutsuRect[i].y + 15);
+                ctx.fillText(this.game.player.jutsu[i].name, equipmentJutsuRect[i].x + 60, equipmentJutsuRect[i].y + 15);
 
                 ctx.font = "12px Arial";
-                ctx.fillText("Power: " + this.game.player.jutsu[i].power, this.equipmentJutsuRect[i].x + 60, this.equipmentJutsuRect[i].y + 31);
+                ctx.fillText("Power: " + this.game.player.jutsu[i].power, equipmentJutsuRect[i].x + 60, equipmentJutsuRect[i].y + 31);
 
-                ctx.fillText("ChakraLoss: " + this.game.player.jutsu[i].chakraLoss, this.equipmentJutsuRect[i].x + 60, this.equipmentJutsuRect[i].y + 49);
+                ctx.fillText("ChakraLoss: " + this.game.player.jutsu[i].chakraLoss, equipmentJutsuRect[i].x + 60, equipmentJutsuRect[i].y + 49);
 
                 if (this.game.player.jutsu[i].selected) {
-                    ctx.drawImage(this.crossBtn, this.equipmentJutsuRect[i].x + 180, this.equipmentJutsuRect[i].y, 30, 30)
+                    ctx.drawImage(this.crossBtn, equipmentJutsuRect[i].x + 180, equipmentJutsuRect[i].y, 30, 30)
                 }
             }
         }
@@ -119,19 +71,18 @@ class Equipment {
     removeOrAddJutsu(event) {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
 
-        // console.log(clickCoordinates)
         for (let i = 0; i < 6; i++) {
 
             if (isSelected(clickCoordinates.x, clickCoordinates.y, {
-                    x: this.equipmentJutsuRect[i].x + 180,
-                    y: this.equipmentJutsuRect[i].y
+                    x: equipmentJutsuRect[i].x + 180,
+                    y: equipmentJutsuRect[i].y
                 }, 30, 30) && this.game.player.jutsu[i].selected) {
 
                 this.game.player.jutsu[i].selected = false;
                 console.log(this.game.player.jutsu[i].selected)
             }
 
-            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.equipmentJutsuRect[i], 50, 50)) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y, equipmentJutsuRect[i], 50, 50)) {
                 let x = this.detectSelected();
                 console.log(x)
 
@@ -150,14 +101,14 @@ class Equipment {
         for (let i = 6; i < this.game.player.jutsu.length; i++) {
 
             if (isSelected(clickCoordinates.x, clickCoordinates.y, {
-                    x: this.equipmentJutsuRect[i].x + 180,
-                    y: this.equipmentJutsuRect[i].y
+                    x: equipmentJutsuRect[i].x + 180,
+                    y: equipmentJutsuRect[i].y
                 }, 30, 30) && this.game.player.jutsu[i].selected) {
 
                 this.game.player.jutsu[i].selected = false;
             }
 
-            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.equipmentJutsuRect[i], 50, 50)) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y, equipmentJutsuRect[i], 50, 50)) {
                 let x = this.detectSelected();
                 console.log(x)
 

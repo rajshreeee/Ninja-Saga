@@ -4,16 +4,10 @@ class Menu {
         this.audioLoader = audioLoader;
         this.imageLoader = ImageLoader;
        
-        this.sasuke_image = this.imageLoader.images.sasuke_menu;
-        this.naurto_image = this.imageLoader.images.naruto_menu;
-        this.sakura_image = this.imageLoader.images.sakura_menu;
-        
         this.cross = document.getElementById("cross");
         this.gameBackground = document.getElementById('game-background');
 
         this.currentNinja = 0;
-
-        // this.selectNinja();
 
         this.imageSize = {
             x: 100,
@@ -33,7 +27,7 @@ class Menu {
         this.crossImage();
 
         ctx.drawImage(
-            this.sasuke_image,
+            this.imageLoader.images.sasuke_menu,
             200,
             200,
             this.imageSize.x,
@@ -41,7 +35,7 @@ class Menu {
         );
 
         ctx.drawImage(
-            this.naurto_image,
+            this.imageLoader.images.naruto_menu,
             450,
             200,
             this.imageSize.x,
@@ -49,7 +43,7 @@ class Menu {
         );
 
         ctx.drawImage(
-            this.sakura_image,
+           this.imageLoader.images.sakura_menu,
             700,
             200,
             this.imageSize.x,
@@ -59,29 +53,6 @@ class Menu {
         this.nameImage();
 
     }
-
-    /* selectCode(event) {
-         switch (event.keyCode) {
-             case 37: //keyCode for left
-                 if (this.currentNinja !== 0) {
-                     this.currentNinja--;
-                 }
-                 break;
-             case 39: //keyCode for right
-                 if (this.currentNinja !== 2) {
-                     this.currentNinja++;
-                 }
-                 break;
-             case 13:
-                 console.log('pressed')
-                 this.game.ninjaIndex = this.currentNinja;
-                 this.game.gameState = GAME_STATE.VILLAGE_STATE;
-                 this.game.village.goToDestination();
-
-             default:
-                 //pass
-         }
-     }*/
 
     selectLeft() {
         if (this.currentNinja !== 0) {
@@ -105,15 +76,10 @@ class Menu {
         this.game.setCharacters();
         console.log(this.game.ninjaIndex + 'menu')
         this.game.gameState = GAME_STATE.VILLAGE_STATE;
-       // this.game.village.goToDestination();
         this.audioLoader.play("beep");
         console.log(this.currentNinja)
 
     }
-
-    /* selectNinja() {
-         document.addEventListener("keydown", this.selectCode.bind(this));
-     }*/
 
     crossImage() {
 

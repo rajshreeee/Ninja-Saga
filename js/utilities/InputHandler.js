@@ -35,6 +35,7 @@ class InputHandler {
                     this.game.fight.selectJutsu(event);
                     this.game.fight.increasePlayerSpeed(event);
                     this.game.fight.run(event);
+                    this.game.fight.selectEnemy(event);
                 case GAME_STATE.SELECT_MISSION_STATE:
                     this.game.village.selectMission(event);
                     break;

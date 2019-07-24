@@ -16,13 +16,6 @@ class Village {
         this.gradeBMissionImage = document.getElementById('grade-b-mission');
         this.gradeCMissionImage = document.getElementById('grade-c-mission');
       
-        
-        this.lockedMissionImage = this.imageLoader.images.lockedMission;
-
-
-        this.selectMissionBg = this.imageLoader.images.select_mission_bg;
-        this.selectMissionTitle = this.imageLoader.images.select_mission_title;
-        this.villageBg = this.imageLoader.images.village_bg;
         this.game = game;
 
         this.arenaCoordinates = {
@@ -85,29 +78,6 @@ class Village {
             original_height: 45
         };
 
-        this.missionCoordinates = [
-            {
-                x: 300,
-                y: 200,
-                message: "Only level 2+ can accept these missions!",
-                width: 313,
-                height: 71
-        }, {
-                x: 300,
-                y: 400,
-                message: "Only level 1+ can accept these missions!",
-                width: 313,
-                height: 71
-        },
-            {
-                x: 300,
-                y: 600,
-                message: "Basic mission that can be accepted by all",
-                width: 313,
-                height: 71
-        }
-    ];
-
         this.villageItemCoordinates = [
             this.arenaCoordinates, this.academyCoordinates, this.equipmentCoordinates, this.petShopCoordinates, this.petsIconCoordinates
         ];
@@ -120,7 +90,7 @@ class Village {
 
     draw(ctx) {
 
-        ctx.drawImage(this.villageBg, 0, 0);
+        ctx.drawImage(this.imageLoader.images.village_bg, 0, 0);
 
 
         ctx.drawImage(this.arenaImage, this.arenaCoordinates.x, this.arenaCoordinates.y, this.arenaCoordinates.width, this.arenaCoordinates.height);
@@ -168,25 +138,25 @@ class Village {
     }
 
     drawSelectMission(ctx) {
-        ctx.drawImage(this.selectMissionBg, 0, 0);
-        ctx.drawImage(this.selectMissionTitle, 120, 30);
+        ctx.drawImage( this.imageLoader.images.select_mission_bg, 0, 0);
+        ctx.drawImage(this.imageLoader.images.select_mission_title, 120, 30);
 
         if (this.game.player.level >= 2) {
             this.gradeA = this.gradeAMissionImage;
         } else {
-            this.gradeA = this.lockedMissionImage;
+            this.gradeA =this.imageLoader.images.lockedMission;
         }
 
         if (this.game.player.level >= 1) {
             this.gradeB = this.gradeBMissionImage;
         } else {
-            this.gradeB = this.lockedMissionImage;
+            this.gradeB = this.imageLoader.images.lockedMission;
         }
 
 
-        ctx.drawImage(this.gradeA, this.missionCoordinates[0].x, this.missionCoordinates[0].y);
-        ctx.drawImage(this.gradeB, this.missionCoordinates[1].x, this.missionCoordinates[1].y);
-        ctx.drawImage(this.gradeCMissionImage, this.missionCoordinates[2].x, this.missionCoordinates[2].y);
+        ctx.drawImage(this.gradeA, missionCoordinates[0].x, missionCoordinates[0].y);
+        ctx.drawImage(this.gradeB, missionCoordinates[1].x, missionCoordinates[1].y);
+        ctx.drawImage(this.gradeCMissionImage, missionCoordinates[2].x, missionCoordinates[2].y);
         this.drawMissionInfo(ctx);
 
     }
@@ -197,12 +167,12 @@ class Village {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
 
 
-        if (isSelected(clickCoordinates.x, clickCoordinates.y, this.missionCoordinates[2], 313, 71)) {
+        if (isSelected(clickCoordinates.x, clickCoordinates.y, missionCoordinates[2], 313, 71)) {
 
             this.game.createFightObjects(1);
         }
 
-        if (isSelected(clickCoordinates.x, clickCoordinates.y, this.missionCoordinates[1], 313, 71)) {
+        if (isSelected(clickCoordinates.x, clickCoordinates.y, missionCoordinates[1], 313, 71)) {
             if (this.game.player.level >= 1) {
                 this.game.createFightObjects(2);
 
@@ -211,7 +181,7 @@ class Village {
             }
         }
 
-        if (isSelected(clickCoordinates.x, clickCoordinates.y, this.missionCoordinates[0], 313, 71)) {
+        if (isSelected(clickCoordinates.x, clickCoordinates.y, missionCoordinates[0], 313, 71)) {
             if (this.game.player.level >= 2) {
                 this.game.createFightObjects(5);
 
@@ -231,7 +201,7 @@ class Village {
 
     displayMissionInfo(event) {
 
-        displayInfo(this.canvas, event, this.missionCoordinates, this.displaySelectMissionInfo);
+        displayInfo(this.canvas, event, missionCoordinates, this.displaySelectMissionInfo);
 
     }
 
@@ -240,17 +210,14 @@ class Village {
             if (this.displaySelectMissionInfo[i] === true) {
 
                 ctx.fillStyle = "#fff";
-                ctx.fillRect(this.missionCoordinates[i].x, this.missionCoordinates[i].y, 300, 30);
+                ctx.fillRect(missionCoordinates[i].x, missionCoordinates[i].y, 300, 30);
                 ctx.font = "15px Arial";
                 ctx.fillStyle = "#000";
-                ctx.fillText(this.missionCoordinates[i].message, this.missionCoordinates[i].x + 10, this.missionCoordinates[i].y + 20);
+                ctx.fillText(missionCoordinates[i].message, missionCoordinates[i].x + 10, missionCoordinates[i].y + 20);
 
             }
         }
     }
-
-
-
 
     drawVillageInfo(ctx) {
         for (let i = 0; i < this.displayHoverInfo.length; i++) {

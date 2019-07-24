@@ -16,11 +16,9 @@ class Shop {
         this.setItem();
 
         this.selectedItem = undefined;
-        console.log(itemDataArray)
 
         this.priceImage = this.imageLoader.images.price;
         this.crossImage = this.imageLoader.images.crossBtn;
-        console.log(this.message)
 
     }
 
@@ -28,7 +26,6 @@ class Shop {
         ctx.fillStyle = "#5a442f";
         ctx.fillRect(0, 0, 1000, 700);
         ctx.drawImage(this.bgImage, 0, 0);
-        // this.drawAcademyJutsu(ctx);
         this.drawDetailImage(ctx);
         this.drawConfirmButton(ctx);
         this.game.player.drawGold(ctx);
@@ -37,29 +34,10 @@ class Shop {
         this.bottomBar.drawBottom(ctx, this.message);
     }
 
-    /* drawAcademyJutsu(ctx) {
-         for (let i = 0; i < this.academyJutsu.length; i++) {
-             ctx.rect(this.academyJutsuRect[i].x, this.academyJutsuRect[i].y, 460, 60);
-             ctx.strokeStyle = '#68492c';
-             ctx.stroke();
-             ctx.drawImage(trainingJutsu[i].image, this.academyJutsuRect[i].x + 10, this.academyJutsuRect[i].y + 5);
-         }
-     }*/
     drawCrossIcon(ctx) {
         ctx.drawImage(this.crossImage, 910, 0)
     }
 
-  /*  leaveShop(event) {
-        let clickCoordinates = getMouseCoordinates(this.canvas, event);
-
-        if (isSelected(clickCoordinates.x, clickCoordinates.y, {
-                x: 910,
-                y: 0
-            }, 44, 44)) {
-            this.game.gameState = GAME_STATE.VILLAGE_STATE;
-        }
-
-    }*/
 
     drawPrice(ctx) {
         for (let i = 0; i < this.itemArray.length; i++) {
@@ -91,7 +69,6 @@ class Shop {
             this.itemArray.push(this.itemDataArray[i]);
             
         }
-        console.log(this.itemArray)
     }
 
     renderDetail(event) {
@@ -107,7 +84,6 @@ class Shop {
                     }
                 }
                 this.selectedItem = i;
-                console.log(this.selectedItem)
             }
         }
     }
