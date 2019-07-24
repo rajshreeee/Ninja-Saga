@@ -649,6 +649,10 @@ class Fight {
     setDefeat() {
         this.player.health = 100;
         this.player.jutsu = this.originalJutsuArray;
+        for (let i = 0; i < this.player.jutsu.length; i++) {
+            this.player.jutsu[i].count = 0;
+        }
+
         this.game.gameState = GAME_STATE.GAME_DEFEAT;
     }
     displayDetails(event) {
@@ -818,6 +822,10 @@ class Fight {
         this.player.level += 1;
         this.resetComponents();
         this.player.health = 100;
+
+        for (let i = 0; i < this.player.jutsu.length; i++) {
+            this.player.jutsu[i].count = 0;
+        }
 
         this.game.gameState = GAME_STATE.GAME_VICTORY;
     }
