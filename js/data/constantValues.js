@@ -40,13 +40,13 @@
             },
      {
          x: 166,
-         y: 230,
+         y: 232,
          width: 300,
          height: 80
             },
      {
          x: 166,
-         y: 393,
+         y: 410,
           width: 300,
          height: 80
      }
@@ -108,4 +108,9 @@
      height: 35
  }
  
-
+ const runRect = {
+     x: 900,
+     y: 0,
+     width: 48,
+     height: 48
+ }

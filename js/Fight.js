@@ -23,7 +23,7 @@ class Fight {
         this.chakra_charge = document.getElementById('chakra-charge');
 
         this.runBtn = this.imageLoader.images.run;
-
+        
         this.attackImageSize = 40;
         this.canvas = canvas;
         this.playerSpeed = this.player.speed;
@@ -106,17 +106,6 @@ class Fight {
             original_height: 54
         }];
 
-
-        this.runRect = {
-            x: 900,
-            y: 0,
-            width: 48,
-            height: 48,
-            scaled_width: 58,
-            scaled_width: 58,
-            original_width: 48,
-            original_height: 48
-        }
         this.chakraHoverDisplay = [false];
 
         this.statBarArray = [
@@ -247,8 +236,6 @@ class Fight {
         this.player.jutsu = this.player.jutsu.filter(attack => attack.selected === true);
 
         this.hostMessage = "";
-
-        this.runHoverDisplay = [false];
     }
 
     drawDagger(ctx) {
@@ -308,8 +295,8 @@ class Fight {
             }
 
             if (this.renderPlayerAttacks === false) {
-                ctx.drawImage(this.speedBtn, speedRect.x, speedRect.y, speedRect.width, speedRect.height);
-
+                ctx.drawImage(this.speedBtn, speedRect.x, speedRect.y, speedRect.width, speedRect.height); 
+                
             }
 
             this.drawActionBar(ctx, gameEngine);
@@ -319,8 +306,6 @@ class Fight {
             this.drawAttackHoverInfo(ctx);
 
             this.drawChakraHover(ctx);
-            
-            this.drawRunHover(ctx);
 
 
             if (this.pet != undefined) {
@@ -388,7 +373,7 @@ class Fight {
         }
     }
 
-
+   
     drawPlayerStatBar(ctx) {
         let statHealthWidth = (this.HealthWidth * 187) / 100;
 
@@ -409,15 +394,9 @@ class Fight {
             12
         );
 
-        ctx.font = "bold 15px Arial";
-        ctx.fillStyle = "#fbcf03";
-        ctx.fillText("Lv " + this.player.level, 100, 25);
-        //  ctx.fillText("Lv " this.player.level, 170, 5);
         ctx.font = "10px Arial";
         ctx.fillStyle = "#fff";
         ctx.fillText(Math.round(this.player.health) + "/" + "100", 170, 36);
-
-
 
         ctx.drawImage(
             this.chakra_stat,
@@ -586,7 +565,7 @@ class Fight {
 
     drawPlayerAttacks(ctx) {
         this.player.speed = this.playerSpeed;
-        ctx.drawImage(this.runBtn, this.runRect.x, this.runRect.y);
+        ctx.drawImage(this.runBtn, runRect.x, runRect.y);
         for (let i = 0; i < this.player.jutsu.length; i++) {
             if (this.player.jutsu[i].chakraLoss > this.player.chakra ||
                 this.player.jutsu[i].count != 0
@@ -627,21 +606,21 @@ class Fight {
 
     }
 
-
-    run(event) {
-
+     
+    run(event){
+       
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
         if (this.renderPlayerAttacks === true) {
-            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.runRect, this.runRect.width, this.runRect.height)) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y,runRect, runRect.width, runRect.height)) {
                 this.game.gameState = GAME_STATE.GAME_DEFEAT;
             }
-
-        }
+         
+        } 
     }
-
+    
     displayDetails(event) {
 
-        if (this.selectJutsuenabled === true && this.clicked === false) {
+        if (this.selectJutsuenabled === true) {
 
 
             displayInfo(this.canvas, event, this.jutsuCoordinates, this.displayHoverItem);
@@ -772,7 +751,6 @@ class Fight {
                 this.player.gold += 200;
                 this.player.jutsu = this.originalJutsuArray;
                 this.player.level += 1;
-                this.player.health = 100;
                 this.game.gameState = GAME_STATE.GAME_VICTORY;
             } else {
 
@@ -900,21 +878,6 @@ class Fight {
 
     displayChargeHover(event) {
         displayInfo(this.canvas, event, this.chakraChargeCoordinates, this.chakraHoverDisplay);
-    }
-
-    displayRunHover(event) {
-        displayInfo(this.canvas, event, this.runRect, this.runHoverDisplay);
-    }
-
-    drawRunHover(ctx) {
-        if (this.runHoverDisplay[0] === true) {
-
-            this.runRect[0].width = this.runRect[0].scaled_width;
-            this.runRect[0].height = this.runRect[0].scaled_height;
-        } else {
-            this.runRect[0].height = this.runRect[0].original_height;
-            this.runRect[0].width = this.runRect[0].original_width;
-        }
     }
 
 
