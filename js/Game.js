@@ -1,9 +1,9 @@
 class Game {
-    constructor(canvas) {
+    constructor(canvas, ImageLoader, audioLoader) {
         this.gameState = GAME_STATE.MENU_STATE;
 
-        this.audioLoader = new AudioLoader();
-        this.imageLoader = new ImageLoader();
+        this.audioLoader = audioLoader;
+        this.imageLoader = ImageLoader;
 
         this.ninjaIndex;
         this.ninjaArray = [0, 1, 2];

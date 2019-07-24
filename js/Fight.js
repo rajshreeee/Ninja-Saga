@@ -23,7 +23,7 @@ class Fight {
         this.chakra_charge = document.getElementById('chakra-charge');
 
         this.runBtn = this.imageLoader.images.run;
-        
+
         this.attackImageSize = 40;
         this.canvas = canvas;
         this.playerSpeed = this.player.speed;
@@ -295,8 +295,8 @@ class Fight {
             }
 
             if (this.renderPlayerAttacks === false) {
-                ctx.drawImage(this.speedBtn, speedRect.x, speedRect.y, speedRect.width, speedRect.height); 
-                
+                ctx.drawImage(this.speedBtn, speedRect.x, speedRect.y, speedRect.width, speedRect.height);
+
             }
 
             this.drawActionBar(ctx, gameEngine);
@@ -373,7 +373,7 @@ class Fight {
         }
     }
 
-   
+
     drawPlayerStatBar(ctx) {
         let statHealthWidth = (this.HealthWidth * 187) / 100;
 
@@ -394,9 +394,15 @@ class Fight {
             12
         );
 
+        ctx.font = "bold 15px Arial";
+        ctx.fillStyle = "#fbcf03";
+        ctx.fillText("Lv " + this.player.level, 100, 25);
+        //  ctx.fillText("Lv " this.player.level, 170, 5);
         ctx.font = "10px Arial";
         ctx.fillStyle = "#fff";
         ctx.fillText(Math.round(this.player.health) + "/" + "100", 170, 36);
+
+
 
         ctx.drawImage(
             this.chakra_stat,
@@ -606,21 +612,21 @@ class Fight {
 
     }
 
-     
-    run(event){
-       
+
+    run(event) {
+
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
         if (this.renderPlayerAttacks === true) {
-            if (isSelected(clickCoordinates.x, clickCoordinates.y,runRect, runRect.width, runRect.height)) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y, runRect, runRect.width, runRect.height)) {
                 this.game.gameState = GAME_STATE.GAME_DEFEAT;
             }
-         
-        } 
+
+        }
     }
-    
+
     displayDetails(event) {
 
-        if (this.selectJutsuenabled === true) {
+        if (this.selectJutsuenabled === true && this.clicked === false) {
 
 
             displayInfo(this.canvas, event, this.jutsuCoordinates, this.displayHoverItem);
