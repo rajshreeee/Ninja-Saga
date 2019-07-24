@@ -37,18 +37,23 @@ class InputHandler {
                 case GAME_STATE.ACADEMY_STATE:
                     this.game.academy.renderDetail(event);
                     this.game.academy.learnJutsu(event);
+                    this.game.cross.leave(event);
+
                     break;
                 case GAME_STATE.EQUIPMENT_STATE:
                     this.game.equipment.removeOrAddJutsu(event);
                     this.game.equipment.equipJutsu(event);
+                    this.game.cross.leave(event);
                     break;
                 case GAME_STATE.PET_SHOP_STATE:
                     this.game.petShop.renderDetail(event);
                     this.game.petShop.buyPet(event);
+                    this.game.cross.leave(event);
                     break;
                 case GAME_STATE.EQUIP_PET_STATE:
                     this.game.equipPet.removeOrAddPets(event);
                     this.game.equipPet.equipPlayerPet(event);
+                    this.game.cross.leave(event);
                     break;
                 case GAME_STATE.SHOP_STATE:
                     this.game.shop.renderItemDetail(event);
@@ -73,15 +78,16 @@ class InputHandler {
                 case GAME_STATE.VILLAGE_STATE:
                     //console.log('I am moving');
                     this.game.village.displayVillageInfo(event);
-                    
+
                     break;
                 case GAME_STATE.SELECT_MISSION_STATE:
                     this.game.village.displayMissionInfo(event);
                     break;
-                
+                case GAME_STATE.EQUIP_PET_STATE:
+                    this.game.equipPet.displayPetInfo(event);
                 default:
                     //pass
-            }    
+            }
         });
 
 

@@ -1,13 +1,12 @@
 class Fight {
-    constructor(game, player, enemyArray, canvas, pet, audioLoader, imageLoader) {
+    constructor(game, player, enemyArray, canvas, pet, audioLoader, imageLoader, bottomBar) {
         this.game = game;
         this.player = player;
         this.enemyArray = enemyArray;
         this.pet = pet;
-
+        this.bottomBar = bottomBar;
         this.audioLoader = audioLoader;
         this.imageLoader = imageLoader;
-        this.bottomBar = new BottomBar(game, this.audioLoader, this.imageLoader)
 
         this.backgroundImage = document.getElementById("bg_fight");
         this.healthBarOuter = document.getElementById("healthBarOuter");

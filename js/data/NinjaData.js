@@ -27,6 +27,18 @@ let superChakra = document.getElementById("superChakra");
 
 let waterBurstImage = document.getElementById('water-burst');
 
+let waterBurstIcon = document.getElementById('waterBurstIcon');
+let fireBall = document.getElementById('fireBall');
+let fireBallIcon = document.getElementById('fireBallIcon');
+
+let edgeBlow = document.getElementById('edgeBlow');
+let edgeBlowIcon = document.getElementById('edgeBlowIcon');
+
+let kinjutsu = document.getElementById('kinjutsu');
+let kinjutsuIcon = document.getElementById('kinjutsuIcon');
+
+let earthFist = document.getElementById('earthFist');
+let earthFistIcon = document.getElementById('earthFistIcon');
 
 let NinjaData = [
     {
@@ -347,7 +359,7 @@ let trainingJutsu = [
         power: 30,
         chakraLoss: 25,
         accuracy: .85,
-        image: superStrength,
+        image: waterBurstIcon,
         count: 0,
         renderDetailImage: false,
         selected: false,
@@ -356,57 +368,57 @@ let trainingJutsu = [
         detailImagePosY: 76
                 },
     {
-        name: "Super Chakra",
+        name: "Fire Ball",
         power: 15,
         chakraLoss: 10,
         accuracy: .9,
-        image: superChakra,
+        image: fireBallIcon,
         count: 0,
         renderDetailImage: false,
         selected: false,
-        detailImage: waterBurstImage,
+        detailImage: fireBall,
         detailImagePosX: 613,
         detailImagePosY: 76
 
 
         }, {
-        name: "Rage Attack",
+        name: "Edge Blow",
         power: 15,
         chakraLoss: 10,
         accuracy: .9,
-        image: superChakra,
+        image: edgeBlowIcon,
         count: 0,
         renderDetailImage: false,
         selected: false,
-        detailImage: waterBurstImage,
+        detailImage: edgeBlow,
         detailImagePosX: 613,
         detailImagePosY: 76
 
 
         }, {
-        name: "Strong Arm",
+        name: "Earth Fist",
         power: 15,
         chakraLoss: 10,
         accuracy: .9,
-        image: superChakra,
+        image: earthFistIcon,
         count: 0,
         renderDetailImage: false,
         selected: false,
-        detailImage: waterBurstImage,
+        detailImage: earthFist,
         detailImagePosX: 613,
         detailImagePosY: 76
 
 
         }, {
-        name: "Gold Glove",
+        name: "Kinjutsu",
         power: 15,
         chakraLoss: 10,
         accuracy: .9,
-        image: superChakra,
+        image: kinjutsuIcon,
         count: 0,
         renderDetailImage: false,
         selected: false,
-        detailImage: waterBurstImage,
+        detailImage: kinjutsu,
         detailImagePosX: 613,
         detailImagePosY: 76
 

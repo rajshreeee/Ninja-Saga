@@ -19,9 +19,9 @@ class Game {
 
         this.petShopInsideImage = this.imageLoader.images.petShopInside;
         this.buyBtn = this.imageLoader.images.buyBtn;
-        
+
         this.equipmentBg = this.imageLoader.images.equipmentBg;
-        
+        this.cross = new Cross(this, this.canvas, this.imageLoader);
         this.petArray = [];
 
         this.enemyPosition = [
@@ -40,18 +40,19 @@ class Game {
             }
         ]
 
-
+        this.bottomBar = new BottomBar(this, this.imageLoader);
+       
         this.village = new Village(this, this.canvas, this.audioLoader, this.imageLoader);
 
-        this.academy = new Academy(this, this.canvas, this.academyInsideImage, this.learnButton, academyJutsuRect, trainingJutsu);
+        this.academy = new Academy(this, this.canvas, this.imageLoader, this.academyInsideImage, this.learnButton, academyJutsuRect, trainingJutsu, this.bottomBar, 0, this.cross);
 
 
-        this.equipment = new Equipment(this, this.canvas);
-        
-        this.petShop = new PetShop(this, this.canvas, this.petShopInsideImage, this.buyBtn, petImageRect, petData );
-       
-        this.equipPet = new EquipPet(this, this.canvas);
-        
+        this.equipment = new Equipment(this, this.canvas, this.imageLoader, this.cross);
+
+        this.petShop = new PetShop(this, this.canvas, this.imageLoader, this.petShopInsideImage, this.buyBtn, petImageRect, petData, this.bottomBar, 50, this.cross);
+
+        this.equipPet = new EquipPet(this, this.canvas, this.imageLoader, this.bottomBar, this.cross);
+
         this.menu = new Menu(this, this.audioLoader, this.imageLoader);
         this.transition = new Transition(this, this.canvas, this.audioLoader, this.imageLoader);
         this.selectedPet = undefined;
@@ -138,7 +139,7 @@ class Game {
             }
         }
 
-        this.fight = new Fight(this, this.player, this.enemyArray, this.canvas, this.pet, this.audioLoader, this.imageLoader);
+        this.fight = new Fight(this, this.player, this.enemyArray, this.canvas, this.pet, this.audioLoader, this.imageLoader, this.bottomBar);
 
         this.gameState = GAME_STATE.FIGHT_STATE;
     }

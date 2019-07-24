@@ -1,5 +1,6 @@
 let polar_walk = document.getElementById('polar_walk');
 let polar_hunt = document.getElementById('polar_hunt');
+let kyuubi_sit = document.getElementById('kyuubiSit');
 
 let petData = [
     {
@@ -21,18 +22,18 @@ let petData = [
         selected: false,
         speed: 2,
         detailImage: polar_walk,
-         detailImagePosX: 613,
+         detailImagePosX: 633,
         detailImagePosY: 76
 
 
     },
 
     {
-        name: 'polar2',
+        name: 'kyuubi',
         imageArray: [{
             image: polar_walk,
-            width: 36,
-            length: 3
+            width: 304.67,
+            length: 2
         }],
         power: 10,
         accuracy: .9,
@@ -40,7 +41,7 @@ let petData = [
         selected: false,
         speed:1.2,
         detailImage: polar_walk,
-         detailImagePosX: 613,
+         detailImagePosX: 633,
         detailImagePosY: 76
 
 

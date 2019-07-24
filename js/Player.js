@@ -13,6 +13,7 @@ class Player extends Ninja {
         ctx.drawImage(this.goldImage, 820, 480);
         ctx.font = "19px Arial";
         ctx.strokeStyle = "#000";
+        ctx.fillStyle = "#fff";
         ctx.fillText(this.gold, 900, 512);
     }
 
@@ -22,12 +23,5 @@ class Player extends Ninja {
         }
     }
 
-    addLearnedJutsu(selectedAcademyJutsu) {
-        this.jutsu.push(trainingJutsu[selectedAcademyJutsu]);
-        this.gold -= 200;
-        console.log(this.jutsu);
-        setTimeout(function () {
-            this.game.gameState = GAME_STATE.VILLAGE_STATE;
-        }.bind(this), 2000)
-    }
+  
 }

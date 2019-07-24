@@ -33,6 +33,10 @@ class ImageLoader {
     this.loadImage("equipBtn","./images/equip-btn.png");
     
     this.loadImage("equipmentBg","./images/equipment-bg.png" );
+      
+    this.loadImage("waterBurstIcon","./images/waterBurstIcon.png");
+      
+    this.loadImage("price", "./images/200.png");
     this.numberOfImages = Object.keys(this.images).length;
   }
 

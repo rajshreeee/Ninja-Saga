@@ -1,7 +1,9 @@
-class Academy extends Shop{
-    constructor(game, canvas, bgImage, confirmButton, itemRect, itemDataArray) {
-        super(game, canvas, bgImage, confirmButton, itemRect, itemDataArray);
-        
+class Academy extends Shop {
+    constructor(game, canvas, ImageLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross) {
+        super(game, canvas, ImageLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross);
+
+        this.message="Buy jutsus that can help you in missions!";
+
     }
 
     drawAcademyJutsu(ctx) {
@@ -9,10 +11,10 @@ class Academy extends Shop{
             ctx.rect(this.itemRect[i].x, this.itemRect[i].y, 460, 60);
             ctx.strokeStyle = '#68492c';
             ctx.stroke();
-            ctx.drawImage(this.itemArray[i].image, this.itemRect[i].x + 10, this.itemRect[i].y + 5);
+            ctx.drawImage(this.itemArray[i].image, this.itemRect[i].x + 10, this.itemRect[i].y + 5, 50, 50);
         }
     }
-    
+
     learnJutsu(event) {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
         console.log()
@@ -21,25 +23,21 @@ class Academy extends Shop{
                 y: 360
             }, 124, 42)) {
             if (this.selectedItem != undefined && this.game.player.gold >= 200) {
-        
-                console.log(this.selectedItem + 'learnJutsu')
-               this.addLearnedJutsu(this.selectedItem);
-                console.log(this.itemArray[this.selectedItem])
+                this.addLearnedJutsu(this.selectedItem);
+                 this.message = "You bought "+ this.itemArray[this.selectedItem].name;
                 this.itemArray.splice(this.selectedItem, 1);
-                console.log(this.itemArray)
+               
             } else {
-                console.log('you dont have enough gold')
+                this.message = "You don't have enough gold!"
             }
         }
 
     }
-      addLearnedJutsu() {
+    addLearnedJutsu() {
         this.game.player.jutsu.push(this.itemArray[this.selectedItem]);
         this.game.player.gold -= 200;
-        console.log(this.game.player.jutsu);
-        setTimeout(function () {
-            this.game.gameState = GAME_STATE.VILLAGE_STATE;
-        }.bind(this), 2000)
+        console.log(this.game.player.jutsu)
+
     }
-    
+
 }

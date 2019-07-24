@@ -1,8 +1,7 @@
 class BottomBar {
-    constructor(game, audioLoader, imageLoader) {
+    constructor(game, ImageLoader) {
         this.game = game;
-        this.audioLoader = audioLoader;
-        this.imageLoader = imageLoader;
+        this.imageLoader = ImageLoader;
         this.host = this.imageLoader.images.host;
         this.bottomBar = this.imageLoader.images.bottomBar;
     }

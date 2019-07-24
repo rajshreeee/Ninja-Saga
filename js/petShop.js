@@ -1,48 +1,17 @@
 class PetShop extends Shop {
-    constructor(game, canvas, bgImage, confirmButton, itemRect, itemDataArray) {
-        super(game, canvas, bgImage, confirmButton, itemRect, itemDataArray);
-
+    constructor(game, canvas, ImageLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross) {
+        super(game, canvas, ImageLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross);
+        this.message= "Buy a new pet to help you in missions!";
     }
 
     drawPets(ctx) {
         for (let i = 0; i < this.itemArray.length; i++) {
-            ctx.drawImage(this.itemArray[i].imageArray[0].image, this.itemRect[i].x + 14, this.itemRect[i].y + 8);
+            ctx.drawImage(this.itemArray[i].imageArray[0].image, this.itemRect[i].x + 24, this.itemRect[i].y + 18);
         }
+        
+        this.drawStats(ctx);
     }
-  /*  setPets() {
-        for (let i = 0; i < petData.length; i++) {
-            this.petDataArray.push(petData[i]);
-        }
-        console.log(this.petDataArray)
-    }*/
 
-   /* renderPetDetail(event) {
-        let clickCoordinates = getMouseCoordinates(this.canvas, event);
-        for (let i = 0; i < petData.length; i++) {
-
-            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.petImageRect[i], this.petImageRect[i].width, this.petImageRect[i].height)) {
-                this.petDataArray[i].renderDetail = true;
-                this.selectedPet = i;
-                console.log(this.selectedPet)
-            }
-        }
-    }*/
-
- /*   drawPetDetail(ctx) {
-        for (let i = 0; i < this.petDataArray.length; i++) {
-            if (this.petDataArray[i].renderDetail === true) {
-                console.log('selected' + this.selectedPet)
-            }
-        }
-    }*/
-
-    
-  /*  drawBuyBtn(ctx){
-        if(this.selectedPet != undefined){
-            ctx.drawImage(this.buy, 640, 410, 132, 45 );
-        }
-    }*/
-    
     buyPet() {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
 
@@ -53,19 +22,28 @@ class PetShop extends Shop {
 
             if (this.selectedItem != undefined && this.game.player.gold >= 200) {
 
-                console.log(this.selectedItem + 'buyPet');
-                
+                this.message = "You bought " + this.itemArray[this.selectedItem].name;
                 this.game.petArray.push(this.itemArray[this.selectedItem]);
-                console.log(this.game.petArray);
-                this.itemArray.splice(this.selectedItem,1);
-                console.log(this.itemArray + 'change')
-                setTimeout(function(){
-                    this.game.gameState = GAME_STATE.VILLAGE_STATE;
-                }.bind(this), 2000);
-            
+
+                this.itemArray.splice(this.selectedItem, 1);
+
             } else {
-                console.log('you dont have enough gold')
+                this.message = "You don't have enough gold!"
             }
         }
+    }
+
+    drawStats(ctx) {for (let i = 0; i < this.itemArray.length; i++) {
+
+    if (this.itemArray[i].renderDetailImage === true) {
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "#fff";
+        ctx.fillText("Name: " + this.itemArray[i].name, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 70);ctx.fillText("Power: " + this.itemArray[i].power, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 100);
+
+            ctx.fillText("Accuracy: " + this.itemArray[i].accuracy, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 130);
+
+            ctx.fillText("Speed: " + this.itemArray[i].speed, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 160);
+        }
+    }
     }
 }
