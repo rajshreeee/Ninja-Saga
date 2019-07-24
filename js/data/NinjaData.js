@@ -40,6 +40,8 @@ let kinjutsuIcon = document.getElementById('kinjutsuIcon');
 let earthFist = document.getElementById('earthFist');
 let earthFistIcon = document.getElementById('earthFistIcon');
 
+//let imageLoaders = new ImageLoader();
+
 
 let NinjaData = [
     {
@@ -60,8 +62,8 @@ let NinjaData = [
             },
             {
                 image: sasuke_chidori,
-                width: 55,
-                length: 4
+                width: 54,
+                length: 3
             }, {
                 image: sasuke_genjutsu,
                 width: 56,
@@ -69,8 +71,8 @@ let NinjaData = [
             },
             {
                 image: sasuke_chidori,
-                width: 55,
-                length: 4
+                width: 54,
+                length: 3
             }, {
                 image: sasuke_genjutsu,
                 width: 56,
@@ -78,8 +80,8 @@ let NinjaData = [
             },
             {
                 image: sasuke_chidori,
-                width: 55,
-                length: 4
+                width: 54,
+                length: 3
             },
             {
                 image: sasuke_block,
@@ -89,31 +91,31 @@ let NinjaData = [
                     ],
         jutsu: [{
                 name: "Chidori",
-                power: 25,
+                power: 35,
                 chakraLoss: 30,
-                accuracy: .90,
+                accuracy: .95,
                 image: chidori,
                 count: 0
                 },
             {
                 name: "Genjutsu",
-                power: 20,
+                power: 30,
                 chakraLoss: 10,
-                accuracy: .95,
+                accuracy: .97,
                 image: genjutsu,
                 count: 0
         },
             {
                 name: "Fat Arm",
-                power: 20,
+                power: 40,
                 chakraLoss: 10,
-                accuracy: .89,
+                accuracy: .99,
                 image: genjutsu,
                 count: 0
         },
             {
                 name: "Star Attack",
-                power: 20,
+                power: 40,
                 chakraLoss: 10,
                 accuracy: .99,
                 image: genjutsu,
@@ -121,18 +123,18 @@ let NinjaData = [
         },
             {
                 name: "Rinnegan",
-                power: 20,
+                power: 30,
                 chakraLoss: 10,
-                accuracy: .87,
+                accuracy: .97,
                 image: genjutsu,
                 count: 0
 
         },
             {
                 name: "High Kick",
-                power: 20,
+                power: 40,
                 chakraLoss: 10,
-                accuracy: .7,
+                accuracy: .89,
                 image: genjutsu,
                 count: 0
 
@@ -143,7 +145,7 @@ let NinjaData = [
 
     {
         name: "Naruto",
-        health: 5,
+        health: 100,
         chakra: 100,
         defense: 2,
         speed: 2,
@@ -193,53 +195,53 @@ let NinjaData = [
                     ],
         jutsu: [{
                 name: "Rasengan",
-                power: 20,
+                power: 40,
                 chakraLoss: 90,
-                accuracy: .85,
+                accuracy: .95,
                 image: rasengan,
                 count: 0
 
                 },
             {
                 name: "Clone Jutsu",
-                power: 15,
+                power: 35,
                 chakraLoss: 30,
-                accuracy: .9,
+                accuracy: .91,
                 image: shadowClone,
                 count: 0
 
         },
             {
                 name: "Fly Kick",
-                power: 15,
+                power: 35,
                 chakraLoss: 10,
-                accuracy: .9,
+                accuracy: .94,
                 image: shadowClone,
                 count: 0
 
         },
             {
                 name: "Taijutsu",
-                power: 15,
+                power: 35,
                 chakraLoss: 10,
-                accuracy: .9,
+                accuracy: .97,
                 image: shadowClone,
                 count: 0
 
         }, {
                 name: "Dagger",
-                power: 15,
+                power: 45,
                 chakraLoss: 10,
-                accuracy: .9,
+                accuracy: .96,
                 image: shadowClone,
                 count: 0
 
         }
              , {
                 name: "Lightning",
-                power: 15,
+                power: 40,
                 chakraLoss: 10,
-                accuracy: .9,
+                accuracy: .99,
                 image: shadowClone,
                 count: 0
 
@@ -251,7 +253,7 @@ let NinjaData = [
 
     {
         name: "Sakura",
-        health: 5,
+        health: 100,
         chakra: 100,
         defense: 2,
         speed: 1.5,
@@ -270,17 +272,19 @@ let NinjaData = [
                 width: 47,
                 length: 2
             }, {
-                image: sakura_superChakra,
-                width: 47,
-                length: 2
+                
+                image: sakura_jutsu2,
+                width: 39,
+                length: 3
             }, {
                 image: sakura_superChakra,
                 width: 47,
                 length: 2
             }, {
-                image: sakura_superChakra,
-                width: 47,
-                length: 2
+               
+                image: sakura_jutsu2,
+                width: 39,
+                length: 3
             }, {
                 image: sakura_superChakra,
                 width: 47,
@@ -302,48 +306,48 @@ let NinjaData = [
                 name: "Low Kick",
                 power: 30,
                 chakraLoss: 25,
-                accuracy: .85,
+                accuracy: .95,
                 image: superStrength,
                 count: 0
 
                 },
             {
                 name: "Bounce",
-                power: 15,
+                power: 35,
                 chakraLoss: 10,
-                accuracy: .9,
+                accuracy: .97,
                 image: superChakra,
                 count: 0
 
         }, {
                 name: "Rage Fire",
-                power: 15,
+                power: 45,
                 chakraLoss: 10,
-                accuracy: .9,
+                accuracy: .99,
                 image: superChakra,
                 count: 0
 
         }, {
                 name: "Sharingan",
-                power: 15,
+                power: 45,
                 chakraLoss: 10,
-                accuracy: .9,
+                accuracy: .94,
                 image: superChakra,
                 count: 0
 
         }, {
                 name: "Gold Glove",
-                power: 15,
+                power: 45,
                 chakraLoss: 10,
-                accuracy: .9,
+                accuracy: .93,
                 image: superChakra,
                 count: 0
 
         }, {
                 name: "High Wind",
-                power: 15,
+                power: 35,
                 chakraLoss: 10,
-                accuracy: .9,
+                accuracy: .98,
                 image: superChakra,
                 count: 0
 
@@ -357,81 +361,71 @@ let NinjaData = [
 let trainingJutsu = [
     {
         name: "Water Burst",
-        power: 30,
+        power: 60,
         chakraLoss: 25,
-        accuracy: .85,
+        accuracy: .95,
         image: waterBurstIcon,
         count: 0,
         renderDetailImage: false,
         selected: false,
         detailImage: waterBurstImage,
         detailImagePosX: 613,
-        detailImagePosY: 76,
-        detailImageSizeX:304,
-        detailImageSizeY:265
+        detailImagePosY: 76
                 },
     {
         name: "Fire Ball",
-        power: 15,
+        power: 55,
         chakraLoss: 10,
-        accuracy: .9,
+        accuracy: .99,
         image: fireBallIcon,
         count: 0,
         renderDetailImage: false,
         selected: false,
         detailImage: fireBall,
         detailImagePosX: 613,
-        detailImagePosY: 76,
-        detailImageSizeX:304,
-        detailImageSizeY:265
+        detailImagePosY: 76
 
 
         }, {
         name: "Edge Blow",
-        power: 15,
+        power: 65,
         chakraLoss: 10,
-        accuracy: .9,
+        accuracy: .97,
         image: edgeBlowIcon,
         count: 0,
         renderDetailImage: false,
         selected: false,
         detailImage: edgeBlow,
         detailImagePosX: 613,
-        detailImagePosY: 76,
-        detailImageSizeX:304,
-        detailImageSizeY:265
+        detailImagePosY: 76
 
 
         }, {
         name: "Earth Fist",
-        power: 15,
+        power: 65,
         chakraLoss: 10,
-        accuracy: .9,
+        accuracy: .91,
         image: earthFistIcon,
         count: 0,
         renderDetailImage: false,
         selected: false,
         detailImage: earthFist,
         detailImagePosX: 613,
-        detailImagePosY: 76,
-        detailImageSizeX:304,
-        detailImageSizeY:265
+        detailImagePosY: 76
 
 
         }, {
         name: "Kinjutsu",
-        power: 15,
+        power: 55,
         chakraLoss: 10,
-        accuracy: .9,
+        accuracy: .94,
         image: kinjutsuIcon,
         count: 0,
         renderDetailImage: false,
         selected: false,
         detailImage: kinjutsu,
         detailImagePosX: 613,
-        detailImagePosY: 76,
-        detailImageSizeX:304,
-        detailImageSizeY:265
+        detailImagePosY: 76
 
 
         }

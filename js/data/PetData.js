@@ -11,7 +11,7 @@ let polarIcon = document.getElementById('polarIcon');
 let kyuubiIcon = document.getElementById('kyuubiIcon');
 let foxIcon = document.getElementById('foxIcon');
 
-//let imageLoaded = new ImageLoader();
+let imageLoaded = new ImageLoader();
 
 /*load_images = [{
     identifier: "ninjaCat_attack",
@@ -21,18 +21,18 @@ let foxIcon = document.getElementById('foxIcon');
 let petData = [
     {
         name: 'Polar',
-        icon:   polarIcon,
+        icon: polarIcon,
         imageArray: [{
-            image: polar_walk,
-            width: 36,
-            length: 3,
-            height: 100
+                image: polar_walk,
+                width: 36,
+                length: 3,
+                height: 100
         },
-         {
-            image: polar_hunt,
-             width: 44,
-             length: 2,
-             height:100
+            {
+                image: polar_hunt,
+                width: 46,
+                length: 2,
+                height: 100
          }
                     ],
         power: 10,
@@ -42,9 +42,7 @@ let petData = [
         speed: 2,
         detailImage: polar_hunt,
         detailImagePosX: 633,
-        detailImagePosY: 76,
-        detailImageSizeX: 290,
-        detailImageSizeY: 60
+        detailImagePosY: 76
 
 
     },
@@ -53,27 +51,26 @@ let petData = [
         name: 'Kyuubi',
         icon: kyuubiIcon,
         imageArray: [{
-            image: ninjaCat_stand,
-            width: 92,
-            length: 4,
-            height: 85
-        },{
-            image: ninjaCat_attack,
-            width: 92,
-            length: 4,
-            height: 85
+                image: imageLoaded.images.kyuubi_walk,
+                width: 36,
+                length: 3,
+                height: 100
+        }, {
+                image: imageLoaded.images.kyuubi_attack,
+                width: 46,
+                length: 2,
+                height: 100
         }
                     ],
         power: 10,
         accuracy: .9,
         renderDetail: false,
         selected: false,
-        speed:1.2,
-        detailImage: ninjaCat_attack,
-         detailImagePosX: 633,
-        detailImagePosY: 76,
-        detailImageSizeX: 290,
-        detailImageSizeY: 60
+        speed: 1.2,
+        detailImage: imageLoaded.images.kyuubi_attack,
+        detailImagePosX: 633,
+        detailImagePosY: 76
+
 
 
     },
@@ -81,27 +78,25 @@ let petData = [
         name: 'Nine Tails',
         icon: foxIcon,
         imageArray: [{
-            image: fox_attack,
-            width: 305,
-            length: 2,
-            height: 219
-        },{
-            image: fox_jump,
-            width: 305,
-            length: 2,
-            height: 219
+                image: fox_jump,
+                width: 36,
+                length: 3,
+                height: 100
+        }, {
+                image: fox_attack,
+                width: 46,
+                length: 2,
+                height: 100
         }
                     ],
         power: 10,
         accuracy: .9,
         renderDetail: false,
         selected: false,
-        speed:1.2,
-        detailImage: fox_jump,
-         detailImagePosX: 633,
-        detailImagePosY: 76,
-        detailImageSizeX: 290,
-        detailImageSizeY: 60
+        speed: 1.2,
+        detailImage: fox_attack,
+        detailImagePosX: 633,
+        detailImagePosY: 76
 
 
     }

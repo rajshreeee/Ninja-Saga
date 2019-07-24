@@ -114,3 +114,9 @@
      width: 48,
      height: 48
  }*/
+ 
+ const enemyOneFixedDaggerPosition = [{
+     top: 120,
+     bottom: 150
+ }];
+

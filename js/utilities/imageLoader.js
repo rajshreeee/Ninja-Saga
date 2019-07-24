@@ -41,6 +41,9 @@ class ImageLoader {
 
         this.loadImage("ninjaCat_stand", "./images/ninjaCat_stand.png");
         this.loadImage("ninjaCat_attack", "./images/ninjaCat_attack.png");
+        
+        this.loadImage("kyuubi_walk", "./images/polar_walk2.png")
+        this.loadImage("kyuubi_attack", "./images/polar_hunt2.png")
         /*  for 
           thislloag*/
         this.numberOfImages = Object.keys(this.images).length;

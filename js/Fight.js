@@ -25,16 +25,16 @@ class Fight {
         this.runBtn = this.imageLoader.images.run;
         this.runHoverDisplay = [false];
         this.runRect = [{
-                x: 900,
-                y: 0,
-                width: 48,
-                height: 48,
-                scaled_width: 58,
-                scaled_height: 58,
-                original_width: 48,
-                original_height: 48
+            x: 900,
+            y: 0,
+            width: 48,
+            height: 52,
+            scaled_width: 58,
+            scaled_height: 62,
+            original_width: 48,
+            original_height: 52
         }];
-        
+
         this.attackImageSize = 40;
         this.canvas = canvas;
         this.playerSpeed = this.player.speed;
@@ -106,6 +106,22 @@ class Fight {
 
         ];
 
+        this.enemyOneDaggerPosition = [{
+            x: 840,
+            y: 130
+        }];
+
+        this.enemyDaggerFixedPosition = [{
+                top: 60,
+                bottom: 90
+        },
+            {
+                top: 120,
+                bottom: 150
+             }
+            ];
+
+
         this.chakraChargeCoordinates = [{
             x: 800,
             y: 0,
@@ -158,15 +174,6 @@ class Fight {
             }
         ];
 
-        this.enemyDaggerFixedPosition = [{
-                top: 60,
-                bottom: 90
-        },
-            {
-                top: 120,
-                bottom: 150
-             }
-            ];
 
         this.actionBarPlayerCoordinates = {
             x: 200,
@@ -193,7 +200,7 @@ class Fight {
 
             {
                 x: 680,
-                y: 140
+                y: 190
             }, {
                 x: 820,
                 y: 100
@@ -211,6 +218,7 @@ class Fight {
                 y: 140
             }
         ];
+
 
         this.petImageIndex = 0;
         this.totalHealth = 100;
@@ -253,8 +261,8 @@ class Fight {
         if (this.enemyOne === true) {
             ctx.drawImage(
                 this.dagger,
-                this.enemyDaggerPosition[1].x,
-                this.enemyDaggerPosition[1].y
+                this.enemyOneDaggerPosition[0].x,
+                this.enemyOneDaggerPosition[0].y
             );
 
         } else {
@@ -275,18 +283,20 @@ class Fight {
 
 
         if (this.enemyOne === true) {
-            this.enemyDaggerPosition[1].y += this.speed;
-            if (this.enemyDaggerPosition[1].y <= this.enemyDaggerFixedPosition[1].top || this.enemyDaggerPosition[1].y >= this.enemyDaggerFixedPosition[1].bottom) {
+            this.enemyOneDaggerPosition[0].y += this.speed;
+            if (reboundItem(this.enemyOneDaggerPosition, enemyOneFixedDaggerPosition, 0)) {
                 this.speed = -this.speed;
             }
         } else {
             this.enemyDaggerPosition[this.selectedEnemy].y += this.speed;
-            if (this.enemyDaggerPosition[this.selectedEnemy].y <= this.enemyDaggerFixedPosition[this.selectedEnemy].top || this.enemyDaggerPosition[this.selectedEnemy].y >= this.enemyDaggerFixedPosition[this.selectedEnemy].bottom) {
+            if (reboundItem(this.enemyDaggerPosition, this.enemyDaggerFixedPosition, this.selectedEnemy)) {
                 this.speed = -this.speed;
             }
         }
 
     }
+
+
 
     draw(ctx, gameEngine, gameLoop) {
         if (this.cancelFrame === false) {
@@ -339,7 +349,7 @@ class Fight {
                     this.EnemydodgeCoordinates[i].y = 100;
                 }
                 if (this.enemyDodged[i] === true) {
-                    ctx.font = "20px Arial";
+                    ctx.font = "bold 20px Arial";
                     ctx.fillStyle = "#FFF";
                     ctx.fillText('dodged', this.EnemydodgeCoordinates[i].x, this.EnemydodgeCoordinates[i].y);
 
@@ -369,7 +379,7 @@ class Fight {
             if (this.displayHoverItem[i] === true) {
 
                 ctx.fillStyle = "#fff";
-                ctx.fillRect(this.jutsuCoordinates[i].x, this.jutsuCoordinates[i].y + 55, 105, 80);
+                ctx.fillRect(this.jutsuCoordinates[i].x, this.jutsuCoordinates[i].y + 55, 110, 80);
                 ctx.font = "20px Arial bold";
                 ctx.fillStyle = "#000";
                 ctx.fillText(this.player.jutsu[i].name, this.jutsuCoordinates[i].x + 10, this.jutsuCoordinates[i].y + 70);
@@ -628,15 +638,22 @@ class Fight {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
         if (this.renderPlayerAttacks === true) {
             if (isSelected(clickCoordinates.x, clickCoordinates.y, this.runRect[0], this.runRect[0].width, this.runRect[0].height)) {
-                this.game.gameState = GAME_STATE.GAME_DEFEAT;
+                this.resetComponents();
+
+                this.setDefeat();
             }
 
         }
     }
 
+    setDefeat() {
+        this.player.health = 100;
+        this.player.jutsu = this.originalJutsuArray;
+        this.game.gameState = GAME_STATE.GAME_DEFEAT;
+    }
     displayDetails(event) {
 
-        if (this.selectJutsuenabled === true) {
+        if (this.selectJutsuenabled === true && this.clicked === false) {
 
 
             displayInfo(this.canvas, event, this.jutsuCoordinates, this.displayHoverItem);
@@ -692,6 +709,10 @@ class Fight {
 
                         for (let i = 0; i < this.enemyArray.length; i++) {
                             this.enemyArray[i].speed = this.enemySpeedArray[i];
+                        }
+                        if (this.pet != undefined) {
+                            this.pet.speed = this.petSpeed;
+
                         }
                         this.actionBarPlayerCoordinates.x = 200;
 
@@ -760,6 +781,8 @@ class Fight {
                     this.actionBarEnemyCoordinates.splice(k, 1);
                     this.enemyCoordinates.splice(k, 1);
                     this.enemyDaggerPosition.splice(k, 1);
+                    this.enemyDaggerFixedPosition.splice(k, 1);
+                    this.EnemydodgeCoordinates.splice(k, 1);
                     if (this.selectedEnemy === 0) {
                         this.selectedEnemy = 1
                     }
@@ -770,11 +793,7 @@ class Fight {
                 }
             }
             if (this.enemyArray.length === 0) {
-                this.cancelFrame = true;
-                this.player.gold += 200;
-                this.player.jutsu = this.originalJutsuArray;
-                this.player.level += 1;
-                this.game.gameState = GAME_STATE.GAME_VICTORY;
+                this.setVictory();
             } else {
 
                 for (let i = 0; i < this.enemyArray.length; i++) {
@@ -792,7 +811,19 @@ class Fight {
         }.bind(this), 2000);
     }
 
+    setVictory() {
+        this.player.gold += 200;
+        this.player.jutsu = this.originalJutsuArray;
+        //console.log(this.originalJutsuArray)
+        this.player.level += 1;
+        this.resetComponents();
+        this.player.health = 100;
+
+        this.game.gameState = GAME_STATE.GAME_VICTORY;
+    }
+
     petAttack() {
+        this.enemyOpacityArray[0] = 0.4;
         this.petImageIndex = 1;
         let damage = (this.pet.power / this.enemyArray[0].defense) * this.pet.accuracy;
         this.enemyArray[0].health -= damage;
@@ -801,6 +832,8 @@ class Fight {
         setTimeout(function () {
             this.petImageIndex = 0;
             this.enemyImageIndexArray[0] = 0;
+            this.enemyOpacityArray[0] = 1;
+
             // this.playerImageIndex = 0;
             for (let k = 0; k < this.enemyArray.length; k++) {
                 if (this.enemyArray[k].health <= 0) {
@@ -817,10 +850,9 @@ class Fight {
                 }
             }
             if (this.enemyArray.length === 0) {
-                this.cancelFrame = true;
-                this.playerVictory = true;
-                this.player.gold += 200;
-                this.player.jutsu = this.originalJutsuArray;
+
+
+                this.setVictory();
 
             } else {
 
@@ -868,11 +900,11 @@ class Fight {
             this.playerImageIndex = 0;
             this.enemyImageIndexArray[i] = 0;
             if (this.player.health <= 0) {
-                this.playerImageIndex = 3;
-                this.cancelFrame = true;
-                this.player.jutsu = this.originalJutsuArray;
-                this.game.gameState = GAME_STATE.GAME_DEFEAT;
+                //this.playerImageIndex = 3;
+                //this.cancelFrame = true;
+                this.resetComponents();
 
+                this.setDefeat();
 
             } else {
                 this.actionBarEnemyCoordinates[i].x = 200;
@@ -902,7 +934,7 @@ class Fight {
     displayChargeHover(event) {
         displayInfo(this.canvas, event, this.chakraChargeCoordinates, this.chakraHoverDisplay);
     }
-    
+
     displayRunHover(event) {
         displayInfo(this.canvas, event, this.runRect, this.runHoverDisplay);
     }
@@ -920,10 +952,8 @@ class Fight {
     }
 
     drawRunHover(ctx) {
-        console.log('i am called')
-        console.log(this.runHoverDisplay[0])
+
         if (this.runHoverDisplay[0] === true) {
-            console.log('i work')
             this.runRect[0].width = this.runRect[0].scaled_width;
             this.runRect[0].height = this.runRect[0].scaled_height;
         } else {
@@ -932,5 +962,15 @@ class Fight {
         }
     }
 
+    resetComponents() {
+        this.player.speed = this.playerSpeed;
+        for (let k = 0; k < this.enemyArray.length; k++) {
+            this.enemyArray[k].speed = this.enemySpeedArray[k];
+        }
+        if (this.pet != undefined) {
+            this.pet.speed = this.petSpeed;
+
+        }
+    }
 
 }

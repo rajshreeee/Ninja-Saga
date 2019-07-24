@@ -79,7 +79,7 @@ class Shop {
     drawDetailImage(ctx) {
         for (let i = 0; i < this.itemArray.length; i++) {
             if (this.itemArray[i].renderDetailImage === true) {
-                ctx.drawImage(this.itemArray[i].detailImage, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY, this.itemArray[i].detailImageSizeX, this.itemArray[i].detailImageSizeY)
+                ctx.drawImage(this.itemArray[i].detailImage, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY)
 
                
             }

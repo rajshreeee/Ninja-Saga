@@ -50,3 +50,9 @@ function getMouseCoordinates(canvas, event) {
 
     }
 
+function reboundItem(enemyDaggerPosition, enemyDaggerFixedPosition, index){
+    if(enemyDaggerPosition[index].y <= enemyDaggerFixedPosition[index].top || enemyDaggerPosition[index].y>= enemyDaggerFixedPosition[index].bottom ){
+        return true;
+    }
+}
+

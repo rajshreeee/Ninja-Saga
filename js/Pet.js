@@ -16,12 +16,12 @@ class Pet {
             this.frame += 1;
         }
 
-       ctx.drawImage(this.imageArray[imageIndex].image, this.frame * this.imageArray[imageIndex].width, 0,this.imageArray[imageIndex].width, this.imageArray[imageIndex].height, 100, 300, 100, 100);
+       ctx.drawImage(this.imageArray[imageIndex].image, this.frame * this.imageArray[imageIndex].width, 0,this.imageArray[imageIndex].width, 50, 130, 320, imageSize, imageSize);
 
     }
     
       drawActionBarPet(ctx, imageIndex, imageSize, x, y){
-        ctx.drawImage(this.imageArray[imageIndex].image, 0, 0, this.imageArray[imageIndex].width, this.imageArray[imageIndex].height, x, y, imageSize, imageSize);
+        ctx.drawImage(this.imageArray[imageIndex].image, 0, 0, this.imageArray[imageIndex].width, 50, x, y, imageSize, imageSize);
     }
     
 
@@ -34,5 +34,4 @@ class Pet {
     }
 
 }
-
 
