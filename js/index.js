@@ -19,8 +19,10 @@ var intervalId = setInterval(() => {
             audioLoader.hasAllAudiosLoaded()
       ) {
         clearInterval(intervalId);
+          console.log('lol')
         gameLoop();
       } else {
+          console.log('lolwa')
         loadingTime++;
 
         if (loadingTime % frameRate == 1) count++;

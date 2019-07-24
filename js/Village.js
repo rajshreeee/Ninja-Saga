@@ -12,7 +12,6 @@ class Village {
         this.petsIcon = document.getElementById('pets-icon');
         this.shopImage = document.getElementById('shop');
 
-        //this.lockedMissionImage = document.getElementById('locked-mission');
         this.gradeAMissionImage = document.getElementById('grade-a-mission');
         this.gradeBMissionImage = document.getElementById('grade-b-mission');
         this.gradeCMissionImage = document.getElementById('grade-c-mission');
