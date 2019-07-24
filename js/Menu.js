@@ -105,8 +105,9 @@ class Menu {
         this.game.setCharacters();
         console.log(this.game.ninjaIndex + 'menu')
         this.game.gameState = GAME_STATE.VILLAGE_STATE;
-        this.game.village.goToDestination();
+       // this.game.village.goToDestination();
         this.audioLoader.play("beep");
+        console.log(this.currentNinja)
 
     }
 

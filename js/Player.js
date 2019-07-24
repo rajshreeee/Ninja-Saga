@@ -1,7 +1,7 @@
 class Player extends Ninja {
     constructor(game, ninjaIndex, positionX, positionY, flipH, imageArray) {
         super(game, ninjaIndex, positionX, positionY, flipH, imageArray);
-        this.gold = 400;
+        this.gold = 2000;
         this.goldImage = document.getElementById('gold');
         this.level = 0;
         this.setPlayerJutsu();

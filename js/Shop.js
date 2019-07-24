@@ -79,7 +79,7 @@ class Shop {
     drawDetailImage(ctx) {
         for (let i = 0; i < this.itemArray.length; i++) {
             if (this.itemArray[i].renderDetailImage === true) {
-                ctx.drawImage(this.itemArray[i].detailImage, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY)
+                ctx.drawImage(this.itemArray[i].detailImage, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY, this.itemArray[i].detailImageSizeX, this.itemArray[i].detailImageSizeY)
 
                
             }
@@ -89,13 +89,15 @@ class Shop {
     setItem() {
         for (let i = 0; i < this.itemDataArray.length; i++) {
             this.itemArray.push(this.itemDataArray[i]);
+            
         }
+        console.log(this.itemArray)
     }
 
     renderDetail(event) {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
         for (let i = 0; i < this.itemArray.length; i++) {
-
+            
             if (isSelected(clickCoordinates.x, clickCoordinates.y, this.itemRect[i], this.itemRect[i].width, this.itemRect[i].height)) {
                 this.itemArray[i].renderDetailImage = true;
                 for (let j = 0; j < this.itemArray.length; j++) {

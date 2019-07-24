@@ -40,6 +40,7 @@ let kinjutsuIcon = document.getElementById('kinjutsuIcon');
 let earthFist = document.getElementById('earthFist');
 let earthFistIcon = document.getElementById('earthFistIcon');
 
+
 let NinjaData = [
     {
         name: "Sasuke",
@@ -365,7 +366,9 @@ let trainingJutsu = [
         selected: false,
         detailImage: waterBurstImage,
         detailImagePosX: 613,
-        detailImagePosY: 76
+        detailImagePosY: 76,
+        detailImageSizeX:304,
+        detailImageSizeY:265
                 },
     {
         name: "Fire Ball",
@@ -378,7 +381,9 @@ let trainingJutsu = [
         selected: false,
         detailImage: fireBall,
         detailImagePosX: 613,
-        detailImagePosY: 76
+        detailImagePosY: 76,
+        detailImageSizeX:304,
+        detailImageSizeY:265
 
 
         }, {
@@ -392,7 +397,9 @@ let trainingJutsu = [
         selected: false,
         detailImage: edgeBlow,
         detailImagePosX: 613,
-        detailImagePosY: 76
+        detailImagePosY: 76,
+        detailImageSizeX:304,
+        detailImageSizeY:265
 
 
         }, {
@@ -406,7 +413,9 @@ let trainingJutsu = [
         selected: false,
         detailImage: earthFist,
         detailImagePosX: 613,
-        detailImagePosY: 76
+        detailImagePosY: 76,
+        detailImageSizeX:304,
+        detailImageSizeY:265
 
 
         }, {
@@ -420,7 +429,9 @@ let trainingJutsu = [
         selected: false,
         detailImage: kinjutsu,
         detailImagePosX: 613,
-        detailImagePosY: 76
+        detailImagePosY: 76,
+        detailImageSizeX:304,
+        detailImageSizeY:265
 
 
         }

@@ -6,12 +6,10 @@ class PetShop extends Shop {
 
     drawPets(ctx) {
         for (let i = 0; i < this.itemArray.length; i++) {
-            ctx.drawImage(   this.itemArray[i].imageArray[0].image, 0,
-            0,
-            this.itemArray[i].imageArray[0].width * (this.itemArray[i].imageArray[0].length + 1), this.itemArray[i].imageArray[0].height,
-            this.itemRect[i].x + 24, this.itemRect[i].y + 18,
-            this.itemArray[i].imageArray[0].width,
-            this.itemArray[i].imageArray[0].height);
+            ctx.drawImage(   this.itemArray[i].icon,
+            this.itemRect[i].x + 24, this.itemRect[i].y + 5,
+            70,
+           70);
         }
 
 
@@ -28,15 +26,18 @@ buyPet() {
             y: 420
         }, 132, 45)) {
 
-        if (this.selectedItem != undefined && this.game.player.gold >= 200) {
+        if (this.selectedItem != undefined && this.game.player.gold >= 200 && this.itemArray.length !=0) {
 
             this.message = "You bought " + this.itemArray[this.selectedItem].name;
             this.game.petArray.push(this.itemArray[this.selectedItem]);
 
             this.itemArray.splice(this.selectedItem, 1);
+            this.game.player.gold -= 200;
 
-        } else {
+        } else if(this.game.player.gold === 0) {
             this.message = "You don't have enough gold!"
+        } else if (this.itemArray.length ===0){
+            this.message = "No more pets left!"
         }
     }
 }
@@ -47,12 +48,12 @@ drawStats(ctx) {
         if (this.itemArray[i].renderDetailImage === true) {
             ctx.font = "20px Arial";
             ctx.fillStyle = "#fff";
-            ctx.fillText("Name: " + this.itemArray[i].name, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 70);
-            ctx.fillText("Power: " + this.itemArray[i].power, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 100);
+            ctx.fillText("Name: " + this.itemArray[i].name, this.itemArray[i].detailImagePosX + 50, this.itemArray[i].detailImagePosY + 100);
+            ctx.fillText("Power: " + this.itemArray[i].power, this.itemArray[i].detailImagePosX + 50, this.itemArray[i].detailImagePosY + 130);
 
-            ctx.fillText("Accuracy: " + this.itemArray[i].accuracy, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 130);
+            ctx.fillText("Accuracy: " + this.itemArray[i].accuracy, this.itemArray[i].detailImagePosX + 50, this.itemArray[i].detailImagePosY + 160);
 
-            ctx.fillText("Speed: " + this.itemArray[i].speed, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 160);
+            ctx.fillText("Speed: " + this.itemArray[i].speed, this.itemArray[i].detailImagePosX + 50, this.itemArray[i].detailImagePosY + 190);
         }
     }
 }

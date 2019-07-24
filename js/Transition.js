@@ -74,6 +74,8 @@
 
 
         if (isSelected(clickCoordinates.x, clickCoordinates.y, this.checkMarkCoordinates, this.checkMarkCoordinates.width, this.checkMarkCoordinates.height)) {
+                    this.game.ninjaArray = [0, 1, 2];
+
             this.game.gameState = GAME_STATE.MENU_STATE;
         }
       

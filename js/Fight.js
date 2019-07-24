@@ -751,6 +751,7 @@ class Fight {
                 this.player.gold += 200;
                 this.player.jutsu = this.originalJutsuArray;
                 this.player.level += 1;
+                this.player.health = 100;
                 this.game.gameState = GAME_STATE.GAME_VICTORY;
             } else {
 

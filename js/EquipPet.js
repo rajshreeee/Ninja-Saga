@@ -9,27 +9,6 @@ class EquipPet {
         this.crossBtn = document.getElementById('cross-round');
         this.equip_btn = document.getElementById('equip-btn');
 
-        this.petImageRect = [
-            {
-                x: 166,
-                y: 68,
-                width: 320,
-                height: 80
-            },
-            {
-                x: 166,
-                y: 232,
-                width: 320,
-                height: 80
-            },
-            {
-                x: 166,
-                y: 404,
-                width: 320,
-                height: 80
-            }
-        ];
-
         this.message = "Equip a pet to help you in your missions!"
         this.petHoverDisplay = [false, false, false];
     }
@@ -45,10 +24,10 @@ class EquipPet {
 
     drawPlayersPets(ctx) {
         for (let i = 0; i < this.game.petArray.length; i++) {
-            ctx.drawImage(this.game.petArray[i].imageArray[0].image, this.petImageRect[i].x + 20, this.petImageRect[i].y + 20);
-
+            ctx.drawImage(this.game.petArray[i].icon, petImageRect[i].x + 20, petImageRect[i].y + 5, 70, 70);
+            
             if (this.game.petArray[i].selected) {
-                ctx.drawImage(this.crossBtn, this.petImageRect[i].x + 260, this.petImageRect[i].y + 15, 30, 30)
+                ctx.drawImage(this.crossBtn, petImageRect[i].x + 260, petImageRect[i].y + 15, 30, 30)
             }
         }
     }
@@ -60,23 +39,25 @@ class EquipPet {
         for (let i = 0; i < this.game.petArray.length; i++) {
 
             if (isSelected(clickCoordinates.x, clickCoordinates.y, {
-                    x: this.petImageRect[i].x + 260,
-                    y: this.petImageRect[i].y + 15
+                    x: petImageRect[i].x + 260,
+                    y: petImageRect[i].y + 15
                 }, 30, 30) && this.game.petArray[i].selected) {
 
                 this.game.petArray[i].selected = false;
-                console.log(this.game.petArray[i].selected+'selected')
+                console.log(this.game.petArray[i].selected + 'selected');
+                this.message = "";
             }
 
-            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.petImageRect[i], 50, 50)) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y, {x: petImageRect[i].x+20, y:petImageRect[i].y+5}, 70, 70)) {
 
                 if (this.detectSelected() >= 1) {
-                    console.log('no more than 1');
+                    this.message = "You cannot equip more than 1 pet at a time!"
                 } else {
 
                     this.game.petArray[i].selected = true;
                     this.game.selectedPet = i;
-                    console.log(this.game.petArray[i].selected)
+                    console.log(this.game.petArray[i].selected);
+                    this.message = "You equipped "+ this.game.petArray[i].name; 
                 }
 
             }
@@ -110,7 +91,7 @@ class EquipPet {
     }
 
     displayPetInfo(event) {
-        displayInfo(this.canvas, event, this.petImageRect, this.petHoverDisplay);
+        displayInfo(this.canvas, event, petImageRect, this.petHoverDisplay);
     }
 
     drawPetInfo(ctx) {
@@ -118,17 +99,17 @@ class EquipPet {
             if (this.petHoverDisplay[i] === true) {
 
                 ctx.fillStyle = "#fff";
-                ctx.fillRect(this.petImageRect[i].x + 100, this.petImageRect[i].y + 55, 125, 80);
+                ctx.fillRect(petImageRect[i].x + 15 + petImageRect[i].width, petImageRect[i].y, 100, 80);
                 ctx.font = "20px Arial bold";
                 ctx.fillStyle = "#000";
-                ctx.fillText(this.game.petArray[i].name, this.petImageRect[i].x + 110, this.petImageRect[i].y + 70);
+                ctx.fillText(this.game.petArray[i].name, petImageRect[i].x + petImageRect[i].width + 15, petImageRect[i].y + 15);
                 ctx.font = "15px Arial";
                 ctx.fillStyle = "#0000FF";
-                ctx.fillText("Power:" + " " + this.game.petArray[i].power, this.petImageRect[i].x + 110, this.petImageRect[i].y + 90);
+                ctx.fillText("Power:" + " " + this.game.petArray[i].power, petImageRect[i].x + petImageRect[i].width + 15, petImageRect[i].y + 30);
                 ctx.fillStyle = "#FF0000";
-                ctx.fillText("Accuracy:" + " " + this.game.petArray[i].accuracy, this.petImageRect[i].x + 110, this.petImageRect[i].y + 105);
+                ctx.fillText("Accuracy:" + " " + this.game.petArray[i].accuracy, petImageRect[i].x + petImageRect[i].width + 15, petImageRect[i].y + 50);
                 ctx.fillStyle = "#000";
-                ctx.fillText("Speed:" + " " + this.game.petArray[i].speed, this.petImageRect[i].x + 110, this.petImageRect[i].y + 120);
+                ctx.fillText("Speed:" + " " + this.game.petArray[i].speed, petImageRect[i].x + petImageRect[i].width + 15, petImageRect[i].y + 70);
 
             }
         }

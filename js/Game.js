@@ -41,7 +41,7 @@ class Game {
         ]
 
         this.bottomBar = new BottomBar(this, this.imageLoader);
-       
+
         this.village = new Village(this, this.canvas, this.audioLoader, this.imageLoader);
 
         this.academy = new Academy(this, this.canvas, this.imageLoader, this.academyInsideImage, this.learnButton, academyJutsuRect, trainingJutsu, this.bottomBar, 0, this.cross);
@@ -120,7 +120,9 @@ class Game {
 
     createFightObjects(numberOfEnemies) {
         // console.log('createFightObjects')
-
+        console.log(NinjaData + 'NinjaData');
+        console.log(this.ninjaArray);
+        console.log(numberOfEnemies)
         if (this.selectedPet != undefined) {
             this.pet = new Pet(this, this.selectedPet);
         }
@@ -137,7 +139,9 @@ class Game {
             for (let i = 0; i < numberOfEnemies; i++) {
                 this.enemyArray.push(new Enemy(this.ninjaArray[i], -this.enemyPosition[i].x, this.enemyPosition[i].y, -1, NinjaData[this.ninjaArray[i]].imageArray));
             }
+
         }
+
 
         this.fight = new Fight(this, this.player, this.enemyArray, this.canvas, this.pet, this.audioLoader, this.imageLoader, this.bottomBar);
 

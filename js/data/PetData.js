@@ -6,9 +6,16 @@ let ninjaCat_attack = document.getElementById('ninjaCat_attack');
 
 let fox_attack = document.getElementById('fox_attack');
 let fox_jump = document.getElementById('fox_jump');
+
+let polarIcon = document.getElementById('polarIcon');
+let kyuubiIcon = document.getElementById('kyuubiIcon');
+let foxIcon = document.getElementById('foxIcon');
+
+
 let petData = [
     {
-        name: 'polar',
+        name: 'Polar',
+        icon:   polarIcon,
         imageArray: [{
             image: polar_walk,
             width: 36,
@@ -29,13 +36,16 @@ let petData = [
         speed: 2,
         detailImage: polar_hunt,
          detailImagePosX: 633,
-        detailImagePosY: 76
+        detailImagePosY: 76,
+        detailImageSizeX: 290,
+        detailImageSizeY: 60
 
 
     },
 
     {
         name: 'Kyuubi',
+        icon: kyuubiIcon,
         imageArray: [{
             image: ninjaCat_stand,
             width: 92,
@@ -55,12 +65,15 @@ let petData = [
         speed:1.2,
         detailImage: ninjaCat_attack,
          detailImagePosX: 633,
-        detailImagePosY: 76
+        detailImagePosY: 76,
+        detailImageSizeX: 290,
+        detailImageSizeY: 60
 
 
     },
     {
         name: 'Nine Tails',
+        icon: foxIcon,
         imageArray: [{
             image: fox_attack,
             width: 305,
@@ -80,7 +93,9 @@ let petData = [
         speed:1.2,
         detailImage: fox_jump,
          detailImagePosX: 633,
-        detailImagePosY: 76
+        detailImagePosY: 76,
+        detailImageSizeX: 290,
+        detailImageSizeY: 60
 
 
     }
