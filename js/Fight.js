@@ -8,6 +8,7 @@ class Fight {
         this.audioLoader = audioLoader;
         this.imageLoader = imageLoader;
 
+        this.speedBtn = this.imageLoader.images.speed;
         this.backgroundImage = document.getElementById("bg_fight");
         this.healthBarOuter = document.getElementById("healthBarOuter");
         this.healthBarInner = document.getElementById("healthBarInner");
@@ -21,6 +22,8 @@ class Fight {
         this.chakra_stat = document.getElementById('chakra-stat');
         this.chakra_charge = document.getElementById('chakra-charge');
 
+        this.runBtn = this.imageLoader.images.run;
+        
         this.attackImageSize = 40;
         this.canvas = canvas;
         this.playerSpeed = this.player.speed;
@@ -202,7 +205,7 @@ class Fight {
         this.totalHealth = 100;
         this.jutsuIndex = 0;
 
-        canvas.onclick = event => this.selectJutsu(event);
+        //canvas.onclick = event => this.selectJutsu(event);
 
         document.onclick = event => this.selectEnemy(event);
 
@@ -255,6 +258,7 @@ class Fight {
     }
 
 
+
     updateDagger() {
 
 
@@ -289,6 +293,12 @@ class Fight {
             if (this.renderPlayerAttacks === true) {
                 this.drawPlayerAttacks(ctx);
             }
+
+            if (this.renderPlayerAttacks === false) {
+                ctx.drawImage(this.speedBtn, speedRect.x, speedRect.y, speedRect.width, speedRect.height); 
+                
+            }
+
             this.drawActionBar(ctx, gameEngine);
 
             this.drawPlayerStatBar(ctx);
@@ -363,6 +373,7 @@ class Fight {
         }
     }
 
+   
     drawPlayerStatBar(ctx) {
         let statHealthWidth = (this.HealthWidth * 187) / 100;
 
@@ -487,7 +498,6 @@ class Fight {
 
         if (this.actionBarPlayerCoordinates.x >= 800 && this.clicked === false) {
             this.hostMessage = "It is your turn now, " + this.player.name + "!";
-            console.log(this.hostMessage)
             this.actionBarPlayerCoordinates.x = 800;
             this.selectJutsuenabled = true;
             this.renderPlayerAttacks = true;
@@ -554,7 +564,8 @@ class Fight {
     }
 
     drawPlayerAttacks(ctx) {
-
+        this.player.speed = this.playerSpeed;
+        ctx.drawImage(this.runBtn, runRect.x, runRect.y);
         for (let i = 0; i < this.player.jutsu.length; i++) {
             if (this.player.jutsu[i].chakraLoss > this.player.chakra ||
                 this.player.jutsu[i].count != 0
@@ -580,11 +591,33 @@ class Fight {
 
         }
         ctx.drawImage(this.chakra_charge, this.chakraChargeCoordinates[0].x, this.chakraChargeCoordinates[0].y, this.chakraChargeCoordinates[0].width, this.chakraChargeCoordinates[0].height);
-        //console.log(this.chakraChargeCoordinates.width)
+
 
     }
 
+    increasePlayerSpeed(event) {
 
+        let clickCoordinates = getMouseCoordinates(this.canvas, event);
+        if (this.renderPlayerAttacks === false) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y, speedRect, speedRect.width, speedRect.height)) {
+                this.player.speed += 0.1;
+            }
+        }
+
+    }
+
+     
+    run(event){
+       
+        let clickCoordinates = getMouseCoordinates(this.canvas, event);
+        if (this.renderPlayerAttacks === true) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y,runRect, runRect.width, runRect.height)) {
+                this.game.gameState = GAME_STATE.GAME_DEFEAT;
+            }
+         
+        } 
+    }
+    
     displayDetails(event) {
 
         if (this.selectJutsuenabled === true) {
@@ -718,7 +751,6 @@ class Fight {
                 this.player.gold += 200;
                 this.player.jutsu = this.originalJutsuArray;
                 this.player.level += 1;
-                console.log(this.player.level)
                 this.game.gameState = GAME_STATE.GAME_VICTORY;
             } else {
 
@@ -791,8 +823,8 @@ class Fight {
 
 
         this.enemyImageIndexArray[i] = jutsuIndexEnemy + 1;
-        this.hostMessage = this.enemyArray[i].name + " used " + this.enemyArray[i].jutsu[jutsuIndexEnemy].name+"!";
-        
+        this.hostMessage = this.enemyArray[i].name + " used " + this.enemyArray[i].jutsu[jutsuIndexEnemy].name + "!";
+
         let dodge = getRandomInt(0, 2);
 
         if (dodge < this.enemyArray[i].jutsu[jutsuIndexEnemy].accuracy) {
@@ -808,7 +840,7 @@ class Fight {
         this.calculatHealthPercentage(this.player);
         this.enemyAttackTimeArray[i] = false;
         setTimeout(function () {
-            this.hostMessage="";
+            this.hostMessage = "";
             this.playerOpacity = 1;
             this.playerImageIndex = 0;
             this.enemyImageIndexArray[i] = 0;

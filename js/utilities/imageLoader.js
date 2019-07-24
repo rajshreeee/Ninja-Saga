@@ -37,6 +37,12 @@ class ImageLoader {
     this.loadImage("waterBurstIcon","./images/waterBurstIcon.png");
       
     this.loadImage("price", "./images/200.png");
+    this.loadImage("speed", "./images/speed.png");
+    this.loadImage("run", "./images/run.png");
+      
+    this.loadImage("ninjaCat_stand", "./images/ninjaCat_stand.png");
+    this.loadImage("ninjaCat_attack", "./images/ninjaCat_attack.png");
+      
     this.numberOfImages = Object.keys(this.images).length;
   }
 

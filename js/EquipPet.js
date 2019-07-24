@@ -65,7 +65,7 @@ class EquipPet {
                 }, 30, 30) && this.game.petArray[i].selected) {
 
                 this.game.petArray[i].selected = false;
-                console.log(this.game.petArray[i].selected)
+                console.log(this.game.petArray[i].selected+'selected')
             }
 
             if (isSelected(clickCoordinates.x, clickCoordinates.y, this.petImageRect[i], 50, 50)) {

@@ -31,6 +31,10 @@ class InputHandler {
                 case GAME_STATE.VILLAGE_STATE:
                     this.game.village.goToDestination(event);
                     break;
+                case GAME_STATE.FIGHT_STATE:
+                    this.game.fight.selectJutsu(event);
+                    this.game.fight.increasePlayerSpeed(event);
+                    this.game.fight.run(event);
                 case GAME_STATE.SELECT_MISSION_STATE:
                     this.game.village.selectMission(event);
                     break;

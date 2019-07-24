@@ -1,19 +1,25 @@
 let polar_walk = document.getElementById('polar_walk');
 let polar_hunt = document.getElementById('polar_hunt');
-let kyuubi_sit = document.getElementById('kyuubiSit');
 
+let ninjaCat_stand = document.getElementById('ninjaCat_stand');
+let ninjaCat_attack = document.getElementById('ninjaCat_attack');
+
+let fox_attack = document.getElementById('fox_attack');
+let fox_jump = document.getElementById('fox_jump');
 let petData = [
     {
         name: 'polar',
         imageArray: [{
             image: polar_walk,
             width: 36,
-            length: 3
+            length: 3,
+            height: 100
         },
          {
             image: polar_hunt,
              width: 44,
-             length: 2
+             length: 2,
+             height:100
          }
                     ],
         power: 10,
@@ -21,7 +27,7 @@ let petData = [
         renderDetail: false,
         selected: false,
         speed: 2,
-        detailImage: polar_walk,
+        detailImage: polar_hunt,
          detailImagePosX: 633,
         detailImagePosY: 76
 
@@ -29,18 +35,50 @@ let petData = [
     },
 
     {
-        name: 'kyuubi',
+        name: 'Kyuubi',
         imageArray: [{
-            image: polar_walk,
-            width: 304.67,
-            length: 2
-        }],
+            image: ninjaCat_stand,
+            width: 92,
+            length: 4,
+            height: 85
+        },{
+            image: ninjaCat_attack,
+            width: 92,
+            length: 4,
+            height: 85
+        }
+                    ],
         power: 10,
         accuracy: .9,
         renderDetail: false,
         selected: false,
         speed:1.2,
-        detailImage: polar_walk,
+        detailImage: ninjaCat_attack,
+         detailImagePosX: 633,
+        detailImagePosY: 76
+
+
+    },
+    {
+        name: 'Nine Tails',
+        imageArray: [{
+            image: fox_attack,
+            width: 305,
+            length: 2,
+            height: 219
+        },{
+            image: fox_jump,
+            width: 305,
+            length: 2,
+            height: 219
+        }
+                    ],
+        power: 10,
+        accuracy: .9,
+        renderDetail: false,
+        selected: false,
+        speed:1.2,
+        detailImage: fox_jump,
          detailImagePosX: 633,
         detailImagePosY: 76
 
