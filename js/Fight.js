@@ -23,6 +23,17 @@ class Fight {
         this.chakra_charge = document.getElementById('chakra-charge');
 
         this.runBtn = this.imageLoader.images.run;
+        this.runHoverDisplay = [false];
+        this.runRect = [{
+                x: 900,
+                y: 0,
+                width: 48,
+                height: 48,
+                scaled_width: 58,
+                scaled_height: 58,
+                original_width: 48,
+                original_height: 48
+        }];
         
         this.attackImageSize = 40;
         this.canvas = canvas;
@@ -296,8 +307,8 @@ class Fight {
             }
 
             if (this.renderPlayerAttacks === false) {
-                ctx.drawImage(this.speedBtn, speedRect.x, speedRect.y, speedRect.width, speedRect.height); 
-                
+                ctx.drawImage(this.speedBtn, speedRect.x, speedRect.y, speedRect.width, speedRect.height);
+
             }
 
             this.drawActionBar(ctx, gameEngine);
@@ -308,7 +319,7 @@ class Fight {
 
             this.drawChakraHover(ctx);
 
-
+            this.drawRunHover(ctx);
             if (this.pet != undefined) {
                 this.pet.draw(ctx, this.petImageIndex, 100);
             }
@@ -374,7 +385,7 @@ class Fight {
         }
     }
 
-   
+
     drawPlayerStatBar(ctx) {
         let statHealthWidth = (this.HealthWidth * 187) / 100;
 
@@ -408,6 +419,10 @@ class Fight {
         );
 
         ctx.fillText(Math.round(this.player.chakra) + "/" + "100", 170, 50);
+
+        ctx.font = "bold 15px Arial";
+        ctx.fillStyle = "#fbcf03";
+        ctx.fillText("Lv " + this.player.level, 100, 25);
     }
 
     drawPlayerHealthBar(ctx) {
@@ -566,7 +581,7 @@ class Fight {
 
     drawPlayerAttacks(ctx) {
         this.player.speed = this.playerSpeed;
-        ctx.drawImage(this.runBtn, runRect.x, runRect.y);
+        ctx.drawImage(this.runBtn, this.runRect[0].x, this.runRect[0].y, this.runRect[0].width, this.runRect[0].height);
         for (let i = 0; i < this.player.jutsu.length; i++) {
             if (this.player.jutsu[i].chakraLoss > this.player.chakra ||
                 this.player.jutsu[i].count != 0
@@ -607,18 +622,18 @@ class Fight {
 
     }
 
-     
-    run(event){
-       
+
+    run(event) {
+
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
         if (this.renderPlayerAttacks === true) {
-            if (isSelected(clickCoordinates.x, clickCoordinates.y,runRect, runRect.width, runRect.height)) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y, this.runRect[0], this.runRect[0].width, this.runRect[0].height)) {
                 this.game.gameState = GAME_STATE.GAME_DEFEAT;
             }
-         
-        } 
+
+        }
     }
-    
+
     displayDetails(event) {
 
         if (this.selectJutsuenabled === true) {
@@ -717,7 +732,7 @@ class Fight {
             this.enemyArray[this.selectedEnemy].health -= damage;
         } else {
             this.enemyDodged[this.selectedEnemy] = true;
-            console.log('dodged'+ this.selectedEnemy)
+            console.log('dodged' + this.selectedEnemy)
 
             setTimeout(function () {
                 this.enemyDodged[this.selectedEnemy] = false;
@@ -745,11 +760,11 @@ class Fight {
                     this.actionBarEnemyCoordinates.splice(k, 1);
                     this.enemyCoordinates.splice(k, 1);
                     this.enemyDaggerPosition.splice(k, 1);
-                    if(this.selectedEnemy === 0){
-                        this.selectedEnemy =1
+                    if (this.selectedEnemy === 0) {
+                        this.selectedEnemy = 1
                     }
-                    if(this.selectedEnemy === 1){
-                        this.selectedEnemy =0;
+                    if (this.selectedEnemy === 1) {
+                        this.selectedEnemy = 0;
                     }
 
                 }
@@ -887,6 +902,10 @@ class Fight {
     displayChargeHover(event) {
         displayInfo(this.canvas, event, this.chakraChargeCoordinates, this.chakraHoverDisplay);
     }
+    
+    displayRunHover(event) {
+        displayInfo(this.canvas, event, this.runRect, this.runHoverDisplay);
+    }
 
 
     drawChakraHover(ctx) {
@@ -900,6 +919,18 @@ class Fight {
         }
     }
 
+    drawRunHover(ctx) {
+        console.log('i am called')
+        console.log(this.runHoverDisplay[0])
+        if (this.runHoverDisplay[0] === true) {
+            console.log('i work')
+            this.runRect[0].width = this.runRect[0].scaled_width;
+            this.runRect[0].height = this.runRect[0].scaled_height;
+        } else {
+            this.runRect[0].height = this.runRect[0].original_height;
+            this.runRect[0].width = this.runRect[0].original_width;
+        }
+    }
 
 
 }
