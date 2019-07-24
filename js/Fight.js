@@ -182,7 +182,7 @@ class Fight {
 
             {
                 x: 680,
-                y: 55
+                y: 140
             }, {
                 x: 820,
                 y: 100
@@ -247,6 +247,7 @@ class Fight {
             );
 
         } else {
+            console.log(this.selectedEnemy)
             ctx.drawImage(
                 this.dagger,
                 this.enemyDaggerPosition[this.selectedEnemy].x,
@@ -716,6 +717,7 @@ class Fight {
             this.enemyArray[this.selectedEnemy].health -= damage;
         } else {
             this.enemyDodged[this.selectedEnemy] = true;
+            console.log('dodged'+ this.selectedEnemy)
 
             setTimeout(function () {
                 this.enemyDodged[this.selectedEnemy] = false;
@@ -743,6 +745,12 @@ class Fight {
                     this.actionBarEnemyCoordinates.splice(k, 1);
                     this.enemyCoordinates.splice(k, 1);
                     this.enemyDaggerPosition.splice(k, 1);
+                    if(this.selectedEnemy === 0){
+                        this.selectedEnemy =1
+                    }
+                    if(this.selectedEnemy === 1){
+                        this.selectedEnemy =0;
+                    }
 
                 }
             }
