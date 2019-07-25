@@ -1,6 +1,6 @@
 class Game {
     constructor(canvas, ImageLoader, audioLoader) {
-        this.gameState = GAME_STATE.MENU_STATE;
+        this.gameState = GAME_STATE.INTRO_STATE;
 
         this.audioLoader = audioLoader;
         this.imageLoader = ImageLoader;
@@ -46,6 +46,13 @@ class Game {
 
         switch (this.gameState) {
 
+            case GAME_STATE.INTRO_STATE:
+                this.transition.drawIntro(ctx);
+                setTimeout(()=>{
+                    this.gameState = GAME_STATE.MENU_STATE;
+                }, 3000);
+                break;
+            
             case GAME_STATE.MENU_STATE:
                 this.menu.draw(ctx);
                 break;

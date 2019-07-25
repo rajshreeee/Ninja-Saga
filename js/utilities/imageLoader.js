@@ -78,6 +78,9 @@ class ImageLoader {
         this.loadImage("crossIcon", "./images/cross.png");
         this.loadImage("gameBackground", "./images/game_background.png");
         
+        this.loadImage("kurenai", "./images/weapon.png");
+        this.loadImage("ninjaSagaIcon", "./images/ninjaSagaIcon.png");
+        this.loadImage("kurenaiM", "./images/kurenaiIcon.png");
         
      
         this.numberOfImages = Object.keys(this.images).length;

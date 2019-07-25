@@ -7,7 +7,7 @@
           this.victoryImage = this.imageLoader.images.victory;
           this.defeatImage = this.imageLoader.images.defeat;
 
-
+          this.opacity = 1;
           this.checkMarkCoordinates = {
               x: 626,
               y: 426,
@@ -41,7 +41,6 @@
           ctx.lineWidth = 1;
           ctx.fillText(this.game.player.level, 580, 330);
           ctx.strokeText(this.game.player.level, 580, 330);
-
       }
 
       goToVillage(event) {
@@ -79,6 +78,13 @@
               this.game.gameState = GAME_STATE.VILLAGE_STATE;
           }
 
+      }
+
+      drawIntro(ctx) {
+          ctx.drawImage(this.imageLoader.images.ninjaSagaIcon, 360, 100, 290, 213);
+          ctx.drawImage(this.imageLoader.images.kurenai, 400, 300, 200, 200);
+          ctx.drawImage(this.imageLoader.images.kurenaiM, 400, 300, 200, 200);
+          
       }
 
   }
