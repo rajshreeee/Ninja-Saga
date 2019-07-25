@@ -41,11 +41,45 @@ class ImageLoader {
 
         this.loadImage("ninjaCat_stand", "./images/ninjaCat_stand.png");
         this.loadImage("ninjaCat_attack", "./images/ninjaCat_attack.png");
-        
+
         this.loadImage("kyuubi_walk", "./images/polar_walk2.png")
-        this.loadImage("kyuubi_attack", "./images/polar_hunt2.png")
-        /*  for 
-          thislloag*/
+        this.loadImage("kyuubi_attack", "./images/polar_hunt2.png");
+
+        this.loadImage("arena", "./images/arena.png");
+        this.loadImage("academy", "./images/academy.png");
+        this.loadImage("equipmentBtn", "./images/jutsu.png");
+        this.loadImage("petShop", "./images/pet_shop.png");
+        this.loadImage("petsIcon", "./images/pets-icon.png");
+
+
+        this.loadImage("gradeAMission", "./images/gradeAMission.png");
+        this.loadImage("gradeBMission", "./images/gradeBMission.png");
+        this.loadImage("gradeCMission", "./images/gradeCMission.png");
+
+        this.loadImage("bg_fight", "./images/fight_bg.png");
+        this.loadImage("healthBarOuter", "./images/healthBarOuter.png");
+        this.loadImage("healthBarInner", "./images/healthBarInner.png");
+
+
+        this.loadImage("actionBar", "./images/action-bar.png");
+        this.loadImage("dagger", "./images/dagger.png");
+        this.loadImage("title_bar", "./images/title-bar.png");
+
+        this.loadImage("naruto_stat", "./images/naruto-stat.png");
+        this.loadImage("sakura_stat", "./images/sakura-stat.png");
+        this.loadImage("sasuke_stat", "./images/sasuke-stat.png");
+        this.loadImage("chakra_stat", "./images/chakraStat.png");
+        this.loadImage("chakra_charge", "./images/charge-chakra.png");
+
+        this.loadImage("sasuke_name", "./images/sasuke-name.png");
+        this.loadImage("sakura_name", "./images/sakura-name.png");
+        this.loadImage("naruto_name", "./images/naruto-name.png");
+
+        this.loadImage("crossIcon", "./images/cross.png");
+        this.loadImage("gameBackground", "./images/game_background.png");
+        
+        
+     
         this.numberOfImages = Object.keys(this.images).length;
     }
 

@@ -5,17 +5,9 @@ class Village {
         this.imageLoader = ImageLoader;
 
 
-        this.arenaImage = document.getElementById('arena');
-        this.academyImage = document.getElementById('academy');
-        this.equipmentImage = document.getElementById('equipment-btn');
-        this.petShopImage = document.getElementById('pet-shop');
-        this.petsIcon = document.getElementById('pets-icon');
-        this.shopImage = document.getElementById('shop');
+       
 
-        this.gradeAMissionImage = document.getElementById('grade-a-mission');
-        this.gradeBMissionImage = document.getElementById('grade-b-mission');
-        this.gradeCMissionImage = document.getElementById('grade-c-mission');
-      
+   
         this.game = game;
 
         this.arenaCoordinates = {
@@ -93,15 +85,15 @@ class Village {
         ctx.drawImage(this.imageLoader.images.village_bg, 0, 0);
 
 
-        ctx.drawImage(this.arenaImage, this.arenaCoordinates.x, this.arenaCoordinates.y, this.arenaCoordinates.width, this.arenaCoordinates.height);
+        ctx.drawImage(this.imageLoader.images.arena, this.arenaCoordinates.x, this.arenaCoordinates.y, this.arenaCoordinates.width, this.arenaCoordinates.height);
 
-        ctx.drawImage(this.academyImage, this.academyCoordinates.x, this.academyCoordinates.y, this.academyCoordinates.width, this.academyCoordinates.height);
+        ctx.drawImage(this.imageLoader.images.academy, this.academyCoordinates.x, this.academyCoordinates.y, this.academyCoordinates.width, this.academyCoordinates.height);
 
-        ctx.drawImage(this.equipmentImage, this.equipmentCoordinates.x, this.equipmentCoordinates.y, this.equipmentCoordinates.width, this.equipmentCoordinates.height);
+        ctx.drawImage(this.imageLoader.images.equipmentBtn, this.equipmentCoordinates.x, this.equipmentCoordinates.y, this.equipmentCoordinates.width, this.equipmentCoordinates.height);
 
-        ctx.drawImage(this.petShopImage, this.petShopCoordinates.x, this.petShopCoordinates.y, this.petShopCoordinates.width, this.petShopCoordinates.height);
+        ctx.drawImage(this.imageLoader.images.petShop, this.petShopCoordinates.x, this.petShopCoordinates.y, this.petShopCoordinates.width, this.petShopCoordinates.height);
 
-        ctx.drawImage(this.petsIcon, this.petsIconCoordinates.x, this.petsIconCoordinates.y, this.petsIconCoordinates.width, this.petsIconCoordinates.height);
+        ctx.drawImage(this.imageLoader.images.petsIcon, this.petsIconCoordinates.x, this.petsIconCoordinates.y, this.petsIconCoordinates.width, this.petsIconCoordinates.height);
 
 
 
@@ -142,13 +134,13 @@ class Village {
         ctx.drawImage(this.imageLoader.images.select_mission_title, 120, 30);
 
         if (this.game.player.level >= 2) {
-            this.gradeA = this.gradeAMissionImage;
+            this.gradeA = this.imageLoader.images.gradeAMission;
         } else {
             this.gradeA =this.imageLoader.images.lockedMission;
         }
 
         if (this.game.player.level >= 1) {
-            this.gradeB = this.gradeBMissionImage;
+            this.gradeB = this.imageLoader.images.gradeBMission;
         } else {
             this.gradeB = this.imageLoader.images.lockedMission;
         }
@@ -156,7 +148,7 @@ class Village {
 
         ctx.drawImage(this.gradeA, missionCoordinates[0].x, missionCoordinates[0].y);
         ctx.drawImage(this.gradeB, missionCoordinates[1].x, missionCoordinates[1].y);
-        ctx.drawImage(this.gradeCMissionImage, missionCoordinates[2].x, missionCoordinates[2].y);
+        ctx.drawImage(this.imageLoader.images.gradeCMission, missionCoordinates[2].x, missionCoordinates[2].y);
         this.drawMissionInfo(ctx);
 
     }

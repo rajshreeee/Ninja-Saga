@@ -8,17 +8,8 @@ class Fight {
         this.audioLoader = audioLoader;
         this.imageLoader = imageLoader;
 
-        this.backgroundImage = document.getElementById("bg_fight");
-        this.healthBarOuter = document.getElementById("healthBarOuter");
-        this.healthBarInner = document.getElementById("healthBarInner");
-        this.actionBar = document.getElementById("actionBar");
-        this.dagger = document.getElementById('dagger');
-        this.title_bar = document.getElementById('title-bar');
-        this.naruto_stat = document.getElementById('naruto-stat');
-        this.sakura_stat = document.getElementById('sakura-stat');
-        this.sasuke_stat = document.getElementById('sasuke-stat');
-        this.chakra_stat = document.getElementById('chakra-stat');
-        this.chakra_charge = document.getElementById('chakra-charge');
+     
+       
 
         this.runHoverDisplay = [false];
         this.runRect = [{
@@ -101,9 +92,9 @@ class Fight {
         this.chakraHoverDisplay = [false];
 
         this.statBarArray = [
-            this.sasuke_stat,
-            this.naruto_stat,
-            this.sakura_stat
+            this.imageLoader.images.sasuke_stat,
+            this.imageLoader.images.naruto_stat,
+            this.imageLoader.images.sakura_stat
         ]
 
         this.jutsuOpacity = [];
@@ -215,14 +206,14 @@ class Fight {
     drawDagger(ctx) {
         if (this.enemyOne === true) {
             ctx.drawImage(
-                this.dagger,
+                this.imageLoader.images.dagger,
                 this.enemyOneDaggerPosition[0].x,
                 this.enemyOneDaggerPosition[0].y
             );
 
         } else {
             ctx.drawImage(
-                this.dagger,
+                this.imageLoader.images.dagger,
                 this.enemyDaggerPosition[this.selectedEnemy].x,
                 this.enemyDaggerPosition[this.selectedEnemy].y
             );
@@ -314,7 +305,7 @@ class Fight {
         }
 
         if (this.playerTitleBar === true) {
-            ctx.drawImage(this.title_bar, 0, 20, 1000, 64);
+            ctx.drawImage(this.imageLoader.images.title_bar, 0, 20, 1000, 64);
             ctx.font = " 30px Arial";
             ctx.fillStyle = "#000";
 
@@ -360,7 +351,7 @@ class Fight {
 
         ctx.drawImage(this.statBarArray[this.game.ninjaIndex], 0, 0, 300, 70);
         ctx.drawImage(
-            this.healthBarInner,
+            this.imageLoader.images.healthBarInner,
             100,
             26,
             statHealthWidth,
@@ -372,7 +363,7 @@ class Fight {
         ctx.fillText(Math.round(this.player.health) + "/" + "100", 170, 36);
 
         ctx.drawImage(
-            this.chakra_stat,
+            this.imageLoader.images.chakra_stat,
             100,
             40,
             chakraStat,
@@ -397,7 +388,7 @@ class Fight {
         ctx.fillText("You" + " " + "(" + this.player.name + ")", healthBarCoordinates.x + 10, healthBarCoordinates.y);
 
         ctx.drawImage(
-            this.healthBarOuter,
+            this.imageLoader.images.healthBarOuter,
             healthBarCoordinates.x,
             healthBarCoordinates.y,
             100 + 6,
@@ -405,7 +396,7 @@ class Fight {
         )
 
         ctx.drawImage(
-            this.healthBarInner,
+            this.imageLoader.images.healthBarInner,
             healthBarCoordinates.x + 3,
             healthBarCoordinates.y + 1,
             this.HealthWidth,
@@ -416,7 +407,7 @@ class Fight {
 
 
     drawActionBar(ctx) {
-        ctx.drawImage(this.actionBar, 200, 400);
+        ctx.drawImage(this.imageLoader.images.actionBar, 200, 400);
 
         this.player.drawActionBarNinja(ctx, 0, 50, this.actionBarPlayerCoordinates.x, this.actionBarPlayerCoordinates.y);
 
@@ -502,7 +493,7 @@ class Fight {
                 Healthwidth[i] = 0;
             }
             ctx.drawImage(
-                this.healthBarOuter,
+                this.imageLoader.images.healthBarOuter,
                 this.enemyHealthBarCoordinates[i].x,
                 this.enemyHealthBarCoordinates[i].y,
                 100 + 6,
@@ -510,7 +501,7 @@ class Fight {
             );
 
             ctx.drawImage(
-                this.healthBarInner,
+                this.imageLoader.images.healthBarInner,
                 this.enemyHealthBarCoordinates[i].x + 3,
                 this.enemyHealthBarCoordinates[i].y + 1,
                 Healthwidth[i],
@@ -528,7 +519,7 @@ class Fight {
 
     drawFightBackground(ctx) {
         ctx.drawImage(
-            this.backgroundImage,
+            this.imageLoader.images.bg_fight,
             0,
             0,
             1000,
@@ -565,7 +556,7 @@ class Fight {
             }
 
         }
-        ctx.drawImage(this.chakra_charge, this.chakraChargeCoordinates[0].x, this.chakraChargeCoordinates[0].y, this.chakraChargeCoordinates[0].width, this.chakraChargeCoordinates[0].height);
+        ctx.drawImage(this.imageLoader.images.chakra_charge, this.chakraChargeCoordinates[0].x, this.chakraChargeCoordinates[0].y, this.chakraChargeCoordinates[0].width, this.chakraChargeCoordinates[0].height);
 
     }
 

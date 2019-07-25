@@ -3,10 +3,6 @@ class Menu {
         this.game = game;
         this.audioLoader = audioLoader;
         this.imageLoader = ImageLoader;
-       
-        this.cross = document.getElementById("cross");
-        this.gameBackground = document.getElementById('game-background');
-
         this.currentNinja = 0;
 
         this.imageSize = {
@@ -17,7 +13,7 @@ class Menu {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.gameBackground, 0, 0, 1000, 700);
+        ctx.drawImage(this.imageLoader.images.gameBackground, 0, 0, 1000, 700);
 
         this.drawNinja(ctx);
     }
@@ -107,7 +103,7 @@ class Menu {
         }
 
         ctx.drawImage(
-            this.cross,
+            this.imageLoader.images.crossIcon,
             crossX,
             crossY,
             150, 150
@@ -123,15 +119,15 @@ class Menu {
         switch (this.currentNinja) {
             case 0:
                 narutoX = 100;
-                this.naruto_name = document.getElementById("sasuke-name");
+                this.naruto_name = this.imageLoader.images.sasuke_name;
                 break;
             case 1:
                 narutoX = 370;
-                this.naruto_name = document.getElementById("naruto-name");
+                this.naruto_name = this.imageLoader.images.naruto_name;
                 break;
             case 2:
                 narutoX = 620;
-                this.naruto_name = document.getElementById("sakura-name");
+                this.naruto_name = this.imageLoader.images.sakura_name;
                 break;
             default:
                 //pass
