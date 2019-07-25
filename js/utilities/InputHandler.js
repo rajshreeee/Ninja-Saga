@@ -60,6 +60,11 @@ class InputHandler {
                     this.game.equipPet.equipPlayerPet(event);
                     this.game.cross.leave(event);
                     break;
+                case GAME_STATE.HEALTH_CENTER:
+                    this.game.healthCenter.renderDetail(event);
+                    this.game.healthCenter.buyScrolls(event);
+                    this.game.cross.leave(event);
+                    break;
                 case GAME_STATE.SHOP_STATE:
                     this.game.shop.renderItemDetail(event);
                     break;

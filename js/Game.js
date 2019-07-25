@@ -1,6 +1,6 @@
 class Game {
     constructor(canvas, ImageLoader, audioLoader) {
-        this.gameState = GAME_STATE.INTRO_STATE;
+        this.gameState = GAME_STATE.MENU_STATE;
 
         this.audioLoader = audioLoader;
         this.imageLoader = ImageLoader;
@@ -30,6 +30,8 @@ class Game {
 
         this.equipPet = new EquipPet(this, this.canvas, this.imageLoader, this.bottomBar, this.cross);
 
+        this.healthCenter = new HealthCenter(this, this.canvas, this.imageLoader, this.audioLoader, this.imageLoader.images.petShopInside, this.imageLoader.images.buyBtn, petImageRect, healthCenterData, this.bottomBar, 50, this.cross);
+        
         this.menu = new Menu(this, this.audioLoader, this.imageLoader);
         this.transition = new Transition(this, this.canvas, this.audioLoader, this.imageLoader);
         this.selectedPet = undefined;
@@ -45,14 +47,6 @@ class Game {
     draw(ctx, gameEngine, gameLoop) {
 
         switch (this.gameState) {
-
-            case GAME_STATE.INTRO_STATE:
-                this.transition.drawIntro(ctx);
-                setTimeout(()=>{
-                    this.gameState = GAME_STATE.MENU_STATE;
-                }, 3000);
-                break;
-            
             case GAME_STATE.MENU_STATE:
                 this.menu.draw(ctx);
                 break;
@@ -93,6 +87,12 @@ class Game {
             case GAME_STATE.EQUIP_PET_STATE:
                 this.audioLoader.stop("intro");
                 this.equipPet.draw(ctx);
+                break;
+            
+            case GAME_STATE.HEALTH_CENTER:
+                this.audioLoader.stop("intro");
+                this.healthCenter.draw(ctx);
+                this.healthCenter.drawScolls(ctx);
                 break;
 
             case GAME_STATE.GAME_VICTORY:

@@ -4,10 +4,6 @@ class Village {
         this.audioLoader = audioLoader;
         this.imageLoader = ImageLoader;
 
-
-       
-
-   
         this.game = game;
 
         this.arenaCoordinates = {
@@ -70,13 +66,25 @@ class Village {
             original_height: 45
         };
 
+        this.healthCenterCoordinates = {
+            x: 400,
+            y: 420,
+            width: 146,
+            height: 128,
+            message: "Buy Scrolls",
+            scaled_width: 156,
+            scaled_height: 138,
+            original_width: 146,
+            original_height: 128
+        }
+
         this.villageItemCoordinates = [
-            this.arenaCoordinates, this.academyCoordinates, this.equipmentCoordinates, this.petShopCoordinates, this.petsIconCoordinates
+            this.arenaCoordinates, this.academyCoordinates, this.equipmentCoordinates, this.petShopCoordinates, this.petsIconCoordinates, this.healthCenterCoordinates
         ];
 
         this.canvas = canvas;
 
-        this.displayHoverInfo = [false, false, false, false, false];
+        this.displayHoverInfo = [false, false, false, false, false, false];
         this.displaySelectMissionInfo = [false, false, false];
     }
 
@@ -94,6 +102,8 @@ class Village {
         ctx.drawImage(this.imageLoader.images.petShop, this.petShopCoordinates.x, this.petShopCoordinates.y, this.petShopCoordinates.width, this.petShopCoordinates.height);
 
         ctx.drawImage(this.imageLoader.images.petsIcon, this.petsIconCoordinates.x, this.petsIconCoordinates.y, this.petsIconCoordinates.width, this.petsIconCoordinates.height);
+
+        ctx.drawImage(this.imageLoader.images.healthCenter, this.healthCenterCoordinates.x, this.healthCenterCoordinates.y, this.healthCenterCoordinates.width, this.healthCenterCoordinates.height);
 
 
 
@@ -127,16 +137,20 @@ class Village {
             this.game.gameState = GAME_STATE.EQUIP_PET_STATE;
         }
 
+        if (isSelected(clickCoordinates.x, clickCoordinates.y, this.healthCenterCoordinates, 146, 128)) {
+            this.game.gameState = GAME_STATE.HEALTH_CENTER;
+        }
+
     }
 
     drawSelectMission(ctx) {
-        ctx.drawImage( this.imageLoader.images.select_mission_bg, 0, 0);
+        ctx.drawImage(this.imageLoader.images.select_mission_bg, 0, 0);
         ctx.drawImage(this.imageLoader.images.select_mission_title, 120, 30);
 
         if (this.game.player.level >= 2) {
             this.gradeA = this.imageLoader.images.gradeAMission;
         } else {
-            this.gradeA =this.imageLoader.images.lockedMission;
+            this.gradeA = this.imageLoader.images.lockedMission;
         }
 
         if (this.game.player.level >= 1) {
