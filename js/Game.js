@@ -21,12 +21,12 @@ class Game {
 
         this.village = new Village(this, this.canvas, this.audioLoader, this.imageLoader);
 
-        this.academy = new Academy(this, this.canvas, this.imageLoader, this.imageLoader.images.academy_inside, this.imageLoader.images.learn_button, academyJutsuRect, trainingJutsu, this.bottomBar, 0, this.cross);
+        this.academy = new Academy(this, this.canvas, this.imageLoader, this.audioLoader, this.imageLoader.images.academy_inside, this.imageLoader.images.learn_button, academyJutsuRect, trainingJutsu, this.bottomBar, 0, this.cross);
 
 
         this.equipment = new Equipment(this, this.canvas, this.imageLoader, this.cross);
 
-        this.petShop = new PetShop(this, this.canvas, this.imageLoader, this.imageLoader.images.petShopInside,  this.imageLoader.images.buyBtn, petImageRect, petData, this.bottomBar, 50, this.cross);
+        this.petShop = new PetShop(this, this.canvas, this.imageLoader, this.audioLoader, this.imageLoader.images.petShopInside, this.imageLoader.images.buyBtn, petImageRect, petData, this.bottomBar, 50, this.cross);
 
         this.equipPet = new EquipPet(this, this.canvas, this.imageLoader, this.bottomBar, this.cross);
 
@@ -45,51 +45,57 @@ class Game {
     draw(ctx, gameEngine, gameLoop) {
 
         switch (this.gameState) {
+
             case GAME_STATE.MENU_STATE:
                 this.menu.draw(ctx);
                 break;
 
             case GAME_STATE.VILLAGE_STATE:
-
-                this.village.draw(ctx);
                 this.audioLoader.play("intro");
-
+                this.village.draw(ctx);
                 break;
 
             case GAME_STATE.SELECT_MISSION_STATE:
                 this.audioLoader.stop("intro");
-
                 this.village.drawSelectMission(ctx);
                 break;
 
             case GAME_STATE.FIGHT_STATE:
+                this.audioLoader.play("fight");
                 this.fight.draw(ctx, gameEngine, gameLoop);
                 break;
 
             case GAME_STATE.ACADEMY_STATE:
+                this.audioLoader.stop("intro");
                 this.academy.draw(ctx);
                 this.academy.drawAcademyJutsu(ctx);
                 break;
-           
+
             case GAME_STATE.EQUIPMENT_STATE:
+                this.audioLoader.stop("intro");
                 this.equipment.draw(ctx);
                 this.equipment.drawJutsu(ctx);
                 break;
-           
+
             case GAME_STATE.PET_SHOP_STATE:
+                this.audioLoader.stop("intro");
                 this.petShop.draw(ctx);
                 this.petShop.drawPets(ctx);
                 break;
-            
+
             case GAME_STATE.EQUIP_PET_STATE:
+                this.audioLoader.stop("intro");
                 this.equipPet.draw(ctx);
                 break;
-           
+
             case GAME_STATE.GAME_VICTORY:
+                this.audioLoader.stop("fight");
                 this.transition.drawVictory(ctx);
                 break;
-            
+
             case GAME_STATE.GAME_DEFEAT:
+                this.audioLoader.stop("fight");
+
                 this.transition.drawDefeat(ctx);
                 break;
             default:

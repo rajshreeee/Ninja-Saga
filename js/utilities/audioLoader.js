@@ -8,7 +8,12 @@ class AudioLoader {
 
     init() {
         this.loadAudio("intro", "./audios/intro.mp3");
-    this.loadAudio("beep", "audios/beep.mp3");
+        this.loadAudio("punch", "./audios/punch.mp3");
+        this.loadAudio("charge", "./audios/charge.mp3");
+        this.loadAudio("victory", "./audios/victory.mp3");
+        this.loadAudio("defeat", "./audios/defeat.mp3");
+        this.loadAudio("cash", "./audios/cash.mp3");
+        this.loadAudio("fight", "./audios/fight.mp3");
 
         this.numberOfAudios = Object.keys(this.audios).length;
     }

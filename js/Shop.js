@@ -1,7 +1,9 @@
 class Shop {
-    constructor(game, canvas, ImageLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross) {
+    constructor(game, canvas, ImageLoader, audioloader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross) {
+        
         this.game = game;
         this.canvas = canvas;
+        this.audioLoader = audioloader;
         this.bottomBar = bottomBar;
         this.bgImage = bgImage;
         this.confirmButton = confirmButton;

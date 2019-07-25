@@ -1,6 +1,6 @@
 class Academy extends Shop {
-    constructor(game, canvas, ImageLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross) {
-        super(game, canvas, ImageLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross);
+    constructor(game, canvas, ImageLoader, audioLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross) {
+        super(game, canvas, ImageLoader, audioLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross);
 
         this.message = "Buy jutsus that can help you in missions!";
 
@@ -25,6 +25,7 @@ class Academy extends Shop {
             }, 124, 42)) {
             if (this.selectedItem != undefined && this.game.player.gold >= 200 && this.itemArray.length != 0) {
                 this.addLearnedJutsu(this.selectedItem);
+                this.audioLoader.play('cash');
                 this.message = "You bought " + this.itemArray[this.selectedItem].name;
                 this.itemArray.splice(this.selectedItem, 1);
 

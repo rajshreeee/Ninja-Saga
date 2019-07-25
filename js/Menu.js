@@ -58,7 +58,7 @@ class Menu {
         if (this.currentNinja !== 0) {
             this.currentNinja--;
         }
-        this.audioLoader.play("beep");
+        this.audioLoader.play("punch");
 
     }
 
@@ -66,7 +66,7 @@ class Menu {
         if (this.currentNinja !== 2) {
             this.currentNinja++;
         }
-        this.audioLoader.play("beep");
+        this.audioLoader.play("punch");
 
     }
 
@@ -76,7 +76,7 @@ class Menu {
         this.game.setCharacters();
         console.log(this.game.ninjaIndex + 'menu')
         this.game.gameState = GAME_STATE.VILLAGE_STATE;
-        this.audioLoader.play("beep");
+        this.audioLoader.play("punch");
         console.log(this.currentNinja)
 
     }

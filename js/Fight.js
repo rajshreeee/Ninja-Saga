@@ -32,16 +32,16 @@ class Fight {
             original_height: 52
         }];
         this.attackImageSize = 40;
-        
+
         this.canvas = canvas;
-        
+
         this.playerSpeed = this.player.speed;
-        
+
         if (this.pet != undefined) {
             this.petSpeed = this.pet.speed;
 
         }
-        
+
         this.selectedEnemy = 0;
 
         this.enemySpeedArray = [];
@@ -52,7 +52,7 @@ class Fight {
         this.enemyDodged = [];
 
         this.cancelFrame = false;
-      
+
         for (let i = 0; i < this.enemyArray.length; i++) {
             this.enemySpeedArray.push(this.enemyArray[i].speed);
             this.enemyAttackTimeArray.push(true);
@@ -538,9 +538,9 @@ class Fight {
 
     drawPlayerAttacks(ctx) {
         this.player.speed = this.playerSpeed;
-       
+
         ctx.drawImage(this.imageLoader.images.run, this.runRect[0].x, this.runRect[0].y, this.runRect[0].width, this.runRect[0].height);
-        
+
         for (let i = 0; i < this.player.jutsu.length; i++) {
             if (this.player.jutsu[i].chakraLoss > this.player.chakra ||
                 this.player.jutsu[i].count != 0
@@ -595,6 +595,7 @@ class Fight {
     }
 
     setDefeat() {
+        this.audioLoader.play('defeat');
         this.player.health = 100;
         this.player.jutsu = this.originalJutsuArray;
         for (let i = 0; i < this.player.jutsu.length; i++) {
@@ -603,7 +604,7 @@ class Fight {
 
         this.game.gameState = GAME_STATE.GAME_DEFEAT;
     }
-    
+
     displayDetails(event) {
 
         if (this.selectJutsuenabled === true && this.clicked === false) {
@@ -643,11 +644,12 @@ class Fight {
                         this.playerImageIndex = this.jutsuIndex + 1;
                         this.playerAttack();
                     }
-                    
+
                 } else if (isSelected(clickCoordinates.x, clickCoordinates.y, {
                         x: 800,
                         y: 0
                     }, 63, 54) && this.clicked === false) {
+                    this.audioLoader.play('charge');
                     this.clicked = true;
                     this.renderPlayerAttacks = false;
 
@@ -694,13 +696,14 @@ class Fight {
 
 
     playerAttack() {
+        this.audioLoader.play('punch');
         this.playerTitleBar = true;
 
         this.enemyOpacityArray[this.selectedEnemy] = 0.4;
 
         let dodge = getRandomArbitrary(0, 1);
         console.log(dodge)
-        console.log( this.player.jutsu[this.jutsuIndex].accuracy)
+        console.log(this.player.jutsu[this.jutsuIndex].accuracy)
         if (dodge < this.player.jutsu[this.jutsuIndex].accuracy) {
             let damage = computeDamage(this.player, this.enemyArray[this.selectedEnemy], this.jutsuIndex);
             this.enemyArray[this.selectedEnemy].health -= damage;
@@ -765,6 +768,7 @@ class Fight {
     }
 
     setVictory() {
+        this.audioLoader.play('victory');
         this.player.gold += 200;
         this.player.jutsu = this.originalJutsuArray;
         this.player.level += 1;
@@ -779,6 +783,8 @@ class Fight {
     }
 
     petAttack() {
+        this.audioLoader.play('punch');
+
         this.enemyOpacityArray[0] = 0.4;
         this.petImageIndex = 1;
         let damage = (this.pet.power / this.enemyArray[0].defense) * this.pet.accuracy;
@@ -822,6 +828,8 @@ class Fight {
 
     }
     enemyAttack(i) {
+        this.audioLoader.play('punch');
+
         this.playerOpacity = 0.4;
         this.playerImageIndex = this.player.imageArray.length - 1;
 
@@ -851,7 +859,7 @@ class Fight {
             this.playerImageIndex = 0;
             this.enemyImageIndexArray[i] = 0;
             if (this.player.health <= 0) {
-            
+
                 this.resetComponents();
 
                 this.setDefeat();

@@ -1,6 +1,6 @@
 class PetShop extends Shop {
-    constructor(game, canvas, ImageLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross) {
-        super(game, canvas, ImageLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross);
+    constructor(game, canvas, ImageLoader, audioLoader,bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross) {
+        super(game, canvas, ImageLoader, audioLoader, bgImage, confirmButton, itemRect, itemDataArray, bottomBar, offSetY, cross);
         this.message = "Buy a new pet to help you in missions!";
     }
 
@@ -23,7 +23,7 @@ class PetShop extends Shop {
             }, 132, 45)) {
 
             if (this.selectedItem != undefined && this.game.player.gold >= 200 && this.itemArray.length != 0) {
-
+                this.audioLoader.play('cash');
                 this.message = "You bought " + this.itemArray[this.selectedItem].name;
                 this.game.petArray.push(this.itemArray[this.selectedItem]);
 
