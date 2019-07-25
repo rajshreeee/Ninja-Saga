@@ -13,10 +13,6 @@ let foxIcon = document.getElementById('foxIcon');
 
 let imageLoaded = new ImageLoader();
 
-/*load_images = [{
-    identifier: "ninjaCat_attack",
-    source: "../img"
-},{},{}]*/
 
 let petData = [
     {
@@ -36,13 +32,13 @@ let petData = [
          }
                     ],
         power: 10,
-        accuracy: .9,
+        accuracy: .99,
         renderDetail: false,
         selected: false,
         speed: 2,
         detailImage: polar_hunt,
-        detailImagePosX: 633,
-        detailImagePosY: 76
+        detailImagePosX: 680,
+        detailImagePosY: 106
 
 
     },
@@ -62,16 +58,14 @@ let petData = [
                 height: 100
         }
                     ],
-        power: 10,
-        accuracy: .9,
+        power: 15,
+        accuracy: .85,
         renderDetail: false,
         selected: false,
         speed: 1.2,
         detailImage: imageLoaded.images.kyuubi_attack,
-        detailImagePosX: 633,
-        detailImagePosY: 76
-
-
+        detailImagePosX: 680,
+        detailImagePosY: 106
 
     },
     {
@@ -89,19 +83,15 @@ let petData = [
                 height: 100
         }
                     ],
-        power: 10,
-        accuracy: .9,
+        power: 20,
+        accuracy: .8,
         renderDetail: false,
         selected: false,
         speed: 1.2,
         detailImage: fox_attack,
-        detailImagePosX: 633,
-        detailImagePosY: 76
+        detailImagePosX: 680,
+        detailImagePosY: 106
 
 
     }
 ]
-
-/*fillpetdata(imageloader){
-    
-}*/

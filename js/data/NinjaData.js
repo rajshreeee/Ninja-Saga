@@ -40,8 +40,12 @@ let kinjutsuIcon = document.getElementById('kinjutsuIcon');
 let earthFist = document.getElementById('earthFist');
 let earthFistIcon = document.getElementById('earthFistIcon');
 
-//let imageLoaders = new ImageLoader();
-
+let jutusuImage1 = document.getElementById('jutsuImage1');
+let jutusuImage2 = document.getElementById('jutsuImage2');
+let jutusuImage3 = document.getElementById('jutsuImage3');
+let jutusuImage4 = document.getElementById('jutsuImage4');
+let jutusuImage5 = document.getElementById('jutsuImage5');
+let jutusuImage6 = document.getElementById('jutsuImage6');
 
 let NinjaData = [
     {
@@ -110,7 +114,7 @@ let NinjaData = [
                 power: 40,
                 chakraLoss: 10,
                 accuracy: .8,
-                image: genjutsu,
+                image: jutusuImage1,
                 count: 0
         },
             {
@@ -118,7 +122,7 @@ let NinjaData = [
                 power: 40,
                 chakraLoss: 10,
                 accuracy: .85,
-                image: genjutsu,
+                image: jutusuImage2,
                 count: 0
         },
             {
@@ -126,7 +130,7 @@ let NinjaData = [
                 power: 30,
                 chakraLoss: 10,
                 accuracy: .6,
-                image: genjutsu,
+                image: jutusuImage3,
                 count: 0
 
         },
@@ -135,7 +139,7 @@ let NinjaData = [
                 power: 40,
                 chakraLoss: 10,
                 accuracy: .7,
-                image: genjutsu,
+                image: jutusuImage4,
                 count: 0
 
         }
@@ -216,7 +220,7 @@ let NinjaData = [
                 power: 35,
                 chakraLoss: 10,
                 accuracy: .87,
-                image: shadowClone,
+                image: jutusuImage5,
                 count: 0
 
         },
@@ -225,7 +229,7 @@ let NinjaData = [
                 power: 35,
                 chakraLoss: 10,
                 accuracy: .99,
-                image: shadowClone,
+                image: jutusuImage6,
                 count: 0
 
         }, {
@@ -233,7 +237,7 @@ let NinjaData = [
                 power: 45,
                 chakraLoss: 10,
                 accuracy: .88,
-                image: shadowClone,
+                image: genjutsu,
                 count: 0
 
         }
@@ -242,7 +246,7 @@ let NinjaData = [
                 power: 40,
                 chakraLoss: 10,
                 accuracy: .90,
-                image: shadowClone,
+                image: superChakra,
                 count: 0
 
         }
@@ -307,7 +311,7 @@ let NinjaData = [
                 power: 30,
                 chakraLoss: 25,
                 accuracy: .9,
-                image: superStrength,
+                image: jutusuImage1,
                 count: 0
 
                 },
@@ -324,7 +328,7 @@ let NinjaData = [
                 power: 45,
                 chakraLoss: 10,
                 accuracy: .5,
-                image: superChakra,
+                image: jutusuImage6,
                 count: 0
 
         }, {
@@ -332,7 +336,7 @@ let NinjaData = [
                 power: 45,
                 chakraLoss: 10,
                 accuracy: .89,
-                image: superChakra,
+                image: jutusuImage4,
                 count: 0
 
         }, {
@@ -340,7 +344,7 @@ let NinjaData = [
                 power: 45,
                 chakraLoss: 10,
                 accuracy: .79,
-                image: superChakra,
+                image: jutusuImage2,
                 count: 0
 
         }, {
@@ -348,7 +352,7 @@ let NinjaData = [
                 power: 35,
                 chakraLoss: 10,
                 accuracy: .9,
-                image: superChakra,
+                image: jutusuImage3,
                 count: 0
 
         }

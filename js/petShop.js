@@ -44,12 +44,12 @@ class PetShop extends Shop {
             if (this.itemArray[i].renderDetailImage === true) {
                 ctx.font = "20px Arial";
                 ctx.fillStyle = "#fff";
-                ctx.fillText("Name: " + this.itemArray[i].name, this.itemArray[i].detailImagePosX + 50, this.itemArray[i].detailImagePosY + 100);
-                ctx.fillText("Power: " + this.itemArray[i].power, this.itemArray[i].detailImagePosX + 50, this.itemArray[i].detailImagePosY + 130);
+                ctx.fillText("Name: " + this.itemArray[i].name, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 75);
+                ctx.fillText("Power: " + this.itemArray[i].power, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 110);
 
-                ctx.fillText("Accuracy: " + this.itemArray[i].accuracy, this.itemArray[i].detailImagePosX + 50, this.itemArray[i].detailImagePosY + 160);
+                ctx.fillText("Accuracy: " + this.itemArray[i].accuracy, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 140);
 
-                ctx.fillText("Speed: " + this.itemArray[i].speed, this.itemArray[i].detailImagePosX + 50, this.itemArray[i].detailImagePosY + 190);
+                ctx.fillText("Speed: " + this.itemArray[i].speed, this.itemArray[i].detailImagePosX, this.itemArray[i].detailImagePosY + 170);
             }
         }
     }

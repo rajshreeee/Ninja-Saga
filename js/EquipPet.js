@@ -20,12 +20,16 @@ class EquipPet {
         this.drawEquipBtn(ctx);
         this.drawPetInfo(ctx);
         this.bottomBar.drawBottom(ctx, this.message);
+
+        ctx.font = "20px Arial bold";
+        ctx.fillStyle = "#fff";
+        ctx.fillText("Click on the pets to equip them!", 640,100);
     }
 
     drawPlayersPets(ctx) {
         for (let i = 0; i < this.game.petArray.length; i++) {
             ctx.drawImage(this.game.petArray[i].icon, petImageRect[i].x + 20, petImageRect[i].y + 5, 70, 70);
-            
+
             if (this.game.petArray[i].selected) {
                 ctx.drawImage(this.crossBtn, petImageRect[i].x + 260, petImageRect[i].y + 15, 30, 30)
             }
@@ -47,7 +51,10 @@ class EquipPet {
                 this.message = "";
             }
 
-            if (isSelected(clickCoordinates.x, clickCoordinates.y, {x: petImageRect[i].x+20, y:petImageRect[i].y+5}, 70, 70)) {
+            if (isSelected(clickCoordinates.x, clickCoordinates.y, {
+                    x: petImageRect[i].x + 20,
+                    y: petImageRect[i].y + 5
+                }, 70, 70)) {
 
                 if (this.detectSelected() >= 1) {
                     this.message = "You cannot equip more than 1 pet at a time!"
@@ -56,7 +63,7 @@ class EquipPet {
                     this.game.petArray[i].selected = true;
                     this.game.selectedPet = i;
                     console.log(this.game.petArray[i].selected);
-                    this.message = "You equipped "+ this.game.petArray[i].name; 
+                    this.message = "You equipped " + this.game.petArray[i].name;
                 }
 
             }

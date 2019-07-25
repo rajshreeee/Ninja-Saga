@@ -44,13 +44,13 @@ const academyJutsuRect = [
             },
      {
          x: 166,
-         y: 232,
+         y: 230,
          width: 300,
          height: 80
             },
      {
          x: 166,
-         y: 410,
+         y: 392,
           width: 300,
          height: 80
      }
