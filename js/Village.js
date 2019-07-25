@@ -6,6 +6,11 @@ class Village {
 
         this.game = game;
 
+        this.track = 0;
+        this.frame = 0;
+        this.x = 0;
+        this.dx = 1;
+
         this.arenaCoordinates = {
             x: 420,
             y: 250,
@@ -90,6 +95,8 @@ class Village {
 
     draw(ctx) {
 
+
+
         ctx.drawImage(this.imageLoader.images.village_bg, 0, 0);
 
 
@@ -117,7 +124,7 @@ class Village {
 
 
         if (isSelected(clickCoordinates.x, clickCoordinates.y, this.arenaCoordinates, 250, 150)) {
-            this.game.gameState = GAME_STATE.SELECT_MISSION_STATE;
+            this.game.gameState = GAME_STATE.RUN_STATE;
         }
         if (isSelected(clickCoordinates.x, clickCoordinates.y, this.academyCoordinates, 159, 125)) {
             if (this.game.player.gold >= 200) {
@@ -180,6 +187,7 @@ class Village {
 
         if (isSelected(clickCoordinates.x, clickCoordinates.y, missionCoordinates[1], 313, 71)) {
             if (this.game.player.level >= 1) {
+
                 this.game.createFightObjects(2);
 
             } else {
@@ -243,7 +251,40 @@ class Village {
         }
     }
 
+    drawNinjaRun(ctx) {
 
+        if (this.game.ninjaIndex === 0) {
+            this.image = this.imageLoader.images.sasukeRun;
+        } else if (this.game.ninjaIndex === 1) {
+            this.image = this.imageLoader.images.narutoRun;
+        } else {
+            this.image = this.imageLoader.images.sakuraWalk;
+        }
+        ctx.drawImage(
+            this.imageLoader.images.bg_fight,
+            0,
+            0,
+            1000,
+            700
+        );
+        this.track++;
+        if (this.track % 15 == 0) {
+            this.frame = this.frame % NinjaData[this.game.ninjaIndex].run.length;
+            this.frame += 1;
+        }
+        ctx.drawImage(
+            this.image, this.frame * NinjaData[this.game.ninjaIndex].run.frameWidth, 0,
+            NinjaData[this.game.ninjaIndex].run.imageWidth, 48, this.x, 350, 100, 100
+        );
 
+        ctx.drawImage(this.imageLoader.images.ninjaGate, 0, 100);
+        ctx.drawImage(this.imageLoader.images.ninjaGate2, 800, 100);
 
+        this.x += 2.5;
+
+        if (this.x >= 960) {
+            this.game.gameState = GAME_STATE.SELECT_MISSION_STATE;
+        }
+
+    }
 }

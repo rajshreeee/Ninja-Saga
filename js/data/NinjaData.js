@@ -93,6 +93,11 @@ let NinjaData = [
                 length: 2
                      }
                     ],
+        run: {
+            frameWidth: 51.6,
+            imageWidth: 50,
+            length: 5
+        },
         jutsu: [{
                 name: "Chidori",
                 power: 35,
@@ -197,6 +202,13 @@ let NinjaData = [
             }
 
                     ],
+        run: {
+            frameWidth: 58,
+            imageWidth: 54,
+            length: 5
+        },
+        //    ctx.drawImage(this.sprite, this.frame * 58, 0, 54, 46, this.x, 100, 100, 100);
+
         jutsu: [{
                 name: "Rasengan",
                 power: 40,
@@ -276,7 +288,7 @@ let NinjaData = [
                 width: 47,
                 length: 2
             }, {
-                
+
                 image: sakura_jutsu2,
                 width: 39,
                 length: 3
@@ -285,7 +297,7 @@ let NinjaData = [
                 width: 47,
                 length: 2
             }, {
-               
+
                 image: sakura_jutsu2,
                 width: 39,
                 length: 3
@@ -306,6 +318,11 @@ let NinjaData = [
                 width: 40,
                 length: 2
             }],
+        run: {
+            frameWidth: 34,
+            imageWidth: 37,
+            length: 5
+        },
         jutsu: [{
                 name: "Low Kick",
                 power: 30,
@@ -434,3 +451,4 @@ let trainingJutsu = [
 
         }
 ];
+

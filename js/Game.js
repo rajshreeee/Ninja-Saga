@@ -56,6 +56,9 @@ class Game {
                 this.village.draw(ctx);
                 break;
 
+            case GAME_STATE.RUN_STATE:
+                this.village.drawNinjaRun(ctx);
+                break;
             case GAME_STATE.SELECT_MISSION_STATE:
                 this.audioLoader.stop("intro");
                 this.village.drawSelectMission(ctx);

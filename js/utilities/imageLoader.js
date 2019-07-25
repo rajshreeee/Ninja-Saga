@@ -83,6 +83,12 @@ class ImageLoader {
          this.loadImage("kurenai", "./images/weapon.png");
         this.loadImage("ninjaSagaIcon", "./images/ninjaSagaIcon.png");
         this.loadImage("kurenaiM", "./images/kurenaiIcon.png");
+        
+        this.loadImage("narutoRun", "./images/naruto_run.png");
+        this.loadImage("sakuraWalk", "./images/sakura_walk.png");
+        this.loadImage("sasukeRun", "./images/sasuke_run.png");
+        this.loadImage("ninjaGate", "./images/ninjaGate.png");
+        this.loadImage("ninjaGate2", "./images/ninjaGate2.png");
      
         this.numberOfImages = Object.keys(this.images).length;
     }

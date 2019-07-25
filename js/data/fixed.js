@@ -10,7 +10,8 @@ const GAME_STATE = {
     GAME_VICTORY: 8,
     GAME_DEFEAT: 9,
     HEALTH_CENTER: 10, 
-    INTRO_STATE: 11
+    INTRO_STATE: 11,
+    RUN_STATE: 12
 }
 
 const BATTLE_STATE = {
