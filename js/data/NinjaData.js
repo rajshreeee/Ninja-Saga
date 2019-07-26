@@ -47,6 +47,11 @@ let jutusuImage4 = document.getElementById('jutsuImage4');
 let jutusuImage5 = document.getElementById('jutsuImage5');
 let jutusuImage6 = document.getElementById('jutsuImage6');
 
+let sakura_punch = document.getElementById('sakura_punch');
+let sakura_combo = document.getElementById('sakura_combo');
+let sasuke_kick = document.getElementById('sasuke_kick');
+let naruto_punch = document.getElementById('naruto_punch');
+
 let NinjaData = [
     {
         name: "Sasuke",
@@ -83,9 +88,9 @@ let NinjaData = [
                 length: 2
             },
             {
-                image: sasuke_chidori,
-                width: 54,
-                length: 3
+                image: sasuke_kick,
+                width: 52.65,
+                length: 4
             },
             {
                 image: sasuke_block,
@@ -175,6 +180,7 @@ let NinjaData = [
                 width: 48,
                 length: 3
             }, {
+
                 image: naruto_jutsu1,
                 width: 46,
                 length: 3
@@ -192,7 +198,7 @@ let NinjaData = [
             },
             {
                 image: naruto_rasengan,
-                width: 48,
+                width: 46,
                 length: 3
             },
             {
@@ -207,7 +213,7 @@ let NinjaData = [
             imageWidth: 54,
             length: 5
         },
-        //    ctx.drawImage(this.sprite, this.frame * 58, 0, 54, 46, this.x, 100, 100, 100);
+
 
         jutsu: [{
                 name: "Rasengan",
@@ -284,27 +290,27 @@ let NinjaData = [
                 length: 3
             },
             {
-                image: sakura_superChakra,
+                image: sakura_punch,
+                width: 59,
+                length: 3
+            }, {
+
+                image: sakura_combo,
                 width: 47,
-                length: 2
+                length: 6
+            }, {
+                image: sakura_punch,
+                width: 59,
+                length: 3
             }, {
 
                 image: sakura_jutsu2,
                 width: 39,
                 length: 3
             }, {
-                image: sakura_superChakra,
+                image: sakura_combo,
                 width: 47,
-                length: 2
-            }, {
-
-                image: sakura_jutsu2,
-                width: 39,
-                length: 3
-            }, {
-                image: sakura_superChakra,
-                width: 47,
-                length: 2
+                length: 6
             },
             {
                 image: sakura_dead,
@@ -451,4 +457,3 @@ let trainingJutsu = [
 
         }
 ];
-

@@ -79,19 +79,15 @@ class Equipment {
                 }, 30, 30) && this.game.player.jutsu[i].selected) {
 
                 this.game.player.jutsu[i].selected = false;
-                console.log(this.game.player.jutsu[i].selected)
             }
 
             if (isSelected(clickCoordinates.x, clickCoordinates.y, equipmentJutsuRect[i], 50, 50)) {
                 let x = this.detectSelected();
-                console.log(x)
 
                 if (this.detectSelected() >= 6) {
-                    console.log('no more than 6');
                 } else {
 
                     this.game.player.jutsu[i].selected = true;
-                    console.log(this.game.player.jutsu[i].selected)
                 }
 
             }
@@ -110,13 +106,10 @@ class Equipment {
 
             if (isSelected(clickCoordinates.x, clickCoordinates.y, equipmentJutsuRect[i], 50, 50)) {
                 let x = this.detectSelected();
-                console.log(x)
-
                 if (this.detectSelected() >= 6) {
                     this.message = "You cannot select more than 6!"
                 } else {
                     this.game.player.jutsu[i].selected = true;
-                    console.log(this.game.player.jutsu[i].selected)
                 }
             }
 

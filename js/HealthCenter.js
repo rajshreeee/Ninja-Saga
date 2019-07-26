@@ -7,7 +7,6 @@ class HealthCenter extends Shop {
     }
     
     drawScolls(ctx){
-        console.log('i')
         for(let i = 0; i< this.itemArray.length; i++){
             ctx.drawImage(this.itemArray[i].image,  this.itemRect[i].x + 24, this.itemRect[i].y + 5,
                 70,
@@ -17,7 +16,6 @@ class HealthCenter extends Shop {
     
     buyScrolls(event) {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
-        console.log()
         if (isSelected(clickCoordinates.x, clickCoordinates.y, {
                 x: 710,
                 y: 410

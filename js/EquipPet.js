@@ -47,7 +47,6 @@ class EquipPet {
                 }, 30, 30) && this.game.petArray[i].selected) {
 
                 this.game.petArray[i].selected = false;
-                console.log(this.game.petArray[i].selected + 'selected');
                 this.message = "";
             }
 
@@ -62,7 +61,6 @@ class EquipPet {
 
                     this.game.petArray[i].selected = true;
                     this.game.selectedPet = i;
-                    console.log(this.game.petArray[i].selected);
                     this.message = "You equipped " + this.game.petArray[i].name;
                 }
 

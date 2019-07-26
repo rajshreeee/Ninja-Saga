@@ -174,7 +174,7 @@ const equipmentJutsuRect = [
                 y: 450
             }
         ];
-missionCoordinates = [
+const missionCoordinates = [
             {
                 x: 300,
                 y: 200,

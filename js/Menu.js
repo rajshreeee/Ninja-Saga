@@ -14,6 +14,7 @@ class Menu {
 
     draw(ctx) {
         ctx.drawImage(this.imageLoader.images.gameBackground, 0, 0, 1000, 700);
+        ctx.drawImage(this.imageLoader.images.ninjaSagaIcon, -20, -10);
 
         this.drawNinja(ctx);
     }
@@ -39,7 +40,7 @@ class Menu {
         );
 
         ctx.drawImage(
-           this.imageLoader.images.sakura_menu,
+            this.imageLoader.images.sakura_menu,
             700,
             200,
             this.imageSize.x,

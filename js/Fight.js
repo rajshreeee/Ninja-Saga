@@ -8,8 +8,8 @@ class Fight {
         this.audioLoader = audioLoader;
         this.imageLoader = imageLoader;
 
-     
-       
+        this.flag = false;
+
 
         this.runHoverDisplay = [false];
         this.runRect = [{
@@ -587,8 +587,8 @@ class Fight {
 
     setDefeat() {
         this.audioLoader.play('defeat');
-        if(this.player.health <10){
-            this.player.health=10;
+        if (this.player.health < 10) {
+            this.player.health = 10;
         }
         this.player.jutsu = this.originalJutsuArray;
         for (let i = 0; i < this.player.jutsu.length; i++) {
@@ -692,18 +692,35 @@ class Fight {
         this.audioLoader.play('punch');
         this.playerTitleBar = true;
 
+        if (this.enemyOne === true) {
+            this.player.positionX = 700;
+        } else {
+            if (this.enemyArray.length != 1) {
+                this.player.positionX = enemyPosition[this.selectedEnemy].x - 160;
+                this.player.positionY = enemyPosition[this.selectedEnemy].y;
+            } else {
+
+
+                if (this.flag === true) {
+                    this.player.positionX = enemyPosition[1].x - 160;
+                    this.player.positionY = enemyPosition[1].y;
+                } else {
+                    this.player.positionX = enemyPosition[this.selectedEnemy].x - 160;
+                    this.player.positionY = enemyPosition[this.selectedEnemy].y;
+                }
+
+            }
+
+        }
+
         this.enemyOpacityArray[this.selectedEnemy] = 0.4;
 
         let dodge = getRandomArbitrary(0, 1);
-        console.log(dodge)
-        console.log(this.player.jutsu[this.jutsuIndex].accuracy)
         if (dodge < this.player.jutsu[this.jutsuIndex].accuracy) {
             let damage = computeDamage(this.player, this.enemyArray[this.selectedEnemy], this.jutsuIndex);
             this.enemyArray[this.selectedEnemy].health -= damage;
         } else {
             this.enemyDodged[this.selectedEnemy] = true;
-            console.log('dodged' + this.selectedEnemy)
-
             setTimeout(function () {
                 this.enemyDodged[this.selectedEnemy] = false;
             }.bind(this), 1000)
@@ -714,6 +731,8 @@ class Fight {
         this.player.chakra -= this.player.jutsu[this.jutsuIndex].chakraLoss;
 
         setTimeout(function () {
+            this.player.positionX = 155;
+            this.player.positionY = 190;
             this.enemyOpacityArray[this.selectedEnemy] = 1;
 
             this.playerTitleBar = false;
@@ -721,7 +740,9 @@ class Fight {
             this.playerImageIndex = 0;
             for (let k = 0; k < this.enemyArray.length; k++) {
                 if (this.enemyArray[k].health <= 0) {
-
+                    if (k === 0) {
+                        this.flag = true;
+                    }
                     this.enemyArray.splice(k, 1);
                     this.enemySpeedArray.splice(k, 1);
                     this.enemyAttackTimeArray.splice(k, 1);
@@ -766,10 +787,10 @@ class Fight {
         this.player.jutsu = this.originalJutsuArray;
         this.player.level += 1;
         this.resetComponents();
-        if(this.player.health<10){
+        if (this.player.health < 10) {
             this.player.health = 10;
         }
-        
+
         for (let i = 0; i < this.player.jutsu.length; i++) {
             this.player.jutsu[i].count = 0;
         }
@@ -782,18 +803,44 @@ class Fight {
 
         this.enemyOpacityArray[0] = 0.4;
         this.petImageIndex = 1;
+
+        if (this.enemyOne === true) {
+            this.pet.positionX = 700;
+            this.pet.positionY = 240;
+        } else {
+            if (this.enemyArray.length != 1) {
+                this.pet.positionX = enemyPosition[0].x - 160;
+                this.pet.positionY = enemyPosition[0].y + 40;
+            } else {
+
+                if (this.flag === true) {
+                    this.pet.positionX = enemyPosition[1].x - 160;
+                    this.pet.positionY = enemyPosition[1].y+30;
+                } else {
+                    this.pet.positionX = enemyPosition[0].x - 160;
+                    this.pet.positionY = enemyPosition[0].y+30;
+                }
+            }
+
+        }
+
+
         let damage = (this.pet.power / this.enemyArray[0].defense) * this.pet.accuracy;
         this.enemyArray[0].health -= damage;
         this.enemyImageIndexArray[0] = this.enemyArray[0].imageArray.length - 1;
         this.petAttackTime = false;
         setTimeout(function () {
+            this.pet.positionX = 130;
+            this.pet.positionY = 320;
             this.petImageIndex = 0;
             this.enemyImageIndexArray[0] = 0;
             this.enemyOpacityArray[0] = 1;
 
             for (let k = 0; k < this.enemyArray.length; k++) {
                 if (this.enemyArray[k].health <= 0) {
-
+                    if (k === 0) {
+                        this.flag = true;
+                    }
                     this.enemyArray.splice(k, 1);
                     this.enemySpeedArray.splice(k, 1);
                     this.enemyAttackTimeArray.splice(k, 1);
@@ -822,7 +869,9 @@ class Fight {
         }.bind(this), 2000);
 
     }
+
     enemyAttack(i) {
+
         this.audioLoader.play('punch');
 
         this.playerOpacity = 0.4;
@@ -830,7 +879,8 @@ class Fight {
 
         let jutsuIndexEnemy = getRandomInt(0, 2);
 
-
+        this.enemyArray[i].positionX = -340;
+        this.enemyArray[i].positionY = 190;
         this.enemyImageIndexArray[i] = jutsuIndexEnemy + 1;
         this.hostMessage = this.enemyArray[i].name + " used " + this.enemyArray[i].jutsu[jutsuIndexEnemy].name + "!";
 
@@ -849,6 +899,27 @@ class Fight {
         calculatHealthPercentage(this.player);
         this.enemyAttackTimeArray[i] = false;
         setTimeout(function () {
+            if (this.enemyOne === true) {
+                this.enemyArray[i].positionX = -enemyPosition[1].x;
+                this.enemyArray[i].positionY = enemyPosition[1].y;
+            } else {
+
+                if (this.enemyArray.length != 1) {
+                    this.enemyArray[i].positionX = -enemyPosition[i].x;
+                    this.enemyArray[i].positionY = enemyPosition[i].y;
+                } else {
+                    if (this.flag === true) {
+                        this.enemyArray[i].positionX = -enemyPosition[1].x;
+                        this.enemyArray[i].positionY = enemyPosition[1].y;
+                    } else {
+                        this.enemyArray[i].positionX = -enemyPosition[0].x;
+                        this.enemyArray[i].positionY = enemyPosition[0].y;
+                    }
+
+                }
+
+
+            }
             this.hostMessage = "";
             this.playerOpacity = 1;
             this.playerImageIndex = 0;

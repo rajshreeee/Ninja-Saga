@@ -6,6 +6,8 @@ class Pet {
 
         this.index = index;
         this.setPet();
+        this.positionX = 130;
+        this.positionY = 320;
     }
 
     draw(ctx, imageIndex, imageSize) {
@@ -16,7 +18,7 @@ class Pet {
             this.frame += 1;
         }
 
-       ctx.drawImage(this.imageArray[imageIndex].image, this.frame * this.imageArray[imageIndex].width, 0,this.imageArray[imageIndex].width, 50, 130, 320, imageSize, imageSize);
+       ctx.drawImage(this.imageArray[imageIndex].image, this.frame * this.imageArray[imageIndex].width, 0,this.imageArray[imageIndex].width, 50, this.positionX, this.positionY, imageSize, imageSize);
 
     }
     

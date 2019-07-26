@@ -1,9 +1,9 @@
 class Village {
-    constructor(game, canvas, audioLoader, ImageLoader) {
+    constructor(game, canvas, audioLoader, ImageLoader, bottomBar) {
 
         this.audioLoader = audioLoader;
         this.imageLoader = ImageLoader;
-
+        this.bottomBar = bottomBar;
         this.game = game;
 
         this.track = 0;
@@ -190,17 +190,13 @@ class Village {
 
                 this.game.createFightObjects(2);
 
-            } else {
-                console.log('not enough level')
-            }
+            } 
         }
 
         if (isSelected(clickCoordinates.x, clickCoordinates.y, missionCoordinates[0], 313, 71)) {
             if (this.game.player.level >= 2) {
                 this.game.createFightObjects(5);
 
-            } else {
-                console.log('not enough level')
             }
         }
 
@@ -265,7 +261,7 @@ class Village {
             0,
             0,
             1000,
-            700
+            500
         );
         this.track++;
         if (this.track % 15 == 0) {
@@ -274,17 +270,18 @@ class Village {
         }
         ctx.drawImage(
             this.image, this.frame * NinjaData[this.game.ninjaIndex].run.frameWidth, 0,
-            NinjaData[this.game.ninjaIndex].run.imageWidth, 48, this.x, 350, 100, 100
+            NinjaData[this.game.ninjaIndex].run.imageWidth, 48, this.x, 220, 100, 100
         );
 
-        ctx.drawImage(this.imageLoader.images.ninjaGate, 0, 100);
-        ctx.drawImage(this.imageLoader.images.ninjaGate2, 800, 100);
+        ctx.drawImage(this.imageLoader.images.ninjaGate, 0, 0);
+        ctx.drawImage(this.imageLoader.images.dagger, 900, 100);
 
         this.x += 2.5;
 
-        if (this.x >= 960) {
+        if (this.x >= 850) {
             this.game.gameState = GAME_STATE.SELECT_MISSION_STATE;
         }
+        this.bottomBar.drawBottom(ctx, "Go to the dagger to get your mission!");
 
     }
 }

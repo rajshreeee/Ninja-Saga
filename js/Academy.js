@@ -18,7 +18,6 @@ class Academy extends Shop {
 
     learnJutsu(event) {
         let clickCoordinates = getMouseCoordinates(this.canvas, event);
-        console.log()
         if (isSelected(clickCoordinates.x, clickCoordinates.y, {
                 x: 710,
                 y: 360
@@ -40,7 +39,6 @@ class Academy extends Shop {
     addLearnedJutsu() {
         this.game.player.jutsu.push(this.itemArray[this.selectedItem]);
         this.game.player.gold -= 200;
-        console.log(this.game.player.jutsu)
 
     }
 

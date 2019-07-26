@@ -11,6 +11,7 @@ class Game {
         this.enemy;
         this.fight;
         this.playerPositionX = 155;
+        this.playerPositionY = 190;
         this.canvas = canvas;
         new InputHandler(this, this.canvas);
 
@@ -19,7 +20,7 @@ class Game {
 
         this.bottomBar = new BottomBar(this, this.imageLoader);
 
-        this.village = new Village(this, this.canvas, this.audioLoader, this.imageLoader);
+        this.village = new Village(this, this.canvas, this.audioLoader, this.imageLoader, this.bottomBar);
 
         this.academy = new Academy(this, this.canvas, this.imageLoader, this.audioLoader, this.imageLoader.images.academy_inside, this.imageLoader.images.learn_button, academyJutsuRect, trainingJutsu, this.bottomBar, 0, this.cross);
 
@@ -40,7 +41,7 @@ class Game {
     setCharacters() {
         this.ninjaArray.splice(this.ninjaIndex, 1);
 
-        this.player = new Player(this, this.ninjaIndex, this.playerPositionX, 190, 1, NinjaData[this.ninjaIndex].imageArray);
+        this.player = new Player(this, this.ninjaIndex, this.playerPositionX, this.playerPositionY, 1, NinjaData[this.ninjaIndex].imageArray);
 
     }
 
