@@ -1,4 +1,4 @@
-/home/oem/Desktop/1.png# Ninja-Saga
+Ninja-Saga
 
 A combat game created with vanilla JS.
 
