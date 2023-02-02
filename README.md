@@ -1,4 +1,4 @@
-Ninja-Saga
+# Ninja-Saga
 
 A combat game created with vanilla JS.
 
